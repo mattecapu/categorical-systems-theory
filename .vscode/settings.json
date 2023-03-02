@@ -1,0 +1,40 @@
+{
+	"files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.aux": true,
+        "**/*.auxlock": true,
+        "**/*.out": true,
+		"**/*.toc": true,
+		"**/*.log": true,
+		"**/*.synctex.gz": true,
+        "**/*.synctex.gz(busy)": true,
+        "**/*.bcf": true,
+        "**/*.bbl": true,
+        "**/*.blg": true,
+        "**/*.snm": true,
+        "**/*.nav": true,
+        "**/*.run.xml": true
+    },
+    "latex-workshop.message.update.show": false,
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "compile",
+            "tools": [
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "compile-with-bib",
+            "tools": [
+                "pdflatex",
+                "biber",
+                "pdflatex"
+            ]
+        }
+    ],
+}
+

@@ -1,0 +1,493 @@
+\usepackage{caption, subcaption}
+
+\usepackage{todonotes}
+\usepackage{fonttable}
+\usepackage{stmaryrd}
+\usepackage{wasysym}
+\usepackage{tabularx}
+\usepackage{expl3}
+\usepackage{xparse, xpatch}
+\usepackage{stackengine, old-arrows}
+
+\usepackage{quiver}
+
+% todos
+\newcommand{\matteo}[1]{\todo[inline,color=green!30]{\textbf{Matteo}: {#1}}}
+
+% scaled & centered figures
+\newcommand{\sctikzfig}[2][.8]{\begin{center}\scalebox{#1}{\tikzfig{#2}}\end{center}}
+
+% aligned equations
+\newenvironment{eqalign}{\begin{equation}\begin{aligned}}{\end{aligned}\end{equation}}
+\newenvironment{eqalign*}{\begin{equation*}\begin{aligned}}{\end{aligned}\end{equation*}}
+
+% diagrams
+\newenvironment{diagram}{\begin{equation}\begin{tikzcd}}{\end{tikzcd}\end{equation}}
+\newenvironment{diagram*}{\begin{equation*}\begin{tikzcd}}{\end{tikzcd}\end{equation*}}
+
+\tikzset{
+  relation/.style={
+    draw=none,
+    every to/.append style={
+      edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+  }
+}
+
+% common arrow styles
+\tikzcdset{
+  mono/.code={
+    \pgfsetarrows{tikzcd to reversed-tikzcd to}
+  }
+}
+\tikzcdset{
+  epi/.code={
+    \pgfsetarrowsend{tikzcd double to}
+  }
+}
+\tikzcdset{
+  into/.code={
+    \pgfsetarrows{tikzcd right hook-tikzcd to}
+  }
+}
+\tikzcdset{
+  twocell/.style={Rightarrow, shorten >= 3ex, shorten <= 3ex}
+}
+
+\tikzcdset{
+  row sep/normal={
+    6ex
+  },
+  column sep/normal={
+    8ex
+  }
+}
+
+% comment on an equation
+\newcommand{\comment}[1]{\qquad\text{#1}}
+
+% disjoint footnotes
+\newcommand{\disjointfootnotemark}[1]{\footnotemark[\getrefnumber{#1}]}
+\newcommand{\disjointfootnotetext}[1]{%
+  \addtocounter{footnote}{1}%
+  \addtocounter{Hfootnote}{1}%
+  \footnotetext{#1}%
+}
+
+% overset without decreasing font size
+\newcommand{\Overset}[2]{%
+  \mathop{#2}\limits^{\vbox to -.1ex{%
+  \kern -1.8ex\hbox{$#1$}\vss}}%
+}
+% underset without decreasing font size
+\newcommand{\Underset}[2]{%
+  \mathop{#2}\limits_{\vbox to .1ex{%
+  \kern -.6ex\hbox{$#1$}\vss}}%
+}
+
+% fat semicolon
+\newcommand{\comp}{\fatsemi}
+
+% hyphen for math mode
+\mathchardef\dash="2D
+
+% defined term
+\newcommand{\defining}[1]{\textbf{#1}}
+
+% subject of a thesis
+\renewcommand{\th}[1]{\overset{th}{#1}}
+
+% e costant
+\newcommand{\e}{\mathrm{e}}
+
+% exp
+\renewcommand{\exp}{\operatorname{exp}}
+
+% cotangent
+\newcommand{\cotan}{\operatorname{cotan}}
+
+% argmin
+\newcommand{\argmin}{\operatorname{argmin}}
+
+% 'does not imply' symbol
+\newcommand{\nimplies}{\centernot\implies}
+
+% implications in the opposite direction
+\newcommand{\implied}{\Longleftarrow}
+\newcommand{\nimplied}{\centernot\implied}
+
+% logical implication
+\newcommand{\limp}{\rightarrow}
+\newcommand{\liff}{\leftrightarrow}
+
+% inhabitation for types
+\newcommand{\tin}{\!:\!}
+
+% inverses of \to
+\newcommand{\ot}{\leftarrow}
+\newcommand{\from}{\ot}
+
+% long version of \to
+\newcommand{\longto}{\longrightarrow}
+
+% inverse of \mapsto
+% \newcommand{\mapsfrom}{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+% \newcommand{\longmapsfrom}{\mathrel{\reflectbox{\ensuremath{\longmapsto}}}}
+
+% inclusion
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\inot}{\hookleftarrow}
+\newcommand{\monoto}{\rightarrowtail}
+
+% surjection
+\newcommand{\onto}{\twoheadrightarrow}
+\newcommand{\epito}{\twoheadrightarrow}
+
+% iso arrows
+\newcommand{\isoto}{\overset{\sim}\to}
+\newcommand{\isolongto}{\overset{\sim}\longto}
+
+% 2-morphisms
+\newcommand{\twoto}{\Rightarrow}
+\newcommand{\isotwoto}{\overset{\sim}\twoto}
+\newcommand{\longtwoto}{\Longrightarrow}
+\newcommand{\isolongtwoto}{\overset{\sim}\longtwoto}
+
+% 3-morphisms
+\newcommand{\threeto}{\Rrightarrow}
+
+\newcommand{\narrow}[2]{\overset{#1}{#2}}
+\newcommand{\nto}[1]{\narrow{#1}{\to}}
+\newcommand{\nfrom}[1]{\narrow{#1}{\from}}
+\newcommand{\nlongto}[1]{\xrightarrow{#1}}
+\newcommand{\ninto}[1]{\narrow{#1}{\into}}
+\newcommand{\nisoto}[1]{\narrow{#1}{\isolongto}}
+\newcommand{\nepi}[1]{\narrow{#1}{\epi}}
+\newcommand{\nmono}[1]{\narrow{#1}{\mono}}
+\newcommand{\ntwoto}[1]{\narrow{#1}{\twoto}}
+
+% profunctors
+\newcommand{\profto}{\stackMath\mathrel{\stackinset{c}{-0.25ex}{c}{0.25ex}{\shortmid}{\to}}}
+\newcommand{\longprofto}{\stackMath\mathrel{\stackinset{c}{-0.25ex}{c}{0.25ex}{\shortmid}{\longrightarrow}}}
+\newcommand{\nprofto}[1]{\narrow{#1}{\profto}}
+
+% optics
+\newcommand{\opticto}{\leftrightarrows}
+\newcommand{\chartto}{\rightrightarrows}
+\newcommand{\equalto}{=\mathrel{\mkern-3mu}=}
+\newcommand{\nequalto}[1]{\overset{#1}{\equalto}}
+\newcommand{\nopticto}[2]{\overset{#1}{\underset{#2}\opticto}}
+\newcommand{\nchartto}[2]{\overset{#1}{\underset{#2}\chartto}}
+
+% double categories
+\newcommand{\horto}{\to}
+\newcommand{\verto}{\stackMath\mathrel{\stackinset{c}{-0.25ex}{c}{0.25ex}{\bullet}{\to}}}
+\newcommand{\longverto}{\stackMath\mathrel{\stackinset{c}{-0.25ex}{c}{0.25ex}{\bullet}{\longrightarrow}}}
+\newcommand{\nhorto}[1]{\narrow{#1}{\horto}}
+\newcommand{\nverto}[1]{\narrow{#1}{\verto}}
+
+% 'a | b'
+\newcommand{\divides}{\,|\,}
+
+% constant function
+\newcommand{\cost}{\text{cost.}}
+\newcommand{\const}{\mathsf{const}}
+
+% locutions
+\newcommand{\word}[1]{\quad\text{\underline{#1}}\quad}
+\newcommand{\almosteverywhereon}[2][\mu]{{\text{${#1}$-a.e. on ${#2}$}}}
+\renewcommand{\ae}{\ \text{a.e.}}
+\newcommand{\sse}{\word{iff}}
+\newcommand{\means}{\word{means}}
+\newcommand{\impl}{\word{implies}}
+\newcommand{\fa}{\ \text{f.a.}\;}
+
+% such that
+\newcommand{\suchthat}{\,|\,}
+
+% numerical sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% set-theoretic stuff
+\newcommand{\card}[1]{\left|{#1}\right|}
+\newcommand{\parts}[1]{\mathcal{P}\left({#1}\right)}
+\newcommand{\continuum}{\mathfrak{c}}
+
+% diameter of a set
+\newcommand{\diam}{\operatorname{diam}}
+
+% vectors
+\newcommand{\vers}[1]{\hat{\vv{#1}}}
+
+\newcommand{\ii}{\vers{i}}
+\newcommand{\jj}{\vers{j}}
+\newcommand{\kk}{\vers{k}}
+
+\newcommand{\xx}{\vv{x}}
+\newcommand{\yy}{\vv{y}}
+\newcommand{\zz}{\vv{z}}
+
+% big kernel, cokernel & image
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Imm}{\operatorname{Im}}
+\newcommand{\im}{\operatorname{im}}
+
+% action of a group
+\newcommand{\acts}{\curvearrowright}
+% weak action groupoid
+\newcommand{\wag}{\mathbin{/\mkern-6mu/}}
+
+% linear span
+\newcommand{\Span}{\cat{Span}}
+
+% direct sum
+\newcommand{\dir}{\oplus}
+\newcommand{\bigdir}{\bigoplus}
+
+% operations in an Heyting algebra
+\newcommand{\hey}{\Rightarrow}
+\newcommand{\bigsup}{\bigvee}
+\newcommand{\biginf}{\bigwedge}
+
+% differential
+\newcommand{\diff}[1]{\operatorname{d}{#1}}
+% jacobian
+\newcommand{\jac}{\operatorname{\vv{J}}}
+
+% derivatives
+\newcommand{\de}{\mathrm{d}}
+\newcommand{\dx}{\de x}
+\newcommand{\dt}{\de t}
+\newcommand{\ds}{\de s}
+
+\newcommand{\der}[2]{\frac{\de{#1}}{\de{#2}}}
+\newcommand{\pder}[2]{\frac{\partial {#1}}{\partial {#2}}}
+
+% second derivatives
+\newcommand{\sder}[2]{\frac{\de^2{#1}}{\de{#2}^2}}
+\newcommand{\spder}[3]{\frac{\partial^2{#1}}{\partial{#2} \partial{#3}}}
+% second derivative on the same coordinate
+\newcommand{\sdpder}[2]{\frac{\partial^2{#1}}{\partial{#2}^2}}
+
+% big derivatives
+\newcommand{\bigder}[2]{\dfrac{\strut \de{#1}}{\de{#2}}}
+\newcommand{\bigpder}[2]{\dfrac{\strut \partial {#1}}{\partial {#2}}}
+
+% big second derivatives
+\newcommand{\bigsder}[2]{\dfrac{\strut \de^2 {#1}}{\de{#2}^2}}
+\newcommand{\bigspder}[3]{\dfrac{\strut \partial^2 {#1}}{\partial {#2} \partial {#3}}}
+% big second derivative on the same coordinate
+\newcommand{\bigsdpder}[2]{\dfrac{\strut \partial^2 {#1}}{\partial {#2}^2}}
+
+% left/right applied partial derivatives
+\newcommand{\lpartial}{\overset{\leftarrow}\partial}
+\newcommand{\rpartial}{\overset{\rightarrow}\partial}
+
+% complex stuff
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\Res}{\operatorname{Res}}
+
+% real and imaginary parts
+\renewcommand{\Re}[1]{\mathfrak{Re}\left(#1\right)}
+\renewcommand{\Im}[1]{\mathfrak{Im}\left(#1\right)}
+
+% sign function
+\newcommand{\sign}{\operatorname{}{sgn}}
+
+% convergence
+\newcommand{\conv}[1][]{\underset{{#1}}{\longrightarrow}}
+
+% regularity classes
+\newcommand{\Cn}{\mathcal{C}}
+\newcommand{\Czero}{\Cn^0}
+\newcommand{\Cone}{\Cn^1}
+\newcommand{\Ctwo}{\Cn^2}
+\newcommand{\Cinfty}{\Cn^\infty}
+
+% Lipschitz
+\newcommand{\Lip}{\mathrm{Lip}}
+
+% indicator function
+\newcommand{\ind}{\vv{1}}
+
+% lenses
+\newcommand{\biglens}[2]{
+	 \begin{pmatrix}{\vphantom{f_f^f}#1} \\ {\vphantom{f_f^f}#2} \end{pmatrix}
+}
+\newcommand{\littlelens}[2]{
+	 \begin{psmallmatrix}{\vphantom{f}#1} \\ {\vphantom{f}#2} \end{psmallmatrix}
+}
+\newcommand{\lens}[2]{
+  \relax\if@display
+	 \biglens{#1}{#2}
+  \else
+	 \littlelens{#1}{#2}
+  \fi
+}
+
+\usepackage{xstring}
+\newcommand{\cat}[1]{
+  \relax
+  \StrLen{#1}[\catarglen]
+  \ifnum\catarglen=1
+    \mathcal{#1}
+  \else
+    \mathbf{#1}
+  \fi
+}
+\newcommand{\dblcat}[1]{\cat{\mathbb #1}}
+\newcommand{\trplcat}[1]{\cat{\mathfrak #1}}
+
+\newcommand{\dblSet}{\dblcat{Set}}
+\newcommand{\dblCat}{\dblcat{Cat}}
+
+\newcommand{\Poly}{\cat{Poly}}
+
+\newcommand{\dist}{\Delta}
+\newcommand{\pow}{\mathcal{P}}
+
+\newcommand{\cod}{\mathrm{cod}}
+\newcommand{\dom}{\mathrm{dom}}
+
+\newcommand{\st}{\mathrm{st}}
+
+\newcommand{\Sub}{\mathrm{Sub}}
+
+\newcommand{\eval}{\mathrm{eval}}
+\newcommand{\curr}{\mathrm{curr}}
+
+\newcommand{\true}{\mathsf{true}}
+
+\newcommand{\view}{\mathsf{view}}
+\newcommand{\play}{\mathsf{play}}
+\newcommand{\coplay}{\mathsf{coplay}}
+
+\newcommand{\name}[1]{\lceil #1 \rceil}
+\DeclareMathOperator{\argmax}{\mathrm{argmax}}
+
+% identity
+\newcommand{\identity}{\mathrm{id}}
+\newcommand{\id}{\mathrm{id}}
+
+% isomorphism and equivalence symbols
+\newcommand{\iso}[1][]{\overset{#1}{\cong}}
+\newcommand{\equi}{\simeq}
+
+% F left adjoint to G symbol
+\newcommand{\adj}{\dashv}
+
+% categories
+\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Nat}{\operatorname{Nat}}
+
+% Kan extensions
+\newcommand{\Lan}{\operatorname{Lan}}
+\newcommand{\Ran}{\operatorname{Ran}}
+
+% big categories
+\newcommand{\Cat}{\cat{Cat}}
+\newcommand{\Prof}{\cat{Prof}}
+
+\newcommand{\Set}{\cat{Set}}
+\newcommand{\FinSet}{\cat{FinSet}}
+
+\newcommand{\Mon}{\cat{Mon}}
+\newcommand{\CMon}{\cat{CMon}}
+\newcommand{\Grp}{\cat{Grp}}
+\newcommand{\Mod}{\cat{Mod}}
+\newcommand{\Ab}{\cat{Ab}}
+\newcommand{\Vect}{\cat{Vect}}
+\newcommand{\Met}{\cat{Met}}
+\newcommand{\Meas}{\cat{Meas}}
+\newcommand{\Msbl}{\cat{Msbl}}
+\newcommand{\Prob}{\cat{Prob}}
+\newcommand{\Euc}{\cat{Euc}}
+\newcommand{\Smooth}{\cat{Smooth}}
+
+% opposite category
+\newcommand{\op}{\mathsf{op}}
+\newcommand{\co}{\mathsf{co}}
+\newcommand{\coop}{\mathsf{coop}}
+
+\newcommand{\Para}{\cat{Para}}
+\newcommand{\Copara}{\cat{Copara}}
+\newcommand{\Optic}{\cat{Optic}}
+\newcommand{\Lens}{\cat{Lens}}
+\newcommand{\DLens}{\cat{DLens}}
+\newcommand{\DChart}{\cat{DChart}}
+
+\newcommand{\Bun}{\mathrm{Bun}}
+
+\newcommand{\MonCat}{\cat{MonCat}}
+\newcommand{\SymMonCat}{\cat{SymMonCat}}
+\newcommand{\Fib}{\cat{Fib}}
+\newcommand{\OpFib}{\cat{OpFib}}
+\newcommand{\Kl}{\cat{Kl}}
+\newcommand{\coKl}{\cat{coKl}}
+\newcommand{\biKl}{\cat{biKl}}
+
+\newcommand{\Alg}[1]{{#1}\dash\cat{Alg}}
+\newcommand{\Coalg}[1]{{#1}\dash\cat{Coalg}}
+\newcommand{\Bialg}[2]{({#1},{#2})\dash\cat{BiAlg}}
+
+\newcommand{\lax}{\mathrm{lx}}
+\newcommand{\oplax}{\mathrm{ox}}
+\newcommand{\pseudo}{\mathrm{ps}}
+\newcommand{\strict}{\mathrm{s}}
+\newcommand{\cart}{\mathrm{cart}}
+\newcommand{\ver}{\mathrm{vert}}
+
+\newcommand{\VCat}[1]{{#1}\dash\Cat}
+
+\newcommand{\rev}{\mathrm{rev}}
+\newcommand{\swap}{\mathrm{swap}}
+
+\newcommand{\colim}{\operatorname{colim}}
+
+\newcommand{\undertext}[2]{\underbrace{#1}_{\text{#2}}}
+
+\DeclareFontFamily{U}{musix}{}%
+\DeclareFontShape{U}{musix}{m}{n}{%
+  <-12>   musix11
+  <12-15> musix13
+  <15-18> musix16
+  <18-23> musix20
+  <23->   musix29
+}{}%
+% Not strictly necessary but convenient:
+\newcommand*\musix{\usefont{U}{musix}{m}{n}\selectfont}
+\DeclareTextFontCommand{\textmusix}{\musix}
+
+\newcommand{\doubleflat}{{\raisebox{.6ex}{\textmusix{3}}}}
+\newcommand{\doublesharp}{{\raisebox{.6ex}{\textmusix{5}}}}
+
+\newcommand{\dblSpan}{\dblcat{Span}}
+\newcommand{\DblCat}{\dblcat{DblCat}}
+\newcommand{\DblIx}{\dblcat{Dbl}\dblcat{Ix}}
+\newcommand{\MonDblIx}{\dblcat{Mon}\dblcat{Dbl}\dblcat{Ix}}
+
+\newcommand{\sys}{\mathsf}
+\newcommand{\systh}{\mathbf}
+
+\newcommand{\Processes}{\dblcat{P}}
+\newcommand{\CyberProcesses}{\trplcat{P}}
+
+\newcommand{\Sys}{\systh{Sys}}
+\newcommand{\Cyb}{\cat{Cyb}}
+\newcommand{\CybSys}{\cat{CybSys}}
+
+\newcommand{\doctrine}{\mathfrak{D}}
+\newcommand{\theory}{\mathbb{T}}
+\newcommand{\Theories}{\dblcat{Sys}\dblcat{Th}}
+\newcommand{\Behaviour}{\cat{B}}
+
+\newcommand{\Obs}{\systh{Obs}}
+\newcommand{\Moore}{\systh{Moore}}
