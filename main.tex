@@ -50,9 +50,22 @@
 	Hence it's usually easier to start describing what a theory of systems is and then to say what does it mean for a doctrine to gather many of them in a single object.
 
 	\subsection{References}
-	Categorical approaches to general system theory have been around for a long time, see for example~\cite{rosen1978fundamentals}, but the current abstract and general form is due to David Jaz Myers, who distilled lots of recent work in an elegant doubly-categorical toolset.
+	Categorical approaches to general system theory have been around for a long time.
+	The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from an observational point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
 
-	The subject is still in its infancy. At the moment, most of CST lives in Myers' own book \cite{myers_categorical_2022}, itself a longer version of the shorter preprint \cite{myers_double_2020} (where the notion of \emph{doctrine} wasn't yet developed).
+	In the 90s, a series of papers by Katis, Sabadini, Walters and others established a theory of machines \cite{sabadini_functions_1993, bloom_matrices_1996, katis1997bicategories, katis1997span, katis_algebra_1999, katis2002feedback} which anticipated some of the ideas regarding functorial semantics of behaviour, finding categories of matrices are well-adapted to receive such functors.
+
+	The works on structured and decorated cospans \cite{fiadeiro2007structured,fong2015decorated, baez2020open,baez2020structured,Baez2022structuredversus} deals with the doctrine of port-plugging systems (circuits) in modern form, and started using some ideas from double category theory to talk about them.
+	This also happens in \cite{lerman2018networks,culbertson2020formal}.
+
+	In \cite{spivak2013operad, libkind2021operadic} and other related works the idea operads provide the syntax for composition of systems is introduced.
+
+	Thus we can say that albeit the current form of CST (as the yoga of doubly indexed category and `copresheaves' over them) is due to David Jaz Myers, various pieces of this philosophy have been around for far longer, as well as specific incarnations of them.
+
+	In this sense, we might be at the boundary between pre-paradigmatic phase and a period of normal science in the categorical study of systems.
+	This is conditional on the ability of CST to establish itself as the dominant paradigm. In fact, the subject is still in its infancy.
+
+	At the moment, most of CST lives in Myers' own book \cite{myers_categorical_2022}, itself a longer version of the shorter preprint \cite{myers_double_2020} (where the notion of \emph{doctrine} wasn't yet developed).
 	Moreover, Myers has given a few talks about the topic in the past years:
 	\begin{enumerate}
 		\item \fullcite{myers2020talk1}
@@ -181,7 +194,7 @@
 
 	\begin{example}[Alphabets]
 	\label{ex:alphabets}
-		Let $\dblcat{Alph} = \FinSet^\uparrow$ be the double category of alphabets and alphabet reductions, and maps thereof. Its objects are finite sets of symbols we call `alphabets'. Its horizontal maps are maps of finite sets. Its vertical maps are \emph{alphabet reductions}, which are map of finite sets in the opposite direction:
+		Let $\Alph = \FinSet^\uparrow$ be the double category of alphabets and alphabet reductions, and maps thereof. Its objects are finite sets of symbols we call `alphabets'. Its horizontal maps are maps of finite sets. Its vertical maps are \emph{alphabet reductions}, which are map of finite sets in the opposite direction:
 		\begin{equation}
 			p : \Sigma \verto \Sigma' \in \FinSet(\Sigma', \Sigma)
 		\end{equation}
@@ -201,7 +214,7 @@
 
 	\begin{example}[Bidirectional processes]
 	\label{ex:lenses}
-		Consider the following double category of \emph{deterministic bidirectional processes}:
+		Consider the following double category of \emph{deterministic bidirectional processes} $\dblLens$:
 		\begin{enumerate}
 			\item interfaces are given by pairs or sets $\lens{A^-}{A^+}$, whose monoidal product is given by componentwise product,
 			\item processes $\lens{A^-}{A^+} \opticto \lens{C^-}{C^+}$ are given by \textbf{lenses} $\lens{f^\sharp}{f}$, comprised of a \emph{get part} $f : A^+ \to C^+$ and a \emph{put part} $f^\sharp : A^+ \times C^- \to A^-$,
@@ -243,7 +256,7 @@
 	\begin{example}
 	\label{ex:f-lenses}
 		The previous example can be generalized greatly by employing $F$-lenses~\cite{spivak_generalized_2019}. These are lenses in which the backward part is dependent on the forward part in a way specified by an indexed category $F$.
-		Intuitively, this correspond to a wiring pattern which can change dependening on the what flows in the wires (see \cite{poly}).
+		Intuitively, this correspond to a wiring pattern which can change dependening on the what flows in the wires (see \cite{spivak_poly_2020}).
 
 		The definitions of $F$-lenses and $F$-charts are substantially identical to the ones above, as well as that for the squares (except the `commutativity condition' is now harder to eyeball).
 		We gather some examples here:
@@ -261,36 +274,7 @@
 		\end{center}
 	\end{example}
 
-	\begin{example}
-		Consider the following double category of \emph{variable-sharing processes}:
-		\begin{enumerate}
-			\item interfaces are variables, embodied by a set $A$ of their values,
-			\item processes are functional maps of variables, embodied by functions $f:A \to C$ between their values,
-			\item maps of interfaces are variable sharing patterns, embodied by spans ${g : A \from R \to B}$ between their values,
-			\item behaviours are squares in $\Span(\Set)$, hence commutative diagrams such that:
-			\begin{equation}
-				% https://q.uiver.app?q=WzAsNixbMCwwLCJBIl0sWzAsMSwiQyJdLFsyLDAsIkIiXSxbMiwxLCJEIl0sWzEsMCwiUiJdLFsxLDEsIlMiXSxbNCwwLCJnX1xcZWxsIiwyXSxbNSwxLCJoX1xcZWxsIl0sWzUsMywiaF9yIiwyXSxbNCwyLCJnX3IiXSxbMCwxLCJmIiwyXSxbMiwzLCJrIl0sWzQsNSwiXFxzaWdtYSIsMV1d
-				\begin{tikzcd}
-					A & R & B \\
-					C & S & D
-					\arrow["{g_\ell}"', from=1-2, to=1-1]
-					\arrow["{h_\ell}", from=2-2, to=2-1]
-					\arrow["{h_r}"', from=2-2, to=2-3]
-					\arrow["{g_r}", from=1-2, to=1-3]
-					\arrow["f"', from=1-1, to=2-1]
-					\arrow["k", from=1-3, to=2-3]
-					\arrow["\sigma"{description}, from=1-2, to=2-2]
-				\end{tikzcd}
-			\end{equation}
-			hence such that for each $r \in R$,
-			\begin{eqalign}
-				&f(g_\ell(r)) = h_\ell(\sigma(r)),\\
-				&h_r(\sigma(r)) = k(g_r(r)).
-			\end{eqalign}
-		\end{enumerate}
-	\end{example}
-
-	\begin{example}
+	\begin{example}[Observational theory]
 		Given any Cartesian category\footnote{By which we mean a category with a terminal object and all pullbacks.}
 		spans \& maps
 	\end{example}
@@ -342,14 +326,17 @@
 
 	\begin{example}[Closed dynamical systems]
 	\label{ex:closed-dyn-sys}
-		The most basic model of dynamical systems in mathematics is simply endomorphisms $S:X \to X$ on some space $X$ in a category of `spaces' $\cat S$.
+		The most basic model of dynamical systems in mathematics is simply endomorphisms $\delta:S \to S$ on some space $S$ in a category of `spaces' $\cat S$.
 		These systems are closed: they expose nothing of their state, and their dynamics can't be influenced by external input: their process theory is trivial!
-		Consequently, the systems theory of closed dynamical systems is given by a single category $\DynSys_{\cat S}$ picked out by a functor $1 \to \dblCat$.
+		Consequently, the systems theory of closed dynamical systems is given by a single category $\DynSys_{\cat S}$:
+		\begin{equation}
+			\DynSys_{\cat S} : 1^\top \unilaxto \dblCat.
+		\end{equation}
 		In this category, the objects are endomorphisms and the maps are commuting squares of the form:
 		\begin{equation}
 			\begin{tikzcd}[ampersand replacement=\&]
-				X \arrow[swap]{d}{S} \arrow{r}{\varphi} \& Y \arrow{d}{R}\\
-				X \arrow{r}[swap]{\varphi} \& Y
+				S \arrow[swap]{d}{\delta} \arrow{r}{\varphi} \& R \arrow{d}{\gamma}\\
+				S \arrow{r}[swap]{\varphi} \& R
 			\end{tikzcd}
 		\end{equation}
 		Clearly $\DynSys_{\cat S}$ is monoidal if $\cat S$ is.
@@ -399,8 +386,8 @@
 		pullback again) and $f_G$.
 
 		The fibred subcategory of polynomial functors is what gives
-		$\cat C/-$-lenses, whose opposite is the codomain fibration,
-		i.e.~$\cat C/-$-charts.
+		`dependent' lenses, whose opposite is the codomain fibration,
+		i.e.~`dependent' charts \cite{spivak_generalized_2019}.
 		This suggests that taking the opposite fibration of $-(1)$ gives us a
 		fibration of `generalized charts'.
 
@@ -431,7 +418,7 @@
 				$1$ is an isomorphism (think: the identity)
 		\end{enumerate}
 
-		We define a \emph{generalized chart} $(k,k^\flat): F \chartto G$ to be a span in $\End(\cat C)$ whose left leg is vertical and whose right leg is cartesian. Hence they look like this:
+		We define a \emph{generalized chart} $\lens{k^\flat}{k}: F \chartto G$ to be a span in $\End(\cat C)$ whose left leg is vertical and whose right leg is cartesian. Hence they look like this:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsOCxbMSwxLCJGMSJdLFszLDEsIkcxIl0sWzMsMCwiRyJdLFsyLDEsIkYxIl0sWzIsMCwiZl4qRyJdLFsxLDAsIkYiXSxbMCwwLCJcXEVuZChcXGNhdCBDKSJdLFswLDEsIlxcY2F0IEMiXSxbNCwyLCJrX0ciXSxbMywxLCJrIiwyXSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImteXFxmbGF0IiwyXSxbNiw3LCItKDEpIiwyXV0=
 			\begin{tikzcd}[ampersand replacement=\&]
@@ -446,54 +433,91 @@
 		\end{equation}
 		These might look like lenses (because lenses are obtained by opping a
 		fibration) but they are actually charts. We can verify this by looking
-		at the case in which $F$ and $G$ are polynomial, to see if this
+		at the case in which $F$ and $G$ are polynomial (over $\Set$), to see if this
 		construction recovers the usual one. We see that $k^\flat$ lives in
 		\begin{equation}
-			\Nat\left(\sum_{i \in F1} y^{F_i}, \sum_{j \in F1} y^{G_{k(j)}}\right) \iso \prod_{i \in F1} \sum_{j \in F1} F_i \to G_{k(j)}
+			\Nat\left(\sum_{i \in F1} y^{F_i}, \sum_{j \in F1} y^{G_{k(j)}}\right) \iso \prod_{i \in F1} \sum_{j \in F1} \Set(F_i, G_{k(j)})
 		\end{equation}
 		and since we know this is a vertical map, meaning it lives over the
 		identity map of $F1$, we know $i=j$ on the right hand side. Thus we
-		see $(k, k^\flat)$ encodes the data of a chart (notice how $F$ and
+		see $\lens{k^\flat}{k}$ encodes the data of a chart (notice how $F$ and
 		$G$ swapped places: charts are lenses `relative to lenses').
 
 		% Thus is not far-fetched to think of such a fibration as giving
 		% generalized lenses and charts. What is sure is that the double
 		% Grothendieck construction of David Jaz Myers gives us a double category
-		% of endofunctors, natural transformations (loose), generalised charts
+		% of endofunctors, natural transformations (loose), generalized charts
 		% (tight) and commutative squares.
 
 		This allows us to extend the indexed category $\Coalg$ defined
 		previously to have a profunctorial action. So a given generalized chart
-		$(k,k^\flat): F \chartto G$ is mapped to a profunctor
-		$\Coalg(k,k^\flat):\Coalg(F) \profto \Coalg(G)$. This has a rather complex
+		$\lens{k^\flat}{k} : F \chartto G$ is mapped to a profunctor
+		$\Coalg\lens{k^\flat}{k} : \Coalg(F) \profto \Coalg(G)$. This has a rather complex
 		definition: it maps two coalgebras $\gamma:A \to FA$ and
 		$\delta:B \to GB$ to the set of $\phi:A \to B$ that make the
 		following commute:
-
-		\begin{eqalign}
-			% https://q.uiver.app/?q=WzAsOSxbMCwwLCJBIl0sWzAsMiwiRkIiXSxbMywwLCJCIl0sWzMsMiwiR0IiXSxbMiwyLCJmXkdCIl0sWzAsMSwiRkEiXSxbMiwwLCJrXipCIl0sWzIsMywiRjEiXSxbMywzLCJHMSJdLFsyLDMsIlxcZGVsdGEiXSxbNCwxLCJrXlxcZmxhdF9CIiwyLHsibGFiZWxfcG9zaXRpb24iOjMwfV0sWzUsMSwiRihcXHBoaSkiLDJdLFswLDUsIlxcZ2FtbWEiLDJdLFs2LDIsImsnIl0sWzYsNCwiXFxkZWx0YSciLDFdLFs2LDMsIiIsMCx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dLFswLDIsIlxccGhpIiwxLHsiY3VydmUiOi00fV0sWzAsNiwiXFxsYW5nbGUgXFxnYW1tYSA7IEYhLCBcXHBoaSBcXHJhbmdsZSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFszLDgsIkchIl0sWzcsOCwiayIsMl0sWzUsNywiRiEiLDIseyJjdXJ2ZSI6MX1dLFs0LDcsIkchJyIsMl0sWzQsOCwiIiwyLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzQsM11d
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsOCxbMCwwLCJBIl0sWzEsMiwia14qR0IiXSxbMCwyLCJGQSJdLFsxLDEsImteKkIiXSxbMiwxLCJCIl0sWzEsMywiRjEiXSxbMiwyLCJHQiJdLFsyLDMsIkcxIl0sWzAsMiwiXFxnYW1tYSIsMV0sWzMsMSwiXFxkZWx0YSciLDFdLFszLDQsImsnIiwxXSxbMCw0LCJcXHBoaSIsMSx7ImN1cnZlIjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNywiayIsMV0sWzIsNSwiRiEiLDEseyJjdXJ2ZSI6Mn1dLFsxLDUsIkchJyIsMV0sWzQsNiwiXFxkZWx0YSIsMV0sWzMsNiwiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzYsNywiRyEiLDFdLFsxLDYsImtfe0csQn0iLDFdLFsxLDcsIiIsMix7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
 			\begin{tikzcd}[ampersand replacement=\&]
-				A \&\& {k^*B} \& B \\
-				FA \\
-				FB \&\& {f^GB} \& GB \\
-				\&\& F1 \& G1
-				\arrow["\delta", from=1-4, to=3-4]
-				\arrow["{k^\flat_B}"'{pos=0.3}, from=3-3, to=3-1]
-				\arrow["{F(\phi)}"', from=2-1, to=3-1]
+				A \\
+				\& {k^*B} \& B \\
+				FA \& {k^*GB} \& GB \\
+				\& F1 \& G1
+				\arrow["\gamma"{description}, from=1-1, to=3-1]
+				\arrow["{\delta'}"{description}, from=2-2, to=3-2]
+				\arrow["{k'}"{description}, from=2-2, to=2-3]
+				\arrow["\phi"{description}, curve={height=-12pt}, dashed, from=1-1, to=2-3]
+				\arrow["k"{description}, from=4-2, to=4-3]
+				\arrow["{F!}"{description}, curve={height=12pt}, from=3-1, to=4-2]
+				\arrow["{G!'}"{description}, from=3-2, to=4-2]
+				\arrow["\delta"{description}, from=2-3, to=3-3]
+				\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+				\arrow["{G!}"{description}, from=3-3, to=4-3]
+				\arrow["{k_{G,B}}"{description}, from=3-2, to=3-3]
+				\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-2, to=4-3]
+			\end{tikzcd}
+		\end{equation}
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJBIl0sWzMsMSwia14qR0IiXSxbMCwxLCJGQSJdLFszLDAsImteKkIiXSxbMSwxLCJGQiJdLFswLDIsIlxcZ2FtbWEiLDJdLFszLDEsIlxcZGVsdGEnIiwxXSxbMCwzLCJcXGV4aXN0cyEgXFxsYW5nbGUgXFxnYW1tYSBcXGNvbXAgRiEsIFxccGhpIFxccmFuZ2xlIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzEsNCwia15cXGZsYXRfQiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMH1dLFsyLDQsIkYoXFxwaGkpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+			\begin{tikzcd}[ampersand replacement=\&]
+				A \&\&\& {k^*B} \\
+				FA \& FB \&\& {k^*GB}
 				\arrow["\gamma"', from=1-1, to=2-1]
-				\arrow["{k'}", from=1-3, to=1-4]
-				\arrow["{\delta'}"{description}, from=1-3, to=3-3]
-				\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-3, to=3-4]
-				\arrow["\phi"{description}, curve={height=-24pt}, from=1-1, to=1-4]
-				\arrow["{\langle \gamma ; F!, \phi \rangle}", dashed, from=1-1, to=1-3]
-				\arrow["{G!}", from=3-4, to=4-4]
-				\arrow["k"', from=4-3, to=4-4]
-				\arrow["{F!}"', curve={height=6pt}, from=2-1, to=4-3]
-				\arrow["{G!'}"', from=3-3, to=4-3]
-				\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-3, to=4-4]
-				\arrow[from=3-3, to=3-4]
-			\end{tikzcd}\\
-			k^\flat_B(\delta'(\langle \gamma ; F!, \phi \rangle(a))) = F(\phi;k')(\gamma(a))
+				\arrow["{\delta'}"{description}, from=1-4, to=2-4]
+				\arrow["{\exists! \langle \gamma \comp F!, \phi \rangle}"{description}, dotted, from=1-1, to=1-4]
+				\arrow["{k^\flat_B}"'{pos=0.3}, from=2-4, to=2-2]
+				\arrow["{F(\phi)}", dashed, from=2-1, to=2-2]
+			\end{tikzcd}
+		\end{equation}
+		% \begin{equation}
+		% 	% https://q.uiver.app/?q=WzAsOSxbMCwwLCJBIl0sWzEsMiwiRkIiXSxbNCwwLCJCIl0sWzQsMiwiR0IiXSxbMywyLCJrXipHQiJdLFswLDIsIkZBIl0sWzMsMSwia14qQiJdLFszLDMsIkYxIl0sWzQsMywiRzEiXSxbMiwzLCJcXGRlbHRhIl0sWzQsMSwia15cXGZsYXRfQiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMH1dLFs1LDEsIkYoXFxwaGkpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsNSwiXFxnYW1tYSIsMl0sWzYsMiwiayciXSxbNiw0LCJcXGRlbHRhJyIsMV0sWzYsMywiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzAsMiwiXFxwaGkiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCw2LCJcXGV4aXN0cyEgXFxsYW5nbGUgXFxnYW1tYSBcXGNvbXAgRiEsIFxccGhpIFxccmFuZ2xlIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzMsOCwiRyEiXSxbNyw4LCJrIiwyXSxbNSw3LCJGISIsMix7ImN1cnZlIjoyfV0sWzQsNywiRyEnIiwyXSxbNCw4LCIiLDIseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbNCwzLCJrX3tHLEJ9Il1d
+		% 	\begin{tikzcd}[ampersand replacement=\&]
+		% 		A \&\&\&\& B \\
+		% 		\&\&\& {k^*B} \\
+		% 		FA \& FB \&\& {k^*GB} \& GB \\
+		% 		\&\&\& F1 \& G1
+		% 		\arrow["\delta", from=1-5, to=3-5]
+		% 		\arrow["{k^\flat_B}"'{pos=0.3}, from=3-4, to=3-2]
+		% 		\arrow["{F(\phi)}", dashed, from=3-1, to=3-2]
+		% 		\arrow["\gamma"', from=1-1, to=3-1]
+		% 		\arrow["{k'}", from=2-4, to=1-5]
+		% 		\arrow["{\delta'}"{description}, from=2-4, to=3-4]
+		% 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-4, to=3-5]
+		% 		\arrow["\phi"{description}, dashed, from=1-1, to=1-5]
+		% 		\arrow["{\exists! \langle \gamma \comp F!, \phi \rangle}"{description}, dotted, from=1-1, to=2-4]
+		% 		\arrow["{G!}", from=3-5, to=4-5]
+		% 		\arrow["k"', from=4-4, to=4-5]
+		% 		\arrow["{F!}"', curve={height=12pt}, from=3-1, to=4-4]
+		% 		\arrow["{G!'}"', from=3-4, to=4-4]
+		% 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-4, to=4-5]
+		% 		\arrow["{k_{G,B}}", from=3-4, to=3-5]
+		% 	\end{tikzcd}
+		% \end{equation}
+
+		Specifically, we are asking for the following:
+		\begin{eqalign}
+			\forall a \in A,&\quad G!(\delta(\phi(a))) = k(F!(\gamma(a)))\\
+			\forall a \in A,&\quad k^\flat_B(\delta'(F!(\gamma(a)), \phi(a))) = F(\phi)(\gamma(a))
 		\end{eqalign}
 	\end{example}
 
@@ -502,16 +526,16 @@
 
 		This double category is a process theory for the theory of dynamical systems `with time' described above. In fact a vertical morphism $p : M \verto N$ maps to a functor $\cat{TimeSys}(M) \to \cat{TimeSys}(N)$ given by `restriction of scalars':
 		\begin{equation}
-			M \times X \nto{S} X \qquad\longmapsto\qquad N \times X \nto{p \times X} M \times X \nto{S} X,
+			M \times S \nto{\delta} S \qquad\longmapsto\qquad N \times S \nto{p \times S} M \times S \nto{\delta} S,
 		\end{equation}
 		and maps of monoids $h : M \to N$ also map to profunctors $\cat{TimeSys}(M) \profto \cat{TimeSys}(N)$ that sends a pair of dynamical systems $S : \cat{TimeSys}(M)$, $R:\cat{TimeSys}(N)$ to the set of squares
 		\begin{equation}
 			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJNIFxcdGltZXMgWCJdLFsyLDAsIk4gXFx0aW1lcyBZIl0sWzAsMSwiWCJdLFsyLDEsIlkiXSxbMCwyLCJTIiwyXSxbMSwzLCJSIl0sWzIsMywiXFx2YXJwaGkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxLCJoIFxcdGltZXMgXFx2YXJwaGkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 			\begin{tikzcd}[ampersand replacement=\&]
-				{M \times X} \&\& {N \times Y} \\
-				X \&\& Y
-				\arrow["S"', from=1-1, to=2-1]
-				\arrow["R", from=1-3, to=2-3]
+				{M \times S} \&\& {N \times R} \\
+				S \&\& R
+				\arrow["\delta"', from=1-1, to=2-1]
+				\arrow["\gamma", from=1-3, to=2-3]
 				\arrow["\varphi"', dashed, from=2-1, to=2-3]
 				\arrow["{h \times \varphi}", dashed, from=1-1, to=1-3]
 			\end{tikzcd}
@@ -520,9 +544,30 @@
 
 	\begin{example}[Labelled transition systems]
 	\label{ex:trans-sys}
-		We can use the double category $\dblcat{Alph}$ of alphabets defined in~\cref{ex:alphabets} to index labelled transition systems.
+		We can use the double category $\Alph$ of alphabets defined in~\cref{ex:alphabets} to index labelled transition systems.
 		When $T = \Sigma^*$ (the free monoid on a finite set $\Sigma$), then $\DynSys_{\cat S}(\Sigma^*)$ is the category of transition systems labelled in $\Sigma$.
-		Hence we define $\cat{LabTransSys} : \dblcat{Alpha}^\top \unilaxto \dblCat$ by restricting $\DynSys_{\Set}$ along the double functor $(-)^* : \Mon^\uparrow \to \dblcat{Alph}$ given by taking free monoids.
+		Hence we define $\cat{LabTransSys} : \dblcat{Alpha}^\top \unilaxto \dblCat$ by restricting $\DynSys_{\Set}$ along the double functor $(-)^* : \Mon^\uparrow \to \Alph$ given by taking free monoids.
+	\end{example}
+
+	\begin{example}[Finite state machines]
+		A finite state machine with alphabet $\Sigma : \FinSet$ is a finite set $S$ of \emph{states} equipped with a \emph{transition function} $\delta : S \times \Sigma \to S$ and a subset $S^* \subseteq S$ of \emph{accepting states}.
+		In other words, it's a labelled transition system with alphabet $\Sigma$ equipped with a predicate $S^*$ over $S$. These form a systems theory over $\Alph$, which mostly behaves like $\cat{LabTransSys}$. The only substiantal difference is that morphisms of finite state machines are given by commutative squares like
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSJdLFswLDEsIlMiXSxbMiwwLCJSIFxcdGltZXMgXFxTaWdtYSJdLFsyLDEsIlIiXSxbMCwyLCJTXioiXSxbMiwyLCJSXioiXSxbMCwxLCJcXGRlbHRhIiwyXSxbMiwzLCJcXGdhbW1hIl0sWzAsMiwiXFx2YXJwaGkiXSxbMSwzLCJcXHZhcnBoaSIsMl0sWzQsMSwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDMsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+			\begin{tikzcd}[ampersand replacement=\&]
+				{S \times \Sigma} \&\& {R \times \Sigma} \\
+				S \&\& R \\[-2.5ex]
+				{S^*} \&\& {R^*}\\[-6ex]
+				\arrow["\delta"', from=1-1, to=2-1]
+				\arrow["\gamma", from=1-3, to=2-3]
+				\arrow["\varphi", from=1-1, to=1-3]
+				\arrow["\varphi"', from=2-1, to=2-3]
+				\arrow["\subseteq"{marking}, draw=none, from=3-1, to=2-1]
+				\arrow["\subseteq"{marking}, draw=none, from=3-3, to=2-3]
+				\arrow["\subseteq"{marking}, draw=none, from=3-1, to=3-3]
+			\end{tikzcd}
+		\end{equation}
+		where the commutativity of the bottom square means $\varphi(S^*) \subseteq R^*$.
 	\end{example}
 
 	% \begin{example}
@@ -560,16 +605,304 @@
 	% 	\end{eqalign}
 	% \end{example}
 
-	\begin{example}
-		Moore machines
+	\begin{example}[Moore machines]
+		Moore machines are open dynamical systems. Myers spends a long time developing their theory in~\cite{myers_categorical_2022}. In fact a very large class of systems is captured by Moore machines, especially in the extended form Myers considers.
+
+		`Classical' Moore machines have a set of states $S$, a set of inputs $I$, a set of outputs $O$, and two maps $\expose : S \to O$ and $\update : S \times I \to S$. Hence they are given by lenses of the form $\lens{S}{S} \opticto \lens{I}{O}$. The special form of the left boundary is what makes them system-y: we guarantee statefulness of by guaranteeing the two `$S$' on the left are the same. We do so by defining maps of Moore machines (over a fixed interface $\lens{I}{O}$) to be squares in $\dblLens$ (\cref{ex:lenses}) of the form:
+		\begin{equation}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJcXGxlbnN7U317U30iXSxbMCwyLCJcXGxlbnN7SX17T30iXSxbMiwyLCJcXGxlbnN7SX17T30iXSxbMiwwLCJcXGxlbnN7Un17Un0iXSxbMCwxLCJcXGV4cG9zZV97XFxzeXMgU30iLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiXFx1cGRhdGVfe1xcc3lzIFN9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDIsIiIsMix7Im9mZnNldCI6MSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDEsIiIsMix7Im9mZnNldCI6MSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDIsIlxcZXhwb3NlX3tcXHN5cyBSfSIsMCx7Im9mZnNldCI6LTF9XSxbMiwzLCJcXHVwZGF0ZV97XFxzeXMgUn0iLDAseyJvZmZzZXQiOi0xfV0sWzAsMywiZyIsMix7Im9mZnNldCI6MX1dLFswLDMsIlxccGlfMiBcXGNvbXAgZyIsMCx7Im9mZnNldCI6LTF9XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\lens{S}{S}} \&\& {\lens{R}{R}} \\[-2ex]
+				\\[-2ex]
+				{\lens{I}{O}} \&\& {\lens{I}{O}}
+				\arrow["{\expose_{\sys S}}", shift left=1, from=1-1, to=3-1]
+				\arrow["{\update_{\sys S}}", shift left=1, from=3-1, to=1-1]
+				\arrow[shift right=1, no head, from=3-1, to=3-3]
+				\arrow[shift right=1, no head, from=3-3, to=3-1]
+				\arrow["{\expose_{\sys R}}", shift left=1, from=1-3, to=3-3]
+				\arrow["{\update_{\sys R}}", shift left=1, from=3-3, to=1-3]
+				\arrow["\varphi"', shift right=1, from=1-1, to=1-3]
+				\arrow["{\pi_2 \comp \varphi}", shift left=1, from=1-1, to=1-3]
+			\end{tikzcd}
+		\end{equation}
+		Notice the special form of the top chart: the map $\varphi : S \to R$ is used both on the bottom and on top. The fact maps of Moore machines cannot distinguish between top and bottom is the reason that boundary behaves as a stateful interface.
+
+		The `generalized' Moore machines of Myers are obtained by passing from lenses to $F$-lenses. This testifies an important conceptual shift.
+
+		Fix a category $\cat C$ and an indexed category $F: \cat C^\op \to \Cat$.
+		First of all, $F$-lenses are now bidirectional morphisms that have some kind of mode-dependence: an object $\lens{I}{O}$ in $\dblLens_F$ is given by an object $O: \cat C$ and an object $I : F(O)$. This can be thought as a type dependent on $O$ or as a bundle over $O$. The important thing is that we introduce a more elaborate (and thus expressive) model of bidirectionality: stuff happens in the forward/bottom part (given by a morphism in $\cat C$), and then, \emph{depending on what happened there}, something else happens in the backward/top part. The difference can be substantial, to the point of having completely different types involved.
+
+		In generalized Moore machines, we use this added dependency to distinguish between \emph{states} and \emph{state changes}. We thus think of the two $S$s in $\lens{S}{S}$ as playing different roles: the bottom one is a proper object of states, whereas the top one is actually more accurately represented by something like $TS : F(S)$, an object `over' $S$ (hence depending on $S$, varying with it) accounting for the possible changes in state.
+
+		Hence whereas in a classical Moore machines all states are potentially reachable from any other states, we now contemplate machines in which the way we change state can be more complex. For example, we might choose a distribution of new states, or allow transitions only to states `nearby' in some sense (thus introducing geometric structure on $S$).
+
+		Still, we want to be coherent in our meaning of `change'. Hence we parametrize theories of generalized Moore machines by a section $T: \cat C \to \int F$ picking out uniformly, for each $S: \cat C$, an object of changes $\lens{TS}{S}$ over it. Importantly, $T$ also maps morphisms $\varphi : S \to R$ to morphisms of changes $\lens{T\varphi}{\varphi} : \lens{TS}{S} \to \lens{TR}{R}$ (which we can think of as some kind of derivative). In this way we preserve the statefulness of the boundary.
+
+		Thus a theory of Moore machines is constructed as follows. Chosen $\cat C : \Cat$ monoidal, $F: \cat C^\op \to \Cat$ lax monoidal and $T:\cat C \to \int F$ lax monoidal section, we first build the process theory $\dblLens_F$ of $F$-lenses and $F$-charts.
+		Then, we define, for each $\lens{I}{O} : \dblLens_F$, the categories
+		\begin{equation}
+			\Moore_{(F,T)}\lens{I}{O} =
+			\left\{
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJcXGxlbnN7U317U30iXSxbMCwyLCJcXGxlbnN7SX17T30iXSxbMiwyLCJcXGxlbnN7SX17T30iXSxbMiwwLCJcXGxlbnN7Un17Un0iXSxbMCwxLCJcXGV4cG9zZV97XFxzeXMgU30iLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiXFx1cGRhdGVfe1xcc3lzIFN9IiwwLHsib2Zmc2V0IjotMX1dLFsxLDIsIiIsMix7Im9mZnNldCI6MSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDEsIiIsMix7Im9mZnNldCI6MSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDIsIlxcZXhwb3NlX3tcXHN5cyBSfSIsMCx7Im9mZnNldCI6LTF9XSxbMiwzLCJcXHVwZGF0ZV97XFxzeXMgUn0iLDAseyJvZmZzZXQiOi0xfV0sWzAsMywiZyIsMix7Im9mZnNldCI6MX1dLFswLDMsIlxccGlfMiBcXGNvbXAgZyIsMCx7Im9mZnNldCI6LTF9XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\lens{TS}{S}} \&\& {\lens{R}{R}} \\[-2ex]
+				\\[-2ex]
+				{\lens{I}{O}} \&\& {\lens{I}{O}}
+				\arrow["{\expose_{\sys S}}", shift left=1, from=1-1, to=3-1]
+				\arrow["{\update_{\sys S}}", shift left=1, from=3-1, to=1-1]
+				\arrow[shift right=1, no head, from=3-1, to=3-3]
+				\arrow[shift right=1, no head, from=3-3, to=3-1]
+				\arrow["{\expose_{\sys R}}", shift left=1, from=1-3, to=3-3]
+				\arrow["{\update_{\sys R}}", shift left=1, from=3-3, to=1-3]
+				\arrow["g"', shift right=1, from=1-1, to=1-3]
+				\arrow["{T\varphi}", shift left=1, from=1-1, to=1-3]
+			\end{tikzcd}
+			%\right.
+			\right\}
+		\end{equation}
+		Given an $F$-lens $\lens{p^\sharp}{p} : \lens{I}{O} \chartto \lens{J}{Q}$ we get a functor:
+		\begin{eqalign}
+			\Moore_{(F,T)}\lens{p^\sharp}{p} : \Moore_{(F,T)}\lens{I}{O} &\longto \Moore_{(F,T)}\lens{J}{Q}\\
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMixbMCwwLCJcXGxlbnN7VFN9e1N9Il0sWzAsMiwiXFxsZW5ze0l9e099Il0sWzAsMSwiXFxleHBvc2Vfe1xcc3lzIFN9IiwyLHsibGFiZWxfcG9zaXRpb24iOjYwLCJvZmZzZXQiOjF9XSxbMSwwLCJcXHVwZGF0ZV97XFxzeXMgU30iLDIseyJsYWJlbF9wb3NpdGlvbiI6NjAsIm9mZnNldCI6MX1dXQ==
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\lens{TS}{S}} \\
+				\\
+				{\lens{I}{O}}
+				\arrow["{\expose_{\sys S}}"'{pos=0.6}, shift right=1, from=1-1, to=3-1]
+				\arrow["{\update_{\sys S}}"'{pos=0.6}, shift right=1, from=3-1, to=1-1]
+			\end{tikzcd}
+			&\longmapsto
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMyxbMCwwLCJcXGxlbnN7VFN9e1N9Il0sWzAsMSwiXFxsZW5ze0l9e099Il0sWzAsMiwiXFxsZW5ze0p9e1F9Il0sWzAsMSwiXFxleHBvc2Vfe1xcc3lzIFN9IiwyLHsibGFiZWxfcG9zaXRpb24iOjYwLCJvZmZzZXQiOjF9XSxbMSwwLCJcXHVwZGF0ZV97XFxzeXMgU30iLDIseyJsYWJlbF9wb3NpdGlvbiI6NjAsIm9mZnNldCI6MX1dLFsxLDIsInAiLDIseyJvZmZzZXQiOjF9XSxbMiwxLCJwXlxcc2hhcnAiLDIseyJvZmZzZXQiOjF9XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\lens{TS}{S}} \\
+				{\lens{I}{O}} \\
+				{\lens{J}{Q}}
+				\arrow["{\expose_{\sys S}}"'{pos=0.6}, shift right=1, from=1-1, to=2-1]
+				\arrow["{\update_{\sys S}}"'{pos=0.6}, shift right=1, from=2-1, to=1-1]
+				\arrow["p"', shift right=1, from=2-1, to=3-1]
+				\arrow["{p^\sharp}"', shift right=1, from=3-1, to=2-1]
+			\end{tikzcd}
+		\end{eqalign}
+		Given an $F$-chart $\lens{h^\flat}{h} : \lens{I}{O} \chartto \lens{J}{Q}$, the induced profunctor is
+		\begin{eqalign}
+			\begin{tikzcd}[ampersand replacement=\&, sep=24ex]
+				\Moore_{(F,T)}\lens{I}{O}^\op \times \Moore_{(F,T)}\lens{J}{Q} \arrow{r}{\Moore_{(F,T)}\lens{h^\flat}{h}} \& \Set
+			\end{tikzcd}\hspace*{17ex}\\
+			%\left(
+				% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMixbMCwwLCJcXGxlbnN7U317U30iXSxbMCwyLCJcXGxlbnN7SX17T30iXSxbMCwxLCJcXGV4cG9zZV97XFxzeXMgU30iLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiXFx1cGRhdGVfe1xcc3lzIFN9IiwwLHsib2Zmc2V0IjotMX1dXQ==
+				\begin{tikzcd}[ampersand replacement=\&]
+					{\lens{TS}{S}} \\
+					\\
+					{\lens{I}{O}}
+					\arrow["{\expose_{\sys S}}"{pos=0.4}, shift left=1, from=1-1, to=3-1]
+					\arrow["{\update_{\sys S}}"{pos=0.4}, shift left=1, from=3-1, to=1-1]
+				\end{tikzcd},
+				\ % file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMixbMCwwLCJcXGxlbnN7U317U30iXSxbMCwyLCJcXGxlbnN7SX17T30iXSxbMCwxLCJcXGV4cG9zZV97XFxzeXMgU30iLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiXFx1cGRhdGVfe1xcc3lzIFN9IiwwLHsib2Zmc2V0IjotMX1dXQ==
+				\begin{tikzcd}[ampersand replacement=\&]
+					{\lens{TR}{R}} \\
+					\\
+					{\lens{J}{Q}}
+					\arrow["{\expose_{\sys R}}"{pos=0.4}, shift left=1, from=1-1, to=3-1]
+					\arrow["{\update_{\sys R}}"{pos=0.4}, shift left=1, from=3-1, to=1-1]
+				\end{tikzcd}
+			%\right)
+			\longmapsto
+			\left\{
+				% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJcXGxlbnN7U317U30iXSxbMCwyLCJcXGxlbnN7SX17T30iXSxbMiwwLCJcXGxlbnN7Un17Un0iXSxbMiwyLCJcXGxlbnN7Sn17UX0iXSxbMCwxLCJcXGV4cG9zZV97XFxzeXMgU30iLDAseyJvZmZzZXQiOi0xfV0sWzEsMCwiXFx1cGRhdGVfe1xcc3lzIFN9IiwwLHsib2Zmc2V0IjotMX1dLFsyLDMsIlxcZXhwb3NlX3tcXHN5cyBSfSIsMCx7Im9mZnNldCI6LTF9XSxbMywyLCJcXHVwZGF0ZV97XFxzeXMgUn0iLDAseyJvZmZzZXQiOi0xfV0sWzEsMywiayIsMix7Im9mZnNldCI6MX1dLFsxLDMsImsiLDAseyJvZmZzZXQiOi0xfV0sWzAsMiwiaCIsMix7Im9mZnNldCI6MSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMiwiXFxwaV8yIFxcY29tcCBoIiwwLHsib2Zmc2V0IjotMSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+				\begin{tikzcd}[ampersand replacement=\&]
+					{\lens{TS}{S}} \&\& {\lens{TR}{R}} \\
+					\\
+					{\lens{I}{O}} \&\& {\lens{J}{Q}}
+					\arrow["{\expose_{\sys S}}"{pos=0.4}, shift left=1, from=1-1, to=3-1]
+					\arrow["{\update_{\sys S}}"{pos=0.4}, shift left=1, from=3-1, to=1-1]
+					\arrow["{\expose_{\sys R}}"{pos=0.4}, shift left=1, from=1-3, to=3-3]
+					\arrow["{\update_{\sys R}}"{pos=0.4}, shift left=1, from=3-3, to=1-3]
+					\arrow["h"', shift right=1, from=3-1, to=3-3]
+					\arrow["h^\flat", shift left=1, from=3-1, to=3-3]
+					\arrow["\varphi"', shift right=1, dashed, from=1-1, to=1-3]
+					\arrow["{T\varphi}", shift left=1, dashed, from=1-1, to=1-3]
+				\end{tikzcd}
+			\right\}
+		\end{eqalign}
+		Finally, given a square
+		\begin{equation}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJcXGxlbnN7QV4tfXtBXit9Il0sWzAsMSwiXFxsZW5ze0JeLX17Ql4rfSJdLFsxLDEsIlxcbGVuc3tEXi19e0ReK30iXSxbMSwwLCJcXGxlbnN7Q14tfXtDXit9Il0sWzAsMywiaCIsMix7Im9mZnNldCI6MX1dLFswLDEsInAiLDAseyJvZmZzZXQiOi0xfV0sWzMsMiwicSIsMCx7Im9mZnNldCI6LTF9XSxbMSwyLCJrIiwyLHsib2Zmc2V0IjoxfV0sWzEsMCwicF5cXHNoYXJwIiwwLHsib2Zmc2V0IjotMX1dLFsyLDMsInFeXFxzaGFycCIsMCx7Im9mZnNldCI6LTF9XSxbMCwzLCJoXlxcZmxhdCIsMCx7Im9mZnNldCI6LTF9XSxbMSwyLCJrXlxcZmxhdCIsMCx7Im9mZnNldCI6LTF9XV0=
+			\begin{tikzcd}[ampersand replacement=\&, sep=small]
+				{\lens{I}{O}} \& {\lens{J}{Q}} \\[2ex]
+				{\lens{I'}{O'}} \& {\lens{J'}{Q'}}
+				\arrow["h"', shift right=1, from=1-1, to=1-2]
+				\arrow["p", shift left=1, from=1-1, to=2-1]
+				\arrow["q", shift left=1, from=1-2, to=2-2]
+				\arrow["k"', shift right=1, from=2-1, to=2-2]
+				\arrow["{p^\sharp}", shift left=1, from=2-1, to=1-1]
+				\arrow["{q^\sharp}", shift left=1, from=2-2, to=1-2]
+				\arrow["{h^\flat}", shift left=1, from=1-1, to=1-2]
+				\arrow["{k^\flat}", shift left=1, from=2-1, to=2-2]
+			\end{tikzcd}
+		\end{equation}
+		in $\dblLens_F$ we get a square in $\dblCat$...
+		\begin{equation}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJcXE1vb3JlXFxsZW5ze0FeLX17QV4rfSJdLFsyLDAsIlxcTW9vcmVcXGxlbnN7Ql4tfXtCXit9Il0sWzIsMiwiXFxNb29yZVxcbGVuc3tEXi19e0ReK30iXSxbMCwyLCJcXE1vb3JlXFxsZW5ze0NeLX17Q14rfSJdLFswLDMsIlxcTW9vcmVcXGxlbnN7aF5cXGZsYXR9e2h9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn19fV0sWzAsMSwiXFxNb29yZVxcbGVuc3twXlxcc2hhcnB9e3B9Il0sWzMsMiwiXFxNb29yZVxcbGVuc3txXlxcc2hhcnB9e3F9IiwyXSxbMSwyLCJcXE1vb3JlXFxsZW5ze2teXFxmbGF0fXtrfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFs0LDcsIlxcTW9vcmUoXFxzcXVhcmUpIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Moore\lens{I}{O}} \&\& {\Moore\lens{I'}{O'}} \\
+				\\
+				{\Moore\lens{J}{Q}} \&\& {\Moore\lens{J'}{Q'}}
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Moore\lens{h^\flat}{h}}"', "\shortmid"{marking}, from=1-1, to=3-1]
+				\arrow["{\Moore\lens{p^\sharp}{p}}", from=1-1, to=1-3]
+				\arrow["{\Moore\lens{q^\sharp}{q}}"', from=3-1, to=3-3]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\Moore\lens{k^\flat}{k}}", "\shortmid"{marking}, from=1-3, to=3-3]
+				\arrow["{\Moore(\square)}", shorten <=23pt, shorten >=23pt, Rightarrow, from=0, to=1]
+			\end{tikzcd}
+		\end{equation}
+		...given by stacking squares:
+		\begin{eqalign}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMixbMCwwLCJcXE1vb3JlXFxsZW5ze2heXFxmbGF0fXtofShcXHN5cyBTLFxcc3lzIFIpIl0sWzIsMCwiXFxNb29yZVxcbGVuc3toXlxcZmxhdH17aH1cXGxlZnQoXFxNb29yZVxcbGVuc3twXlxcc2hhcnB9e3B9KFxcc3lzIFMpLFxcTW9vcmVcXGxlbnN7cV5cXHNoYXJwfXtxfShcXHN5cyBSKVxccmlnaHQpIl0sWzAsMSwiXFxNb29yZShcXHNxdWFyZSlfe1xcc3lzIFMsIFxcc3lzIFJ9Il1d
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Moore\lens{h^\flat}{h}(\sys S,\sys R)} \&\& {\Moore\lens{h^\flat}{h}\left(\Moore\lens{p^\sharp}{p}(\sys S),\Moore\lens{q^\sharp}{q}(\sys R)\right)}
+				\arrow["{\Moore(\square)_{\sys S, \sys R}}", from=1-1, to=1-3]
+			\end{tikzcd}\\
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\lens{TS}{S}} \&\& {\lens{TR}{R}} \\
+				\\
+				{\lens{I}{O}} \&\& {\lens{J}{Q}}
+				\arrow["{\expose_{\sys S}}"{pos=0.4}, shift left=1, from=1-1, to=3-1]
+				\arrow["{\update_{\sys S}}"{pos=0.4}, shift left=1, from=3-1, to=1-1]
+				\arrow["{\expose_{\sys R}}"{pos=0.4}, shift left=1, from=1-3, to=3-3]
+				\arrow["{\update_{\sys R}}"{pos=0.4}, shift left=1, from=3-3, to=1-3]
+				\arrow["h"', shift right=1, from=3-1, to=3-3]
+				\arrow["h^\flat", shift left=1, from=3-1, to=3-3]
+				\arrow["\varphi"', shift right=1, dashed, from=1-1, to=1-3]
+				\arrow["{T\varphi}", shift left=1, dashed, from=1-1, to=1-3]
+			\end{tikzcd}
+			\longmapsto
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNixbMCwwLCJcXGxlbnN7VFN9e1N9Il0sWzAsMiwiXFxsZW5ze0l9e099Il0sWzIsMCwiXFxsZW5ze1RSfXtSfSJdLFsyLDIsIlxcbGVuc3tKfXtRfSJdLFswLDQsIlxcbGVuc3tJJ317Tyd9Il0sWzIsNCwiXFxsZW5ze0onfXtRJ30iXSxbMCwxLCJcXGV4cG9zZV97XFxzeXMgU30iLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsIm9mZnNldCI6MX1dLFsxLDAsIlxcdXBkYXRlX3tcXHN5cyBTfSIsMix7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0IjoxfV0sWzIsMywiXFxleHBvc2Vfe1xcc3lzIFJ9IiwyLHsibGFiZWxfcG9zaXRpb24iOjQwLCJvZmZzZXQiOjF9XSxbMywyLCJcXHVwZGF0ZV97XFxzeXMgUn0iLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsIm9mZnNldCI6MX1dLFsxLDMsImgiLDIseyJvZmZzZXQiOjF9XSxbMSwzLCJoXlxcZmxhdCIsMCx7Im9mZnNldCI6LTF9XSxbMCwyLCJcXHZhcnBoaSIsMix7Im9mZnNldCI6MSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMiwiVFxcdmFycGhpIiwwLHsib2Zmc2V0IjotMSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsNCwicF5cXHNoYXJwIiwyLHsibGFiZWxfcG9zaXRpb24iOjQwLCJvZmZzZXQiOjF9XSxbMyw1LCJxXlxcc2hhcnAiLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsIm9mZnNldCI6MX1dLFs0LDEsInAiLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsIm9mZnNldCI6MX1dLFs1LDMsInEiLDIseyJsYWJlbF9wb3NpdGlvbiI6NDAsIm9mZnNldCI6MX1dLFs0LDUsImteXFxmbGF0IiwwLHsib2Zmc2V0IjotMX1dLFs0LDUsImsiLDIseyJvZmZzZXQiOjF9XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\lens{TS}{S}} \&\& {\lens{TR}{R}} \\
+				\\
+				{\lens{I}{O}} \&\& {\lens{J}{Q}} \\
+				\\
+				{\lens{I'}{O'}} \&\& {\lens{J'}{Q'}}
+				\arrow["{\expose_{\sys S}}"'{pos=0.4}, shift right=1, from=1-1, to=3-1]
+				\arrow["{\update_{\sys S}}"'{pos=0.4}, shift right=1, from=3-1, to=1-1]
+				\arrow["{\expose_{\sys R}}"'{pos=0.4}, shift right=1, from=1-3, to=3-3]
+				\arrow["{\update_{\sys R}}"'{pos=0.4}, shift right=1, from=3-3, to=1-3]
+				\arrow["h"', shift right=1, from=3-1, to=3-3]
+				\arrow["{h^\flat}", shift left=1, from=3-1, to=3-3]
+				\arrow["\varphi"', shift right=1, dashed, from=1-1, to=1-3]
+				\arrow["T\varphi", shift left=1, dashed, from=1-1, to=1-3]
+				\arrow["{p^\sharp}"'{pos=0.4}, shift right=1, from=3-1, to=5-1]
+				\arrow["{q^\sharp}"'{pos=0.4}, shift right=1, from=3-3, to=5-3]
+				\arrow["p"'{pos=0.4}, shift right=1, from=5-1, to=3-1]
+				\arrow["q"'{pos=0.4}, shift right=1, from=5-3, to=3-3]
+				\arrow["{k^\flat}", shift left=1, from=5-1, to=5-3]
+				\arrow["k"', shift right=1, from=5-1, to=5-3]
+			\end{tikzcd}
+		\end{eqalign}
+		We thus defined the \textbf{theory of $(F,T)$-generalized Moore machines}:
+		\begin{equation}
+			\Moore_{(F,T)} : \dblLens_F^\top \unilaxto \dblCat.
+		\end{equation}
 	\end{example}
 
-	\begin{example}
-		Mealy machines
-	\end{example}
+	% \begin{remark}
+	% 	There is a sense in which generalized Moore machines are `free theories' on their process theory. In fact most of a Moore machine is given by a plain $F$-lens. The only thing that distinguishes a Moore machine from any other lens is our insistence on considering its left boundary stateful, hence the choice of maps.
+
+	% 	Thus one can define $\Moore_{(F,T)}$ `formally' by considering one `generator' $S$ for each object in $\cat C$ and let lenses act on them. The action
+	% \end{remark}
 
 	\begin{example}
-		coalgebras
+		A notable example of generalized Moore machines is given by differential open dynamical systems.
+		These are Moore machines in $\Smooth$, the category of smooth manifolds.\footnote{Sometimes it's useful to consider suitable generalizations, like diffeological or smooth spaces, to get better properties out of the theory. We don't go beyond undergraduate differential geometry here.} We consider bundles given by submersions,\footnote{A \emph{submersion} of smooth manifolds is a surjective smooth map whose differential is also surjective. It means we are mapping to a manifold of equal or smaller dimension, and all the fibers are manifolds themselves (hence excluding critial points or singular submanifolds).} since these are pullback-stable maps:
+		\begin{eqalign}
+			\Smooth/_{\sf subm} - : \Smooth^\op &\longto \Cat\\
+			\begin{tikzcd}
+				M \arrow{d}{p} \\ N
+			\end{tikzcd}
+			\qquad &\longmapsto
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXFNtb290aC9fe1xcc2Ygc3VibX0gTSJdLFswLDEsIlxcU21vb3RoL197XFxzZiBzdWJtfSBOIl0sWzEsMSwiTiJdLFsyLDEsIkUiXSxbMSwwLCJNIl0sWzIsMCwicF4qRSJdLFsxLDAsInBeKiJdLFs0LDIsInAiLDJdLFszLDIsIlxccGkiXSxbNSw0XSxbNSwzXSxbNSwyLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Smooth/_{\sf subm} M} \& M \& {p^*E} \\
+				{\Smooth/_{\sf subm} N} \& N \& E
+				\arrow["{p^*}", from=2-1, to=1-1]
+				\arrow["p"', from=1-2, to=2-2]
+				\arrow["\pi", from=2-3, to=2-2]
+				\arrow[from=1-3, to=1-2]
+				\arrow[from=1-3, to=2-3]
+				\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-90}, draw=none, from=1-3, to=2-2]
+			\end{tikzcd}
+		\end{eqalign}
+		We then choose the section $T : \Smooth \to \int \Smooth/_{\sf subm}$ to be the one picking out, for each smooth manifold $S$, its tangent bundle $\pi_S : TS \to S$. This extends to smooth maps $\varphi:S \to R$ by mapping them to their differential, which is indeed a map of tangent bundles $TS \to TR$.
+
+		Then a Moore machine $\lens{\update}{\expose} : \lens{TS}{S} \opticto \lens{I}{O}$ is a pair of maps
+		\begin{equation}
+			\expose : S \to O, \quad \update : (s:S) \times (i:I(\expose(s))) \to T_s S
+		\end{equation}
+		which describe an observable on $S$ and a non-autonomous vector field on it:
+		\begin{equation}
+			\de s = \update(s, i)
+		\end{equation}
+		Notably, a system of this kind with a trivial interface is simply a vector field (i.e.~a section of the tangent bundle).
+	\end{example}
+
+	\begin{example}[Mealy machines]
+		Similar to Moore machines are Mealy machines: they too are stateful open dynamical systems over a bidirectional interface $\lens{I}{O}$, but their output is also dependent on their input:
+		\begin{equation}
+			\expose : S \times I \to O, \qquad \update : S \times I \to S
+		\end{equation}
+		Therefore they are usually given as a single map
+		\begin{equation}
+			\delta : S \times I \longto S \times O
+		\end{equation}
+		in some cartesian monoidal category $(\cat C, 1, \times)$.
+
+		This seemingly inconsequential difference makes Mealy machines quite different. In fact, contrary to Moore machines, such systems cannot be reindexed by lenses anymore $\lens{p^\sharp}{p} : \lens{I}{O} \opticto \lens{J}{Q}$ like Moore machines, the problem arising when reindexing the input:
+		\begin{equation}
+			\Mealy_{\cat C}\lens{p^\sharp}{p} : \delta \ \mapsto\  S \times J \nlongto{?} S \times I \nlongto{\delta} S \times O \nlongto{p} S \times Q
+		\end{equation}
+		In fact in order to use $p^\sharp$ to convert a $J$ to an $I$ we need to have $O$ in scope, but $O$ can be \emph{produced} only if $I$ is available! So we run into a vicious cycle.
+
+		There's at least three ways to break this \emph{empasse}. The first is to remove the dependency on $O$ in $p^\sharp$. Hence instead of lenses we'll be looking at adapters, which are simply pairs of maps going in opposite directions.
+
+		The second is to solve the circularity by using a trace (or a trace-like) operator, thus asking for the ambient category $\cat C$ to be a traced or a feedback category (as in \cite{katis1997bicategories, lavore2021canonical}). Then Mealy machines can be reindexed by morphisms in $\Int(\cat C)$, which are indeed quite similar to Mealy machines:
+		\begin{equation}
+			p : \lens{I}{O} \to \lens{J}{Q} \equiv J \times O \to I \times Q.
+		\end{equation}
+		These reindex $\delta$ by using the trace to get rid of extra $O$:
+		\begin{equation}
+			\Mealy_{\cat C}(p) : \delta \ \mapsto\  \mathsf{trace}_O(S \times J \times O \nlongto{S \times p} S \times I \times Q \nlongto{\delta \times Q} S \times O \times Q).
+		\end{equation}
+		They compose with each other similarly.
+
+		The third option is to turn lenses `upside down'. Let a \emph{colens} in $\cat C$ $\lens{I}{O} \opticto \lens{J}{Q}$ be a pair of maps $p:J \to I$ and $p_\sharp : J \times O \to Q$. These compose like lenses and can reindex Mealy machines:\footnotemark
+		\begin{equation}
+			\Mealy_{\cat C}\lens{p}{p_\sharp} : \delta \ \mapsto\  S \times J \nlongto{\langle J, S \times p \rangle} J \times S \times I \nlongto{\delta \times J} J \times S \times O \nlongto{\langle S, p_\sharp \rangle} S \times Q
+		\end{equation}
+
+		All these options (when well-defined) admit suitably dual, chart-like morphisms that fit into double categories of `commutative squares', like the one in~\cref{ex:lenses}.
+		This makes $\Mealy_{\cat C}$ a theory of systems:
+		\begin{equation}
+			\Mealy_{\cat C} : \dblcat{P}^\top \unilaxto \dblCat
+		\end{equation}
+		for $\dblcat{P} = \dblcat{Adap}(\cat C)$ (adapters \& pairs of morphisms), $\dblcat{Colens}_{\cat C}$ (colenses \& `cocharts'), $\dblcat{Int}(\cat C)$ ($\Int$-morphisms \& their duals). Clearly the latter is admissibile only when $\cat C$ is traced.
+
+		\footnotetext{
+		Both lenses and colenses embed in $\Int(\cat C)$ when the latter exists, and both trivialize the tracing because they present only non-trivial circularity.
+		All of adapters, lenses, colenses and $\Int(\cat C)$ are categories of optics fit into a diamond:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNCxbMSwwLCJcXEludChcXGNhdCBDKSJdLFswLDEsIlxcY2F0e0NvbGVuc30oXFxjYXQgQykiXSxbMiwxLCJcXGNhdHtMZW5zfShcXGNhdCBDKSJdLFsxLDIsIlxcY2F0e0FkYXB9KFxcY2F0IEMpIl0sWzMsMV0sWzMsMl0sWzIsMF0sWzEsMF1d
+			\begin{tikzcd}[ampersand replacement=\&,sep=tiny]
+				\& {\Int(\cat C)} \\
+				{\cat{Colens}(\cat C)} \&\& {\cat{Lens}(\cat C)} \\
+				\& {\cat{Adap}(\cat C)}
+				\arrow[from=3-2, to=2-1]
+				\arrow[from=3-2, to=2-3]
+				\arrow[from=2-3, to=1-2]
+				\arrow[from=2-1, to=1-2]
+			\end{tikzcd}
+		\end{equation}
+		Adapters, lenses and colenses are all instances of optics \cite{clarke_profunctor_2020} and recently $\Int(\cat C)$ was also shown to be a theory of optics (this was first noted in \cite{juleshedges_geometry_2023}, and then expanded upon in private communication between Hedges and Milewski).
+		Thus we conjecture this diamond arises from relations between the actions generating the optics \cite{roman_profunctor_2020}.
+		}
 	\end{example}
 
 	\begin{example}
@@ -631,6 +964,13 @@
 				\arrow["{B^\flat}"', shift right=4, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
 			\end{tikzcd}
 		\end{equation}
+	\end{definition}
+
+	\begin{example}
+		Let
+	\end{example}
+
+	\begin{definition}
 		A \textbf{doctrine of behaviour} for the doctrine $\dblcat{Doctrine}$ is map of doctrines of systems into the observational doctrine $\Obs$:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXGRibGNhdHtEYXRhfSJdLFswLDIsIlxcZGJsY2F0e0NhcnRDYXR9Il0sWzIsMSwiXFxUaGVvcmllcyJdLFsxLDBdLFsxLDJdLFswLDEsIlxcZGJsY2F0IEJeXFx0b3AiLDJdLFswLDIsIlxcZGJsY2F0e0RvY3RyaW5lfSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcT2JzIiwyLHsiY3VydmUiOjF9XSxbMyw0LCJcXGRibGNhdCBCXlxcZmxhdCIsMCx7Im9mZnNldCI6NSwic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjJ9XV0=
