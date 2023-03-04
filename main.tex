@@ -19,28 +19,28 @@
 
 	\begin{abstract}
 		Categorical systems theory (CST) is a doubly-categorical framework for approaching and developing structural theories of systems and behaviour of any kind.
-		These notes are (1) a basic reference for CST, (2) a source of examples and working developments.
+		These notes are meant to be (1) a basic reference for CST and (2) a source of examples and working developments.
 		They're under active development, so quite far from camera-ready, and possibly never complete.
 	\end{abstract}
 
 	\section{Introduction}
-	Systems are ubiquitous, in science as in life.
-	%People regularly deal with physical systems, political systems, economical systems, living systems, learning systems, writing systems, voting systems, computing systems, etc.
-	As we look into a thing, we soon realize it is a system comprised of smaller interacting parts\footnote{Heck, even \emph{atoms}, indivisible par excellence, arise from many layers of interaction among their parts!}. As we walk back, we realize it is itself part of an even more complex system.
+	% Systems are ubiquitous, in science as in life.
+	% %People regularly deal with physical systems, political systems, economical systems, living systems, learning systems, writing systems, voting systems, computing systems, etc.
+	% As we look into a thing, we soon realize it is a system comprised of smaller interacting parts\footnote{Heck, even \emph{atoms}, indivisible par excellence, arise from many layers of interaction among their parts!}. As we walk back, we realize it is itself part of an even more complex system.
 
-	The word `system' roughly means `composite thing in Greek.
-	It seems therefore natural that category theory has something to say about them.
+	% The word `system' roughly means `composite thing' in Greek.
+	% It seems therefore natural that category theory has something to say about them.
 
 	% Given the staggering variety systems come in, it is no surprise scientific paradigms and mathematical models to describe them are manifold and often incompatible with one another.
 	% Studying each of these paradigms by themselves is surely a useful endeavour, but the ethos of category theory is to adopt a formal, bird-eye view of disciplines, to find the common motifs. Hence in approaching the study of systems theory, the category theorist should ask: what are the formal structures underlying all the different approaches to systems?
 
-	Categorical System Theory (CST) is a categorical framework for the abstract study of systems irrespective of their contingent aspects.
+	Categorical Systems Theory (CST) is a categorical framework for the abstract study of systems irrespective of their contingent aspects.
 	%It studies any situation involving many parts engaging in some interesting behaviour.
 	%
 	Instead of espousing a specific paradigm on the mathematical specification of systems, CST predicates upon the general features such paradigms should have.
 	In doing so, it captures the essence of the notion of `system'.
 
-	The object of study of CST is thus a \emph{doctrine of systems}, which is defined in \cite{myers_categorical_2022} as way to answer the following questions:
+	The object of study of CST is a \emph{doctrine of systems}, which is defined in \cite{myers_categorical_2022} as way to answer the following questions:
 	\begin{quote}
 		\begin{itemize}
 			\item What does it mean to be a system? Does it have a notion of states, or of behaviours? Or is it a diagram describing the way some primitive parts are organized?
@@ -56,7 +56,7 @@
 	Hence it's usually easier to start describing what a theory of systems is and then to say what does it mean for a doctrine to gather many of them in a single object.
 
 	\subsection{References}
-	Categorical approaches to general system theory have been around for a long time.
+	Categorical approaches to general systems theory have been around for a long time.
 	The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from an observational point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
 
 	In the 90s, a series of papers by Katis, Sabadini, Walters and others established a theory of machines \cite{sabadini_functions_1993, bloom_matrices_1996, katis1997bicategories, katis1997span, katis_algebra_1999, katis2002feedback} which anticipated some of the ideas regarding functorial semantics of behaviour, finding categories of matrices are well-adapted to receive such functors.
@@ -139,7 +139,7 @@
 	CST is deeply rooted in double category theory. This is dictated by the structure of processes: they compose like morphisms but are also the subject of morphisms.
 
 	For many notions, we will reference \cite{grandis_higher_2019}.
-	For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invited the reader to read along the main reference \cite{myers_categorical_2022}.
+	For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invite the reader to read along the main reference \cite{myers_categorical_2022}.
 
 	\section{Processes}
 	The starting point for defining a theory of systems is defining a double category of composition patterns such systems use to interact with one another.
@@ -551,7 +551,7 @@
 	\begin{example}[Labelled transition systems]
 	\label{ex:trans-sys}
 		We can use the double category $\Alph$ of alphabets defined in~\cref{ex:alphabets} to index labelled transition systems.
-		When $T = \Sigma^*$ (the free monoid on a finite set $\Sigma$), then $\DynSys_{\cat S}(\Sigma^*)$ is the category of transition systems labelled in $\Sigma$.
+		When $T = \Sigma^*$ (the free monoid on a finite set $\Sigma$), then $\DynSys_{\cat S}(\Sigma^*)$ is the category of transition systems labelled with $\Sigma$.
 		Hence we define $\cat{LabTransSys} : \dblcat{Alpha}^\top \unilaxto \dblCat$ by restricting $\DynSys_{\Set}$ along the double functor $(-)^* : \Mon^\uparrow \to \Alph$ given by taking free monoids.
 	\end{example}
 
@@ -756,7 +756,7 @@
 				\arrow["{k^\flat}", shift left=1, from=2-1, to=2-2]
 			\end{tikzcd}
 		\end{equation}
-		in $\dblLens_F$ we get a square in $\dblCat$...
+		in $\dblLens_F$ we get a square in $\dblCat$
 		\begin{equation}
 			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJcXE1vb3JlXFxsZW5ze0FeLX17QV4rfSJdLFsyLDAsIlxcTW9vcmVcXGxlbnN7Ql4tfXtCXit9Il0sWzIsMiwiXFxNb29yZVxcbGVuc3tEXi19e0ReK30iXSxbMCwyLCJcXE1vb3JlXFxsZW5ze0NeLX17Q14rfSJdLFswLDMsIlxcTW9vcmVcXGxlbnN7aF5cXGZsYXR9e2h9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn19fV0sWzAsMSwiXFxNb29yZVxcbGVuc3twXlxcc2hhcnB9e3B9Il0sWzMsMiwiXFxNb29yZVxcbGVuc3txXlxcc2hhcnB9e3F9IiwyXSxbMSwyLCJcXE1vb3JlXFxsZW5ze2teXFxmbGF0fXtrfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFs0LDcsIlxcTW9vcmUoXFxzcXVhcmUpIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
 			\begin{tikzcd}[ampersand replacement=\&]
@@ -770,7 +770,7 @@
 				\arrow["{\Moore(\square)}", shorten <=23pt, shorten >=23pt, Rightarrow, from=0, to=1]
 			\end{tikzcd}
 		\end{equation}
-		...given by stacking squares:
+		given by stacking squares:
 		\begin{eqalign}
 			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMixbMCwwLCJcXE1vb3JlXFxsZW5ze2heXFxmbGF0fXtofShcXHN5cyBTLFxcc3lzIFIpIl0sWzIsMCwiXFxNb29yZVxcbGVuc3toXlxcZmxhdH17aH1cXGxlZnQoXFxNb29yZVxcbGVuc3twXlxcc2hhcnB9e3B9KFxcc3lzIFMpLFxcTW9vcmVcXGxlbnN7cV5cXHNoYXJwfXtxfShcXHN5cyBSKVxccmlnaHQpIl0sWzAsMSwiXFxNb29yZShcXHNxdWFyZSlfe1xcc3lzIFMsIFxcc3lzIFJ9Il1d
 			\begin{tikzcd}[ampersand replacement=\&]
@@ -967,7 +967,7 @@
 	Behaviours in CST are simply maps into an observational theory. By default, we consider behaviours valued in $\Obs(\Set)$, but one can consider `enriched behaviours' into $\Obs(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
 
 	\begin{definition}
-		A \textbf{theory of behaviour} for a system theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $B:\Sys \to \Obs(\cat C)$:
+		A \textbf{theory of behaviour} for a systems theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $B:\Sys \to \Obs(\cat C)$:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc15cXHRvcCJdLFswLDIsIlxcU3BhbihcXGNhdCBDKV5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiQl5cXHRvcCIsMl0sWzAsMiwiXFxTeXMiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkJeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
 			\begin{tikzcd}[ampersand replacement=\&, sep=small]
@@ -1100,7 +1100,7 @@
 				\arrow["{\Hom^h}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 			\end{tikzcd}
 		\end{equation}
-		An object of $\Theories_\ast$ is a system theory equipped with a distinguished system (hence a pair of an interface and a system over it) which is used as archetype for a certain kind of behaviour.
+		An object of $\Theories_\ast$ is a systems theory equipped with a distinguished system (hence a pair of an interface and a system over it) which is used as archetype for a certain kind of behaviour.
 
 		The transformation $\Hom^h$ at a pointed theory $(\Sys : \Processes^\top \to \dblCat, \sys B : \Sys(I))$ is the map of system theories $\Processes^h(\sys B, -) : \Sys \to \Obs(\Set)$ defined as follows.
 		Its two components are the horizontal hom-functor $\Processes^h(I, -) : \Processes \to \dblSet$ and the similar fiberwise hom-functor
