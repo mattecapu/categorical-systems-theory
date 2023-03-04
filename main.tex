@@ -550,8 +550,9 @@
 	\end{example}
 
 	\begin{example}[Finite state machines]
-		A finite state machine with alphabet $\Sigma : \FinSet$ is a finite set $S$ of \emph{states} equipped with a \emph{transition function} $\delta : S \times \Sigma \to S$ and a subset $S^* \subseteq S$ of \emph{accepting states}.
-		In other words, it's a labelled transition system with alphabet $\Sigma$ equipped with a predicate $S^*$ over $S$. These form a systems theory over $\Alph$, which mostly behaves like $\cat{LabTransSys}$. The only substiantal difference is that morphisms of finite state machines are given by commutative squares like
+	\label{ex:fsm}
+		A finite states machine with alphabet $\Sigma : \FinSet$ is a finite set $S$ of \emph{states} equipped with a \emph{transition function} $\delta : S \times \Sigma \to S$ and a subset $S^* \subseteq S$ of \emph{accepting states}.
+		In other words, it's a labelled transition system with alphabet $\Sigma$ equipped with a predicate $S^*$ over $S$. These form a systems theory over $\Alph$, which mostly behaves like $\cat{LabTransSys}$. The only substiantal difference is that morphisms of finite states machines are given by commutative squares like
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNixbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSJdLFswLDEsIlMiXSxbMiwwLCJSIFxcdGltZXMgXFxTaWdtYSJdLFsyLDEsIlIiXSxbMCwyLCJTXioiXSxbMiwyLCJSXioiXSxbMCwxLCJcXGRlbHRhIiwyXSxbMiwzLCJcXGdhbW1hIl0sWzAsMiwiXFx2YXJwaGkiXSxbMSwzLCJcXHZhcnBoaSIsMl0sWzQsMSwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDMsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
 			\begin{tikzcd}[ampersand replacement=\&]
@@ -568,7 +569,16 @@
 			\end{tikzcd}
 		\end{equation}
 		where the commutativity of the bottom square means $\varphi(S^*) \subseteq R^*$.
+
+		Thus there is a theory of systems, the \textbf{theory of finite states machines}
+		\begin{equation}
+			\FSM : \Alph^\top \unilaxto \dblCat.
+		\end{equation}
 	\end{example}
+
+	\begin{remark}
+		Often FSMs are assumed to be equipped with an initial state too. Adding this data to the previous definition is straightforward, but we think doing so is less elegant: there's quite a bit of elegance in the theory of FSMs without a specified initial state.
+	\end{remark}
 
 	% \begin{example}
 	% 	One can enrich the theory of closed dynamical systems by exposing the states of a system by default (which is what is implicitly done most of the time).
@@ -966,8 +976,86 @@
 		\end{equation}
 	\end{definition}
 
-	\begin{example}
-		Let
+	\begin{example}[States]
+		states of coalgebras, machines
+	\end{example}
+
+	\begin{example}[Fixpoints]
+		fixpoints and equilibria
+	\end{example}
+
+	\begin{example}[Trajectories]
+		integral curves of vector fields, traces of open dynamical systems
+	\end{example}
+
+	\begin{example}[Languages]
+		One of the first notions of `behaviour of a system' one encounters in computer science is that of \emph{language of a finite states machines}. These, indeed, give a theory of behaviours for the theory of finite states machine we described in~\cref{ex:fsm}.
+
+		Given an FSM $\sys S = (S, \Sigma, \delta, S^*)$, its language is the subset of $\Sigma^*$ given by those words which, when fed to $\sys S$, leave it in an accepting state (one in $S^*$). More precisely, we first have to pick an initial state $s_0 \in S$, then we can start using $\delta$, inputting the given word one character at a time, until we are done. Thus the language of an $\sys S$ is really a family of subsets of $\Sigma^*$, given by the recursively-defined map
+		\begin{eqalign}
+			L_{\sys S} : S &\longto P\Sigma^*\\
+			s_0 &\longmapsto \{\sigma_1\cdots\sigma_n \suchthat \sigma_2\cdots\sigma_n \in L_{\sys S}(\delta(s_0, \sigma_1)) \}.
+		\end{eqalign}
+		Notice this family of subsets can also be defined as a `bundle of sets' (a map we use for its fibers)
+		\begin{equation}
+			\Lambda(\sys S) := \{ (s_0, w) \mid \in w \in L_{\sys S}(s_0) \} \monoto S \times \Sigma^* \nlongto{\pi_{\Sigma^*}} \Sigma^* \in \Set/\Sigma^*.
+		\end{equation}
+		Thus we see there is a theory of behaviour
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXEFscGheXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxTZXQpXlxcdG9wIl0sWzIsMSwiXFxkYmxDYXQiXSxbMSwwXSxbMSwyXSxbMCwxLCJ7KC0pXip9XlxcdG9wIiwyXSxbMCwyLCJcXEZTTSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcU2V0Ly0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkwiLDAseyJvZmZzZXQiOjUsInNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0IjozMH0sImxldmVsIjoyfV1d
+			\begin{tikzcd}[ampersand replacement=\&, sep=small]
+				{\Alph^\top} \& {} \\
+				\&\& \dblCat \\
+				{\Span(\Set)^\top} \& {}
+				\arrow["{{(-)^*}^\top}"', from=1-1, to=3-1]
+				\arrow["\FSM", curve={height=-6pt}, from=1-1, to=2-3]
+				\arrow["{\Set/-}"', curve={height=6pt}, from=3-1, to=2-3]
+				\arrow["\Lambda", shift right=5, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
+			\end{tikzcd}
+		\end{equation}
+		where
+		\begin{enumerate}
+			\item $(-)^* : \Alph \to \Span(\Set)$ sends a finite alphabet $\Sigma$ to the free monoid $\Sigma^*$, an alphabet mapping $h:\Sigma \to \Sigma'$ to the morphism of monoids $h^* : \Sigma^* \to {\Sigma'}^*$, an alphabet reduction $p: \Sigma \from \Xi$ to the span $\Sigma^* \nfrom{p^*} \Xi^* \equalto \Xi^*$, and a commutative square to an obvious morphism of spans.
+			\item The component at $\Sigma : \Alph$ of $\Lambda$ is given by
+			\begin{eqalign}
+				L_\Sigma : \FSM(\Sigma) &\longto \Set/\Sigma^*\\
+				(S, \Sigma, \delta, S^*) &\longmapsto \Lambda(\sys S) : \{ (s_0, w) \mid \in w \in L_{\sys S}(s_0) \} \to \Sigma^*
+			\end{eqalign}
+		\end{enumerate}
+
+		The functoriality properties of these assignments can be proven by making the following observation. For each $n \in \N$ (including $0$), there are finite states machines $\sys{Fin\, n} = (\Fin\, n+1, \Fin\, n, \_+1, \{n\})$. Explicitly, these have $n+1$ states and are defined over an alphabet with $n$ symbols. The transition map is
+		\begin{eqalign}
+			\_ + 1 : \Fin\,n+1\ \times\ \Fin\, n &\longto \Fin\,n+1\\
+			(k, i) &\longmapsto k+1
+		\end{eqalign}
+		and the only accepting state is $n \in \Fin\,n+1$.
+
+		A map from this machine to another like $\sys S$, mediated by a map of alphabets $\sigma : \Fin\,n \to \Sigma$, looks like this:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXEZpblxcLCBuKzEgXFx0aW1lcyBcXEZpblxcLG4iXSxbMCwyLCJcXEZpblxcLG4rMSJdLFsyLDAsIlMgXFx0aW1lcyBcXFNpZ21hIl0sWzIsMiwiUyJdLFsyLDMsIlNeKiJdLFswLDMsIlxce25cXH0iXSxbMiwzLCJcXGRlbHRhIiwyXSxbMCwxLCJcXF8rMSIsMl0sWzAsMiwicyJdLFsxLDMsIlxcc2lnbWEiXSxbNSw0LCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsMSwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDMsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+			\begin{tikzcd}[ampersand replacement=\&, sep=small]
+				{\Fin\, n+1 \times \Fin\,n} \&\& {S \times \Sigma} \\
+				\\
+				{\Fin\,n+1} \&\& S \\
+				{\{n\}} \&\& {S^*}
+				\arrow["\delta"', from=1-3, to=3-3]
+				\arrow["{\_+1}"', from=1-1, to=3-1]
+				\arrow["s \times \sigma", from=1-1, to=1-3]
+				\arrow["s", from=3-1, to=3-3]
+				\arrow["\subseteq"{marking}, draw=none, from=4-1, to=4-3]
+				\arrow["\subseteq"{marking}, draw=none, from=4-1, to=3-1]
+				\arrow["\subseteq"{marking}, draw=none, from=4-3, to=3-3]
+			\end{tikzcd}
+		\end{equation}
+		Concretely, this is a map $s: \Fin\,n+1 \to S$ selecting a sequence of $n+1$ states $s_0, \ldots, s_n$ such that
+		\begin{equation}
+			\forall 0 \leq k \leq n-1,\ s_{k+1} = \delta(s_k, \sigma_k) \quad\text{and}\quad s_n \in S^*.
+		\end{equation}
+		In other words, this data amounts to a word $\sigma_1 \cdots \sigma_n \in \Sigma^*$ and a state $s_0 \in S$ such that $\sys S$ accepts $\sigma_1 \cdots \sigma_n$ in $n$ steps when starting from $s_0$.
+
+		Notice this also works for the empty word: a map from $\sys {Fin\, 0}$ is given by just a choice of state $s_0 \in S^*$, meaning $\sys S$ accepts the empty word when starting from $s_0$.
+
+		Therefore we see $((-)^*, \Lambda)$ is a sum of corepresentable behaviours, namely $\sum_{n \geq 0} \FSM(\sys {Fin\, n}, -)$. Observe the symmetry restored: $(-)^*$ is also the functor $\sum_{n \geq 0} \Set(\Fin\, n, -)$!
 	\end{example}
 
 	\begin{definition}
