@@ -141,6 +141,9 @@
 	For many notions, we will reference \cite{grandis_higher_2019}.
 	For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invite the reader to read along the main reference \cite{myers_categorical_2022}.
 
+	\subsection{Acknowledgments}
+	Some of the wisdom collected in these notes is not mine, but comes from fruitful conversations. Chiefly, David Jaz Myers. Among them: Ezra Schoen (helped greatly with~\cref{ex:coalgebras}), Nima Motamed, and Nathaniel Virgo.
+
 	\section{Processes}
 	The starting point for defining a theory of systems is defining a double category of composition patterns such systems use to interact with one another.
 	In practice, defining the systems and defining the composition patterns are activities that influence one another. Systems are made out of composition patterns themselves, and it's usually them we have in mind when we approach a formalization problem. So one often starts by asking how the systems at hand could possibly be composed together.
@@ -360,6 +363,7 @@
 	\end{example}
 
 	\begin{example}
+	\label{ex:coalgebras}
 		We can think of a coalgebra $A \to FA$ as
 		system with states $A$ and interface $F$. Now, natural transformations
 		$\alpha : F \Rightarrow F'$ are `lenses' and one gets an indexed
@@ -583,7 +587,13 @@
 	\end{example}
 
 	\begin{remark}
-		Often FSMs are assumed to be equipped with an initial state too. Adding this data to the previous definition is straightforward, but we think doing so is less elegant: there's quite a bit of elegance in the theory of FSMs without a specified initial state.
+		Often FSMs are assumed to be equipped with an initial state too. Adding this data to the previous definition is straightforward, but we think doing so is less elegant.
+	\end{remark}
+
+	\begin{remark}
+		In $\Set$ (or really, any topos $\cat E$) FSMs over an alphabet $\Sigma$ can be seen, alternatively, as coalgebras for endofunctor $2 \times (-)^\Sigma$.
+		Thus one can instantiate the machinery of~\cref{ex:coalgebras} to get categories of systems.
+		There is a subtle problem with that though: morphisms of FSMs naturally make use of the order structure on $2$, which is not really accounted for in the `vanilla' coalgebraic framework. Hence we believe it's closer to the nature of FSMs to consider them as transition systems equipped with a subobject of states.
 	\end{remark}
 
 	% \begin{example}
