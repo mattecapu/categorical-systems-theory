@@ -57,7 +57,7 @@
 
 	\subsection{References}
 	Categorical approaches to general systems theory have been around for a long time.
-	The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from an observational point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
+	The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from an behavioural point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
 
 	In the 90s, a series of papers by Katis, Sabadini, Walters and others established a theory of machines \cite{sabadini_functions_1993, bloom_matrices_1996, katis1997bicategories, katis1997span, katis_algebra_1999, katis2002feedback} which anticipated some of the ideas regarding functorial semantics of behaviour, finding categories of matrices are well-adapted to receive such functors.
 
@@ -86,7 +86,7 @@
 
 	\subsection{A quick tour of CST}
 	Categorical systems theory is a conceptually simple, if mathematically sophisticated, framework.
-	In a nutshell, it studies processes connecting systems, and the ways these behave. Processes are organized in (monoidal double) categories, which themselves index categories of systems, whose maps in (the observational theory of) sets are behaviours.
+	In a nutshell, it studies processes connecting systems, and the ways these behave. Processes are organized in (monoidal double) categories, which themselves index categories of systems, whose maps in (the behavioural theory of) sets are behaviours.
 
 	If one is not at ease with double categories, at a first approximation one can drop the horizontal direction and think of these as monoidal categories of processes. They index sets of systems which can be reindexed by processes. One can study behaviour by specifying the set of ways interfaces can be observed, the relations processes induce between observations on their interfaces, and the states systems can be in and the observables these expose.
 
@@ -120,7 +120,7 @@
 	The categories of systems over a given interface are categories of structure-preserving morphisms of systems, which we call simulations here. These can be more or less rigid depending on the user's taste.
 
 	Finally, systems are as interesting as the things they do.
-	The observations we can make of a system are its behaviour. Ways to observe systems in a given theory are \textbf{theories of behaviour}, which are maps into the `observational theory':
+	The observations we can make of a system are its behaviour. Ways to observe systems in a given theory are \textbf{theories of behaviour}, which are maps into the `behavioural theory':
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc15cXHRvcCJdLFswLDIsIlxcU3BhbihcXGNhdCBDKV5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiQl5cXHRvcCIsMl0sWzAsMiwiXFxTeXMiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkJeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
 		\begin{tikzcd}[ampersand replacement=\&, sep=small]
@@ -157,7 +157,7 @@
 		A \textbf{process theory} is a symmetric monoidal double category with attitude.
 	\end{definition}
 
-	Hence any monoidal double category can be a process theory if we have a convincing interpreation of it as such. In other words, at this level of generality there's no justification for limiting this definition further. Of course any specific doctrine of systems can make more opinionated choices on which monoidal double categories to admit, and we will see plenty of examples of this.
+	Hence any monoidal double category can be a process theory if we have a convincing interpretation of it as such. In other words, at this level of generality there's no justification for limiting this definition further. Of course any specific doctrine of systems can make more opinionated choices on which monoidal double categories to admit, and we will see plenty of examples of this.
 
 	\begin{remark}
 		Rather than defining double categories of processes to be monoidal, one should arguably define them to be multicategories. Thus a nicer, if more exotic, definition of process theory would be that of a `multicategory internal to categories'.%\footnote{As opposite to virtual double categories, which are categories internal to multicategories.}
@@ -283,7 +283,7 @@
 		\end{center}
 	\end{example}
 
-	\begin{example}[Observational theory]
+	\begin{example}[Behavioural theory]
 		Given any Cartesian category\footnote{By which we mean a category with a terminal object and all pullbacks.}
 		spans \& maps
 	\end{example}
@@ -529,6 +529,13 @@
 			\forall a \in A,&\quad G!(\delta(\phi(a))) = k(F!(\gamma(a)))\\
 			\forall a \in A,&\quad k^\flat_B(\delta'(F!(\gamma(a)), \phi(a))) = F(\phi)(\gamma(a))
 		\end{eqalign}
+
+		\matteo{The double category End...}
+
+		All in all, this gives us the \textbf{theory of coalgebras}:
+		\begin{equation}
+			\Coalg : \dblcat{End}^\top \unilaxto \dblCat.
+		\end{equation}
 	\end{example}
 
 	\begin{example}[Monoid actions]
@@ -931,21 +938,166 @@
 		}
 	\end{example}
 
-	\begin{example}
-		observational systems
+	\begin{example}[Behavioural theories]
+	\label{ex:obs-systems}
+		Any behavioural theory of processes $\Span(\cat C)$ (\cref{ex:obs-processes}) supports a behavioural theory of systems (recall $\cat C$ is assumed to be cartesian, hence admits all pullbacks):
+		\begin{equation}
+			\BSys_{\cat C} : \Span(\cat C)^\top \unilaxto \dblCat
+		\end{equation}
+		\begin{equation}
+			\BSys_{\cat C}(I) = \left\{
+				% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJTIl0sWzAsMSwiSSJdLFsxLDAsIlIiXSxbMSwxLCJJIl0sWzAsMSwiXFxvYnNlcnZlX3tcXHN5cyBTfSIsMl0sWzIsMywiXFxvYnNlcnZlX3tcXHN5cyBSfSJdLFswLDIsImgiXSxbMSwzLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+				\begin{tikzcd}[ampersand replacement=\&]
+					S \& R \\
+					I \& I
+					\arrow["{\observe_{\sys S}}"', from=1-1, to=2-1]
+					\arrow["{\observe_{\sys R}}", from=1-2, to=2-2]
+					\arrow["h", from=1-1, to=1-2]
+					\arrow[Rightarrow, no head, from=2-1, to=2-2]
+				\end{tikzcd}
+			\right\} = \cat C/I
+		\end{equation}
+		In this theory, a system $\sys S$ over the interface $I:\cat C$ is simply a state space $S : \cat C$ together with an observation $\observe_{\sys S} : S \to I$.\footnote{
+			One can see maps $S \to I$ as spans $S \equalto S \to I$, thereby fitting this example into the more general pattern of `systems are processes with a special left boundary'.
+		}
+
+		There's two ways to understand this map. The first is to think of it as a literal observable. Hence $S$ is to be considered as a space of states while $I$ as a space fo quantities, and $\observe : S \to I$ maps a state to its corresponding observable.
+
+		The second is to think of these maps as display maps for some kind of type dependency of $S$ over $I$. From this point of view we are more interested in the fibers of such map: they give us, for any observation $i:I$ at the interface, a set $s:S(i) = \observe^{-1}(i)$ of states compatible with it.
+
+		There's many reasons to prefer this second interpretation. The first is given by the way we are going to define the reindexing operations of $\BSys$\footnote{This might seem circular but the definition of $\BSys$ is actually mathematically motivated. So we use the mathematics as a suggestion of which intepretation fits it better, as one should do.}, which treat $\observe$ as a display map. The second is by the way $\BSys$ is used in the context of categorical systems theory, namely as a `semantical theory': we are going to map other systems theory to behavioural theories to model the act of substantiating a systems' specification with a an actual observable behaviour (see~\cref{sec:behaviour}). The examples then suggest $\observe$ is indeed a display map.
+
+		Thus, let's now look at how $\Span(\cat C)$ indexes observations.
+
+		Given an observation $\observe_{\sys S} : S \to I$, we can reindex it functorially along a span $I \nfrom{p_\ell} X \nto{p_r} I'$ by pulling back along $p_\ell$ first and then composing with $p_r$ (this is called the pull-push action of spans):
+		\begin{eqalign}
+			\BSys(I \nfrom{p_\ell} X \nto{p_r} I') : \BSys(I) \longto \BSys(I')\\
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsOCxbMCwwLCJTIl0sWzAsMiwiSSJdLFsyLDEsIlgiXSxbMiwyLCJKIl0sWzIsMCwicF9cXGVsbF4qUyJdLFswLDMsIlxcT2JzKEkpIl0sWzIsMywiXFxPYnMoSikiXSxbMCwxXSxbMCwxLCJcXG9ic2VydmVfe1xcc3lzIFN9IiwyXSxbMiwzLCJwX3IiXSxbNCwyLCJwXipfXFxlbGxcXG9ic2VydmVfe1xcc3lzIFN9Il0sWzUsNiwiXFxPYnMoSSBcXG5mcm9te3BfXFxlbGx9IFggXFxudG97cF9yfSBKKSJdLFs3LDIsIiIsMix7InNob3J0ZW4iOnsic291cmNlIjo0MCwidGFyZ2V0IjozMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+			\begin{tikzcd}[ampersand replacement=\&, row sep=scriptsize]
+				S \&\& {p_\ell^*S} \\
+				{} \&\& X \\
+				I \&\& I'
+				\arrow["{\observe_{\sys S}}"', from=1-1, to=3-1]
+				\arrow["{p_r}", from=2-3, to=3-3]
+				\arrow["{p^*_\ell\observe_{\sys S}}", from=1-3, to=2-3]
+				\arrow[shorten <=15pt, shorten >=13pt, maps to, from=2-1, to=2-3]
+			\end{tikzcd}
+		\end{eqalign}
+		We can visualize this better by arranging an appropriate diagram:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJTIl0sWzQsMSwiSSciXSxbMiwxLCJYIl0sWzAsMSwiSSJdLFsyLDAsInBfXFxlbGxeKlMiXSxbNCwwLCJwX1xcZWxsXipTIl0sWzAsMywiXFxvYnNlcnZlX3tcXHN5cyBTfSIsMl0sWzIsMywicF9cXGVsbCJdLFsyLDEsInBfciIsMl0sWzQsMF0sWzQsMiwicF9cXGVsbF4qXFxvYnNlcnZlX3tcXHN5cyBTfSIsMl0sWzQsMywiIiwyLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzUsMSwiXFxPYnMocCkoXFxvYnNlcnZlX3tcXHN5cyBTfSkiXSxbNCw1LCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+			\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
+				S \&\& {p_\ell^*S} \&\& {p_\ell^*S} \\
+				I \&\& X \&\& {I'}
+				\arrow["{\observe_{\sys S}}"', from=1-1, to=2-1]
+				\arrow["{p_\ell}", from=2-3, to=2-1]
+				\arrow["{p_r}"', from=2-3, to=2-5]
+				\arrow[from=1-3, to=1-1]
+				\arrow["{p_\ell^*\observe_{\sys S}}"', from=1-3, to=2-3]
+				\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=-90}, draw=none, from=1-3, to=2-1]
+				\arrow["{\BSys(p)(\observe_{\sys S})}", from=1-5, to=2-5]
+				\arrow[Rightarrow, no head, from=1-3, to=1-5]
+			\end{tikzcd}
+		\end{equation}
+
+		Given a map $I \nto{h} J$, we define a profunctor that maps a pair of observation maps to the set of maps between their domains that make the evident square commute:
+		\begin{equation}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsOCxbMCwwLCJcXE9icyhJKV5cXG9wIl0sWzEsMCwiXFxPYnMoSykiXSxbMywwLCJcXFNldCJdLFswLDEsIlMiXSxbMCwzLCJJIl0sWzEsMSwiUiJdLFsxLDMsIksiXSxbMywyLCJcXGxlZnRcXHtcXGJlZ2lue3BtYXRyaXh9XFxxdWFkIFMgJiBcXHRvICYgUlxcXFxcXG9ic2VydmVfe1xcc3lzIFN9XFxkb3duYXJyb3cgJiYgXFxkb3duYXJyb3cgXFxvYnNlcnZlX3tcXHN5cyBSfVxcXFxcXHF1YWQgSiAmIFxcdG8gS1xcZW5ke3BtYXRyaXh9IFxccmlnaHRcXH0iXSxbMCwxLCJcXHRpbWVzIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiXFxPYnMoaCkiXSxbMyw0LCJcXG9ic2VydmVfe1xcc3lzIFN9IiwyXSxbNSw2LCJcXG9ic2VydmVfe1xcc3lzIFJ9IiwyXSxbMTEsNywiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjQwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+			\begin{tikzcd}[ampersand replacement=\&, row sep=3ex]
+				{\BSys_{\cat C}(I)^\op} \& {\BSys_{\cat C}(J)} \&\& \Set \\
+				S \& R \\[-5ex]
+				\&\&\& {\left\{\begin{matrix}\qquad\qquad S & \dashrightarrow & R\qquad\qquad\qquad\\\observe_{\sys S}\downarrow && \downarrow \observe_{\sys R}\\\qquad\qquad I & \nto{h} &J\qquad\qquad\qquad\end{matrix} \right\}} \\[-5ex]
+				I \& J
+				\arrow["\times"{marking}, draw=none, from=1-1, to=1-2]
+				\arrow["{\BSys_{\cat C}(h)}", from=1-2, to=1-4]
+				\arrow["{\observe_{\sys S}}"', from=2-1, to=4-1]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\observe_{\sys R}}"', from=2-2, to=4-2]
+				\arrow[shorten <=25pt, shorten >=12pt, maps to, from=0, to=3-4]
+			\end{tikzcd}
+		\end{equation}
+
+		Finally, we have a map on squares:
+		\begin{equation}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNixbMCwxLCJYIl0sWzAsMiwiSiJdLFswLDAsIkkiXSxbMiwwLCJLIl0sWzIsMSwiWSJdLFsyLDIsIkwiXSxbMiwzLCJoIl0sWzEsNSwiayIsMl0sWzAsMiwiZl9cXGVsbCJdLFswLDEsImZfciIsMl0sWzQsMywiZ19cXGVsbCIsMl0sWzQsNSwiZ19yIl0sWzAsNCwiXFxzaWdtYSIsMV1d
+			\begin{tikzcd}[ampersand replacement=\&, sep=small]
+				I \&\& J \\
+				X \&\& Y \\
+				I' \&\& J'
+				\arrow["h", from=1-1, to=1-3]
+				\arrow["k"', from=3-1, to=3-3]
+				\arrow["{p_\ell}", from=2-1, to=1-1]
+				\arrow["{p_r}"', from=2-1, to=3-1]
+				\arrow["{q_\ell}"', from=2-3, to=1-3]
+				\arrow["{q_r}", from=2-3, to=3-3]
+				\arrow["\sigma"{description}, from=2-1, to=2-3]
+			\end{tikzcd}
+			\quad\longmapsto\quad
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMiwwLCJcXE9icyhKKSJdLFswLDAsIlxcT2JzKEkpIl0sWzAsMiwiXFxPYnMoSykiXSxbMiwyLCJcXE9icyhMKSJdLFsxLDIsIlxcT2JzKGgpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn19fV0sWzAsMywiXFxPYnMoaykiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMSwwLCJcXE9icyhmKSJdLFsyLDMsIlxcT2JzKGcpIiwyXSxbNCw1LCJcXE9icyhcXHNpZ21hKSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\BSys_{\cat C}(I)} \&\& {\BSys_{\cat C}(J)} \\
+				\\
+				{\BSys_{\cat C}(I')} \&\& {\BSys_{\cat C}(J')}
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\BSys_{\cat C}(h)}"', "\shortmid"{marking}, from=1-1, to=3-1]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\BSys_{\cat C}(k)}", "\shortmid"{marking}, from=1-3, to=3-3]
+				\arrow["{\BSys_{\cat C}(p)}", from=1-1, to=1-3]
+				\arrow["{\BSys_{\cat C}(q)}"', from=3-1, to=3-3]
+				\arrow["{\BSys_{\cat C}(\sigma)}", shorten <=16pt, shorten >=16pt, Rightarrow, from=0, to=1]
+			\end{tikzcd}
+		\end{equation}
+		given, again, by stacking:
+		\begin{equation}
+			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMTQsWzAsMCwiXFxPYnMoaCkoXFxzeXMgUywgXFxzeXMgUikiXSxbNCwwLCJcXE9icyhrKShcXE9icyhmKShcXHN5cyBTKSwgXFxPYnMoZykoXFxzeXMgUikpIl0sWzAsMSwiUyJdLFswLDIsIkkiXSxbMSwxLCJSIl0sWzEsMiwiSyJdLFszLDEsIlMiXSxbNCwxLCJSIl0sWzMsMiwiSSJdLFs0LDIsIksiXSxbMywzLCJYIl0sWzMsNCwiSiJdLFs0LDQsIkwiXSxbNCwzLCJZIl0sWzAsMSwiXFxPYnMoXFxzaWdtYSlfe1xcc3lzIFMsIFxcc3lzIFJ9Il0sWzIsMywiXFxvYnNlcnZlX3tcXHN5cyBTfSIsMl0sWzQsNSwiXFxvYnNlcnZlX3tcXHN5cyBSfSIsMl0sWzMsNSwiaCIsMl0sWzIsNF0sWzgsOSwiaCIsMl0sWzExLDEyLCJrIiwyXSxbMTMsOV0sWzEwLDhdLFsxMCwxMV0sWzEzLDEyXSxbMTAsMTMsIlxcc2lnbWEiLDFdLFs2LDhdLFs3LDldLFs2LDddLFsxNiwyNiwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjEsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\BSys_{\cat C}(h)(\sys S, \sys R)} \&[-5ex]\&\&\&[-8ex] {\BSys_{\cat C}(k)(\BSys_{\cat C}(f)(\sys S), \BSys_{\cat C}(g)(\sys R))} \\[-2ex]
+				S \& R \&\& S \& R \\
+				I \& J \&\& I \& J \\
+				\&\&\& X \& Y \\
+				\&\&\& I' \& J'
+				\arrow["{\BSys_{\cat C}(\sigma)_{\sys S, \sys R}}", from=1-1, to=1-5]
+				\arrow["{\observe_{\sys S}}"', from=2-1, to=3-1]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\observe_{\sys R}}"', from=2-2, to=3-2]
+				\arrow["h"', from=3-1, to=3-2]
+				\arrow[from=2-1, to=2-2]
+				\arrow["h"', from=3-4, to=3-5]
+				\arrow["k"', from=5-4, to=5-5]
+				\arrow[from=4-5, to=3-5]
+				\arrow[from=4-4, to=3-4]
+				\arrow[from=4-4, to=5-4]
+				\arrow[from=4-5, to=5-5]
+				\arrow["\sigma"{description}, from=4-4, to=4-5]
+				\arrow[""{name=1, anchor=center, inner sep=0}, from=2-4, to=3-4]
+				\arrow[from=2-5, to=3-5]
+				\arrow[from=2-4, to=2-5]
+				\arrow[shorten <=19pt, shorten >=19pt, maps to, from=0, to=1]
+			\end{tikzcd}
+		\end{equation}
+
+		Thus we have a systems theory:
+		\begin{equation}
+			\BSys_{\cat C}: \Span(\cat C)^\top \unilaxto \dblCat
+		\end{equation}
+		In particular, when $\cat C = \Set$, then $\dblSet: = \Span(\Set)$ and we define:
+		\begin{equation}
+			\BSys := \BSys(\Set) : \dblSet^\top \unilaxto \dblCat.
+		\end{equation}
+		Notably, in this case, $I \mapsto \Set/I \iso \Set^I$ (where the latter sends a `display map' to the indexed set of its fibers).
 	\end{example}
 
-	\begin{example}
-		structured cospans
+	% \begin{remark}
+	% 	The behavioural theory of $\cat C$ can also be recovered as $\Moore_{(\cat C/-, \id)}$, where
+	% \end{remark}
+
+	\begin{example}[Structured cospans]
+		\matteo{TODO}
 	\end{example}
 
 	\subsection{Doctrines}
 	A doctrine of systems is a uniform way to specify theories of systems given some data.
 	Most of the theories we described above are actually doctrines, since we defined them parametric on some data:
 	\begin{enumerate}
-		\item a theory of observational systems is defined for each Cartesian category $\cat C$,
+		\item a behavioural theory is defined for each Cartesian category $\cat C$,
 		\item a theory of Moore machines is defined for every fibration $\pi : \cat E \to \cat C$ with a section $T$,
-		\item a theory of coalgebras is defined for every category $\cat C$,
+		\item a theory of coalgebras is defined for every category $\cat C$ with pullbacks,
 	\end{enumerate}
 	and so on.
 
@@ -974,10 +1126,11 @@
 	The 2-cells in $\Theories$ are pairs of an horizontal natural transformation and a modification \cite{grandis_higher_2019}.
 
 	\section{Behaviours}
-	Behaviours in CST are simply maps into an observational theory. By default, we consider behaviours valued in $\Obs(\Set)$, but one can consider `enriched behaviours' into $\Obs(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
+	\label{sec:behaviour}
+	Behaviours in CST are simply maps into an behavioural theory. By default, we consider behaviours valued in $\BSys(\Set)$, but one can consider `structured behaviours' into $\BSys(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
 
 	\begin{definition}
-		A \textbf{theory of behaviour} for a systems theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $B:\Sys \to \Obs(\cat C)$:
+		A \textbf{theory of behaviour} for a systems theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $B:\Sys \to \BSys(\cat C)$:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc15cXHRvcCJdLFswLDIsIlxcU3BhbihcXGNhdCBDKV5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiQl5cXHRvcCIsMl0sWzAsMiwiXFxTeXMiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkJeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
 			\begin{tikzcd}[ampersand replacement=\&, sep=small]
@@ -993,15 +1146,55 @@
 	\end{definition}
 
 	\begin{example}[States]
-		states of coalgebras, machines
+	\label{ex:states}
+		One of the simplest notion of behaviour for a system is given by the idea of `state space'. This is the very classical stance that what can be observed about a system is its permanence in a state which varies in a prescribed space.
+		So suppose $\cat C$ is some category of spaces\footnote{Following Lawvere, we consider `cartesian extensive' to be a pretty good off-the-shelf notion of \emph{category of spaces}.} and let's consider the theory of coalgebras on $\cat C$: $\Coalg_{\cat C} : \dblcat{End}^\top \unilaxto \dblCat$.
+
+		Then there is a theory of behaviour:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXGRibGNhdHtFbmR9XlxcdG9wIl0sWzAsMiwiXFxTcGFuKFxcY2F0IFMpXlxcdG9wIl0sWzIsMSwiXFxkYmxDYXQiXSxbMSwwXSxbMSwyXSxbMCwxLCIxXlxcdG9wIiwyXSxbMCwyLCJcXENvYWxnIiwwLHsiY3VydmUiOi0xfV0sWzEsMiwiXFxjYXQgUy8tIiwyLHsiY3VydmUiOjF9XSxbMyw0LCJcXHN0YXRlcyIsMix7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0Ijo0LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6NTB9LCJsZXZlbCI6Mn1dXQ==
+			\begin{tikzcd}[ampersand replacement=\&,sep=small]
+				{\dblcat{End}^\top} \& {} \\
+				\&\& \dblCat \\
+				{\Span(\cat C)^\top} \& {}
+				\arrow["{1^\top}"', from=1-1, to=3-1]
+				\arrow["\Coalg_{\cat C}", curve={height=-6pt}, from=1-1, to=2-3]
+				\arrow["{\cat C/-}"', curve={height=6pt}, from=3-1, to=2-3]
+				\arrow["\states"'{pos=0.4}, shift right=4, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
+			\end{tikzcd}
+		\end{equation}
+		which is trivial on the interfaces and maps coalgebras to their carriers:
+		\begin{eqalign}
+			\states_F : \Coalg_{\cat C}(F) &\longto \cat C\\
+						(S, S \nto{\delta} FS) &\longmapsto S.
+		\end{eqalign}
+
+		Clearly such a theory of behaviour can also be defined for Moore machines. Let $\Moore_{(F, T)} : \dblLens^\top \unilaxto \dblCat$ be a theory of Moore machines, then there is again a theory of behaviour
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXGRibExlbnNeXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxjYXQgQyleXFx0b3AiXSxbMiwxLCJcXGRibENhdCJdLFsxLDBdLFsxLDJdLFswLDEsIjFeXFx0b3AiLDJdLFswLDIsIlxcTW9vcmVfeyhGLCBUKX0iLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIlxcc3RhdGVzIiwyLHsibGFiZWxfcG9zaXRpb24iOjQwLCJvZmZzZXQiOjQsInNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0Ijo1MH0sImxldmVsIjoyfV1d
+			\begin{tikzcd}[ampersand replacement=\&,sep=small]
+				{\dblLens^\top} \& {} \\
+				\&\& \dblCat \\
+				{\Span(\cat C)^\top} \& {}
+				\arrow["{1^\top}"', from=1-1, to=3-1]
+				\arrow["{\Moore_{(F, T)}}", curve={height=-6pt}, from=1-1, to=2-3]
+				\arrow["{\cat C/-}"', curve={height=6pt}, from=3-1, to=2-3]
+				\arrow["\states"'{pos=0.4}, shift right=4, shorten <=10pt, shorten >=16pt, Rightarrow, from=1-2, to=3-2]
+			\end{tikzcd}
+		\end{equation}
+		which is trivial on the interfaces and maps Moore machines to their state spaces:
+		\begin{eqalign}
+			\states_{\lens{I}{O}} : \Moore_{(F,T)}\lens{I}{O} &\longto \cat C\\
+						(S, \lens{\update}{\expose} : \lens{TS}{S} \opticto \lens{I}{O}) &\longmapsto S.
+		\end{eqalign}
 	\end{example}
 
 	\begin{example}[Fixpoints]
-		fixpoints and equilibria
+		\matteo{TODO}
 	\end{example}
 
 	\begin{example}[Trajectories]
-		integral curves of vector fields, traces of open dynamical systems
+		\matteo{TODO} % integral curves of vector fields, traces of open dynamical systems
 	\end{example}
 
 	\begin{example}[Languages]
@@ -1075,7 +1268,7 @@
 	\end{example}
 
 	\begin{definition}
-		A \textbf{doctrine of behaviour} for the doctrine $\dblcat{Doctrine}$ is map of doctrines of systems into the observational doctrine $\Obs$:
+		A \textbf{doctrine of behaviour} for the doctrine $\dblcat{Doctrine}$ is map of doctrines of systems into the behavioural doctrine $\BSys$:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXGRibGNhdHtEYXRhfSJdLFswLDIsIlxcZGJsY2F0e0NhcnRDYXR9Il0sWzIsMSwiXFxUaGVvcmllcyJdLFsxLDBdLFsxLDJdLFswLDEsIlxcZGJsY2F0IEJeXFx0b3AiLDJdLFswLDIsIlxcZGJsY2F0e0RvY3RyaW5lfSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcT2JzIiwyLHsiY3VydmUiOjF9XSxbMyw0LCJcXGRibGNhdCBCXlxcZmxhdCIsMCx7Im9mZnNldCI6NSwic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjJ9XV0=
 			\begin{tikzcd}[ampersand replacement=\&, sep=small]
@@ -1084,7 +1277,7 @@
 				{\dblcat{CartCat}} \& {}
 				\arrow["{\dblcat B^\top}"', from=1-1, to=3-1]
 				\arrow["{\dblcat{Doctrine}}", curve={height=-6pt}, from=1-1, to=2-3]
-				\arrow["\Obs"', curve={height=6pt}, from=3-1, to=2-3]
+				\arrow["\BSys"', curve={height=6pt}, from=3-1, to=2-3]
 				\arrow["{\dblcat B^\flat}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 			\end{tikzcd}
 		\end{equation}
@@ -1106,13 +1299,13 @@
 				{\dblcat{CartCat}} \& {}
 				\arrow["\Set"', from=1-1, to=3-1]
 				\arrow["U", curve={height=-6pt}, from=1-1, to=2-3]
-				\arrow["\Obs"', curve={height=6pt}, from=3-1, to=2-3]
+				\arrow["\BSys"', curve={height=6pt}, from=3-1, to=2-3]
 				\arrow["{\Hom^h}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 			\end{tikzcd}
 		\end{equation}
 		An object of $\Theories_\ast$ is a systems theory equipped with a distinguished system (hence a pair of an interface and a system over it) which is used as archetype for a certain kind of behaviour.
 
-		The transformation $\Hom^h$ at a pointed theory $(\Sys : \Processes^\top \to \dblCat, \sys B : \Sys(I))$ is the map of system theories $\Processes^h(\sys B, -) : \Sys \to \Obs(\Set)$ defined as follows.
+		The transformation $\Hom^h$ at a pointed theory $(\Sys : \Processes^\top \to \dblCat, \sys B : \Sys(I))$ is the map of system theories $\Processes^h(\sys B, -) : \Sys \to \BSys(\Set)$ defined as follows.
 		Its two components are the horizontal hom-functor $\Processes^h(I, -) : \Processes \to \dblSet$ and the similar fiberwise hom-functor
 		\begin{equation}
 			\Processes^h(\sys B, -)^\flat : \Sys \twoto \Set/\Processes^h(I, -).
@@ -1132,7 +1325,7 @@
 				{\dblcat{CartCat}} \& {}
 				\arrow["\Set"', from=2-1, to=4-1]
 				\arrow["U", curve={height=-6pt}, from=2-1, to=3-3]
-				\arrow["\Obs"', curve={height=6pt}, from=4-1, to=3-3]
+				\arrow["\BSys"', curve={height=6pt}, from=4-1, to=3-3]
 				\arrow["{\Hom^h}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=2-2, to=4-2]
 				\arrow["\Moore", curve={height=-18pt}, from=1-1, to=3-3]
 				\arrow["{(\Moore,\ \fix : \Moore(1))}"', from=1-1, to=2-1]
