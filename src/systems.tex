@@ -264,13 +264,13 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 \label{ex:trans-sys}
 	We can use the double category $\Alph$ of alphabets defined in~\cref{ex:alphabets} to index labelled transition systems.
 	When $T = \Sigma^*$ (the free monoid on a finite set $\Sigma$), then $\DynSys_{\cat S}(\Sigma^*)$ is the category of transition systems labelled with $\Sigma$.
-	Hence we define $\cat{LabTransSys} : \dblcat{Alpha}^\top \unilaxto \dblCat$ by restricting $\DynSys_{\Set}$ along the double functor $(-)^* : \Mon^\uparrow \to \Alph$ given by taking free monoids.
+	Hence we define $\Trans : \Alph^\top \unilaxto \dblCat$ by restricting $\DynSys_{\Set}$ along the double functor $(-)^* : \Mon^\uparrow \to \Alph$ given by taking free monoids.
 \end{example}
 
 \begin{example}[Finite state machines]
 \label{ex:fsm}
 	A finite states machine with alphabet $\Sigma : \FinSet$ is a finite set $S$ of \emph{states} equipped with a \emph{transition function} $\delta : S \times \Sigma \to S$ and a subset $S^* \subseteq S$ of \emph{accepting states}.
-	In other words, it's a labelled transition system with alphabet $\Sigma$ equipped with a predicate $S^*$ over $S$. These form a systems theory over $\Alph$, which mostly behaves like $\cat{LabTransSys}$. The only substiantal difference is that morphisms of finite states machines are given by commutative squares like
+	In other words, it's a labelled transition system with alphabet $\Sigma$ equipped with a predicate $S^*$ over $S$. These form a systems theory over $\Alph$, which mostly behaves like $\Trans$. The only substiantal difference is that morphisms of finite states machines are given by commutative squares like
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNixbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSJdLFswLDEsIlMiXSxbMiwwLCJSIFxcdGltZXMgXFxTaWdtYSJdLFsyLDEsIlIiXSxbMCwyLCJTXioiXSxbMiwyLCJSXioiXSxbMCwxLCJcXGRlbHRhIiwyXSxbMiwzLCJcXGdhbW1hIl0sWzAsMiwiXFx2YXJwaGkiXSxbMSwzLCJcXHZhcnBoaSIsMl0sWzQsMSwiXFxzdWJzZXRlcSIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDMsIlxcc3Vic2V0ZXEiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
 		\begin{tikzcd}[ampersand replacement=\&]
