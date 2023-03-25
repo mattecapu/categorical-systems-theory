@@ -1,6 +1,13 @@
 \section{Behaviours}
 \label{sec:behaviour}
-Behaviours in CST are simply maps into a behavioural theory. By default, we consider behaviours valued in $\BSys(\Set)$, but one can consider `structured behaviours' into $\BSys(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
+Behaviours in CST are simply maps $\systh B : \Sys \to \BSys(\cat C)$ into a behavioural theory.
+By default, we consider behaviours valued in $\BSys(\Set)$, but one can consider `structured behaviours' into $\BSys(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
+
+The intuition behind this definition of behaviours the following definition is the following. First of all, $B$ maps interfaces to objects of observations we can make about them.
+Every theory of behaviour gives its own notion of what `observation' means: it could be mere points, it could be distributions, it could be sequences of observations, and so on (examples will prove the variety this definition allows).
+Then, we map every system to an object of states (which are \emph{observations we can make about the ways the system can be}) and a map that displays the dependency of said state on the observations on its interface (thus \emph{observations we can make about the ways the system can change}).
+
+But mapping interfaces and systems to observations it's only half of what a behaviour does. The rest of the data (called below vertical and horizontal naturality) witness the \emph{compositionality} of such assignment. We say how maps of systems translate to maps between their behaviours and, most importantly, we say how composing systems and composing behaviours interact. The latter is thus a direct witness of \emph{emergence} of behaviour.
 
 \begin{definition}
 	A \textbf{theory of behaviour} or just \textbf{behaviour} for a systems theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $\systh B:\Sys \to \BSys(\cat C)$:
@@ -16,24 +23,203 @@ Behaviours in CST are simply maps into a behavioural theory. By default, we cons
 			\arrow["{B^\flat}"', shift right=4, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
 		\end{tikzcd}
 	\end{equation}
-	Hence $\systh B$ is given by a lax double functor
-	\begin{equation}
-		B : \Processes \longto \Span(\cat C)
-	\end{equation}
-	and by a vertical lax-natural transformation whose components are given, for every $I: \Processes$, by
-	\begin{equation}
-		B^\flat_I : \Sys(I) \longto \cat C/I.
-	\end{equation}
+	Hence $\systh B$ is given by
+	\begin{enumerate}
+		\item a unitary lax double functor
+		\begin{equation}
+			B : \Processes \unilaxto \Span(\cat C)
+		\end{equation}
+		\item a vertical lax-natural transformation whose components are given, for every $I: \Processes$, by
+		\begin{equation}
+			B^\flat_I : \Sys(I) \longto \cat C/B(I).
+		\end{equation}
+		\item a laxator witnessing vertical naturality for every process $p : I \verto J$ in $\Processes$:
+		\begin{equation}
+		\label{eq:beh-ver-laxator}
+			% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFN5cyhJKSJdLFswLDEsIlxcU3lzKEopIl0sWzEsMCwiXFxjYXQgQy9JIl0sWzEsMSwiXFxjYXQgQy9KIl0sWzAsMSwiXFxTeXMocCkiLDJdLFswLDIsIkJeXFxmbGF0X0kiXSxbMSwzLCJCXlxcZmxhdF9KIiwyXSxbMiwzLCJcXGNhdCBDL0IocCkiXSxbNiw3LCJCXlxcZmxhdF9wIiwwLHsib2Zmc2V0IjotMiwic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \& {\cat C/B(I)} \\
+				{\Sys(J)} \& {\cat C/B(J)}
+				\arrow["{\Sys(p)}"', from=1-1, to=2-1]
+				\arrow["{B^\flat_I}", from=1-1, to=1-2]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{B^\flat_J}"', from=2-1, to=2-2]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(p)}", from=1-2, to=2-2]
+				\arrow["{B^\flat_p}", shift left=2, shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+			\end{tikzcd},
+			\text{alternatively}
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXFN5cyhJKSJdLFswLDEsIlxcU3lzKEopIl0sWzEsMSwiXFxjYXQgQy9JIl0sWzAsMiwiXFxjYXQgQy9KIl0sWzEsMiwiXFxjYXQgQy9KIl0sWzEsMCwiXFxTeXMoSSkiXSxbMCwxLCJcXFN5cyhwKSIsMl0sWzEsMywiQl5cXGZsYXRfSiIsMl0sWzIsNCwiXFxjYXQgQy9CKHApIl0sWzUsMiwiQl5cXGZsYXRfSSJdLFswLDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDQsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCwxMSwiQl5cXGZsYXRfcCIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \& {\Sys(I)} \\
+				{\Sys(J)} \& {\cat C/I} \\
+				{\cat C/J} \& {\cat C/J}
+				\arrow["{\Sys(p)}"', from=1-1, to=2-1]
+				\arrow["{B^\flat_J}"', from=2-1, to=3-1]
+				\arrow["{\cat C/B(p)}", from=2-2, to=3-2]
+				\arrow["{B^\flat_I}", from=1-2, to=2-2]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=1-1, to=1-2]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=3-1, to=3-2]
+				\arrow["{B^\flat_p}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=0, to=1]
+			\end{tikzcd}
+		\end{equation}
+		which (when $p$ represents a coupling of some sort, hence a composition of systems) sends a behaviour of the composite to a composite of behaviours,
+		\item a square in $\dblCat$ witnessing horizontal naturality for every map of interfaces $h : I \to J$ in $\Processes$:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFN5cyhJKSJdLFswLDEsIlxcU3lzKEspIl0sWzEsMCwiXFxjYXQgQy9JIl0sWzEsMSwiXFxjYXQgQy9KIl0sWzAsMSwiXFxTeXMoaCkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMiwzLCJcXGNhdCBDL0IoaCkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMCwyLCJCXlxcZmxhdF9JIl0sWzEsMywiQl5cXGZsYXRfSiIsMl0sWzQsNSwiQl5cXGZsYXRfaCIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \& {\cat C/B(I)} \\
+				{\Sys(J)} \& {\cat C/B(J)}
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Sys(h)}"', "\shortmid"{marking}, from=1-1, to=2-1]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(h)}", "\shortmid"{marking}, from=1-2, to=2-2]
+				\arrow["{B^\flat_I}", from=1-1, to=1-2]
+				\arrow["{B^\flat_J}"', from=2-1, to=2-2]
+				\arrow["{B^\flat_h}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=0, to=1]
+			\end{tikzcd}
+		\end{equation}
+		which sends every map of systems (over $h$) to a map of their behaviours (over $B(h)$)
+	\end{enumerate}
+	This data satisfies the following coherences:
+	\begin{enumerate}
+		\item The laxators witnessing vertical functoriality compose; hence for each composable pair of processes $I \nverto{p} J \nverto{q} K$ in $\Processes$, we have:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXFN5cyhJKSJdLFswLDEsIlxcU3lzKEopIl0sWzEsMCwiXFxjYXQgQy9JIl0sWzEsMSwiXFxjYXQgQy9KIl0sWzAsMiwiXFxTeXMoSykiXSxbMSwyLCJcXGNhdCBDL0siXSxbMCwxLCJcXFN5cyhwKSIsMl0sWzAsMiwiQl5cXGZsYXRfSSJdLFsxLDMsIkJeXFxmbGF0X0oiLDJdLFsyLDMsIlxcY2F0IEMvQihwKSJdLFsxLDQsIlxcU3lzKHEpIiwyXSxbMyw1LCJcXGNhdCBDL0IocSkiXSxbNCw1LCJCXlxcZmxhdF9LIiwyXSxbOCw5LCJCXlxcZmxhdF9wIiwwLHsib2Zmc2V0IjotMiwic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFsxMiwxMSwiQl5cXGZsYXRfcSIsMCx7Im9mZnNldCI6LTEsInNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \& {\cat C/B(I)} \\
+				{\Sys(J)} \& {\cat C/B(J)} \\
+				{\Sys(K)} \& {\cat C/B(K)}
+				\arrow["{\Sys(p)}"', from=1-1, to=2-1]
+				\arrow["{B^\flat_I}", from=1-1, to=1-2]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{B^\flat_J}"', from=2-1, to=2-2]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(p)}", from=1-2, to=2-2]
+				\arrow["{\Sys(q)}"', from=2-1, to=3-1]
+				\arrow[""{name=2, anchor=center, inner sep=0}, "{\cat C/B(q)}", from=2-2, to=3-2]
+				\arrow[""{name=3, anchor=center, inner sep=0}, "{B^\flat_K}"', from=3-1, to=3-2]
+				\arrow["{B^\flat_p}", shift left=2, shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
+				\arrow["{B^\flat_q}", shift left=1, shorten <=5pt, shorten >=5pt, Rightarrow, from=3, to=2]
+			\end{tikzcd}
+			=
+			% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXFN5cyhJKSJdLFswLDEsIlxcU3lzKEopIl0sWzEsMCwiXFxjYXQgQy9JIl0sWzEsMSwiXFxjYXQgQy9KIl0sWzAsMiwiXFxTeXMoSykiXSxbMSwyLCJcXGNhdCBDL0siXSxbMCwxLCJcXFN5cyhwKSIsMl0sWzAsMiwiQl5cXGZsYXRfSSJdLFsyLDMsIlxcY2F0IEMvQihwKSJdLFsxLDQsIlxcU3lzKHEpIiwyXSxbMyw1LCJcXGNhdCBDL0IocSkiXSxbNCw1LCJCXlxcZmxhdF9LIiwyXSxbMTEsOCwiQl5cXGZsYXRfe3AgXFxjb21wIHF9IiwwLHsib2Zmc2V0IjotMSwic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \& {\cat C/B(I)} \\
+				{\Sys(J)} \& {\cat C/B(J)} \\
+				{\Sys(K)} \& {\cat C/B(K)}
+				\arrow["{\Sys(p)}"', from=1-1, to=2-1]
+				\arrow["{B^\flat_I}", from=1-1, to=1-2]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\cat C/B(p)}", from=1-2, to=2-2]
+				\arrow["{\Sys(q)}"', from=2-1, to=3-1]
+				\arrow["{\cat C/B(q)}", from=2-2, to=3-2]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{B^\flat_K}"', from=3-1, to=3-2]
+				\arrow["{B^\flat_{p \comp q}}", shift left=4, shorten <=8pt, shorten >=8pt, Rightarrow, from=1, to=0]
+			\end{tikzcd}
+		\end{equation}
+		\item The squares witnessing horizontal naturality commute with the laxators of $\Sys$ and $B^*\cat C/-$ (the composite of $B$ and $\cat C/-$); hence for each composable pair of maps of interfaces $I \nhorto{h} J \nhorto{k} K$ in $\Processes$, we have:
+		\begin{equation}
+			% https://q.uiver.app/?q=WzAsOCxbMSwwLCJcXFN5cyhJKSJdLFsxLDEsIlxcU3lzKEopIl0sWzIsMCwiXFxjYXQgQy9JIl0sWzIsMSwiXFxjYXQgQy9KIl0sWzEsMiwiXFxTeXMoSykiXSxbMiwyLCJcXGNhdCBDL0siXSxbMCwwLCJcXFN5cyhJKSJdLFswLDIsIlxcU3lzKEspIl0sWzAsMSwiXFxTeXMoaCkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMiwzLCJcXGNhdCBDL0IoaCkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMCwyLCJCXlxcZmxhdF9JIl0sWzEsMywiQl5cXGZsYXRfSiIsMl0sWzEsNCwiXFxTeXMoaykiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMyw1LCJcXGNhdCBDL0IoaykiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbNCw1LCJCXlxcZmxhdF9LIiwyXSxbNiw3LCJcXFN5cyhoIFxcY29tcCBrKSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFs2LDAsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzcsNCwiIiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOCw5LCJCXlxcZmxhdF9oIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFsxMiwxMywiQl5cXGZsYXRfayIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbMTUsMSwiXFxlbGxeXFxTeXNfe2gsa30iLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjB9fV1d
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \&[-3ex] {\Sys(I)} \&[-3ex] {\cat C/B(I)} \\
+				\& {\Sys(J)} \& {\cat C/B(J)} \\
+				{\Sys(K)} \& {\Sys(K)} \& {\cat C/B(K)}
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Sys(h)}"', "\shortmid"{marking}, from=1-2, to=2-2]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(h)}", "\shortmid"{marking}, from=1-3, to=2-3]
+				\arrow["{B^\flat_I}", from=1-2, to=1-3]
+				\arrow["{B^\flat_J}"', from=2-2, to=2-3]
+				\arrow[""{name=2, anchor=center, inner sep=0}, "{\Sys(k)}"', "\shortmid"{marking}, from=2-2, to=3-2]
+				\arrow[""{name=3, anchor=center, inner sep=0}, "{\cat C/B(k)}", "\shortmid"{marking}, from=2-3, to=3-3]
+				\arrow["{B^\flat_K}"', from=3-2, to=3-3]
+				\arrow[""{name=4, anchor=center, inner sep=0}, "{\Sys(h \comp k)}"{description, pos=0.3}, "\shortmid"{marking}, from=1-1, to=3-1]
+				\arrow[Rightarrow, no head, from=1-1, to=1-2]
+				\arrow[Rightarrow, no head, from=3-1, to=3-2]
+				\arrow["{B^\flat_h}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=0, to=1]
+				\arrow["{B^\flat_k}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=2, to=3]
+				\arrow["{\ell^\Sys_{h,k}}"{description}, shorten <=6pt, Rightarrow, from=4, to=2-2]
+			\end{tikzcd}
+			=
+			\begin{tikzcd}[ampersand replacement=\&]
+				{\Sys(I)} \&[-3ex] {\cat C/B(I)} \& {\cat C/B(I)} \\
+				{\Sys(J)} \& {\cat C/B(J)} \\
+				{\Sys(K)} \& {\cat C/B(K)} \& {\cat C/B(K)}
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Sys(h)}"', "\shortmid"{marking}, from=1-1, to=2-1]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(h)}", "\shortmid"{marking}, from=1-2, to=2-2]
+				\arrow["{B^\flat_I}", from=1-1, to=1-2]
+				\arrow["{B^\flat_J}"', from=2-1, to=2-2]
+				\arrow[""{name=2, anchor=center, inner sep=0}, "{\Sys(k)}"', "\shortmid"{marking}, from=2-1, to=3-1]
+				\arrow[""{name=3, anchor=center, inner sep=0}, "{\cat C/B(k)}", "\shortmid"{marking}, from=2-2, to=3-2]
+				\arrow["{B^\flat_K}"', from=3-1, to=3-2]
+				\arrow[""{name=4, anchor=center, inner sep=0}, "{\cat C/(B(h \comp k))}"{description, pos=0.3}, "\shortmid"{marking}, from=1-3, to=3-3]
+				\arrow[Rightarrow, no head, from=3-2, to=3-3]
+				\arrow[Rightarrow, no head, from=1-2, to=1-3]
+				\arrow["{B^\flat_h}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=0, to=1]
+				\arrow["{B^\flat_k}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=2, to=3]
+				\arrow["{\ell^{B^*\cat C/-}_{h,k}}"{description}, shorten >=6pt, Rightarrow, from=2-2, to=4]
+			\end{tikzcd}
+		\end{equation}
+		Notice the laxator of $B^*\cat C/-$ is given by
+		\begin{equation}
+			\cat C/B(h) \comp \cat C/B(k) \nlongto{\ell^{\cat C/-}_{B(h),B(k)}} \cat C/(B(h)\comp B(k)) \nlongto{\cat C/\ell^B_{h,k}} \cat C/B(h \comp k).
+		\end{equation}
+		\item For every square $\begin{tikzcd}[ampersand replacement=\&, sep=small]
+			I \&[1ex] J \\[1ex]
+			{I'} \& {J'}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "p"', "\bullet"{marking}, from=1-1, to=2-1]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{p'}", "\bullet"{marking}, from=1-2, to=2-2]
+			\arrow["{h'}"', from=2-1, to=2-2]
+			\arrow["h", from=1-1, to=1-2]
+			\arrow["\alpha"{description}, shorten <=6pt, shorten >=6pt, Rightarrow, from=0, to=1]
+		\end{tikzcd}$ in $\Processes$, the following `cube' commutes:
+		\begin{eqalign}
+			% https://q.uiver.app/?q=WzAsOSxbMCwwLCJcXFN5cyhJKSJdLFsyLDAsIlxcU3lzKEopIl0sWzAsMiwiXFxTeXMoSScpIl0sWzIsMiwiXFxTeXMoSicpIl0sWzQsMiwiXFxjYXQgQy9CKEopIl0sWzAsNCwiXFxjYXQgQy9CKEknKSJdLFsyLDQsIlxcY2F0IEMvQihKJykiXSxbNCw0LCJcXGNhdCBDL0IoSicpIl0sWzQsMCwiXFxTeXMoSikiXSxbMCwyLCJcXFN5cyhwKSIsMV0sWzEsMywiXFxTeXMocCcpIiwxXSxbMiwzLCJcXFN5cyhoJykiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMCwxLCJcXFN5cyhoKSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFs1LDYsIlxcY2F0IEMvQihoJykiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMiw1LCJCXlxcZmxhdF97SSd9IiwxXSxbMyw2LCJCXlxcZmxhdF97Sid9IiwxXSxbNCw3LCJcXGNhdCBDL0IocCcpIiwxXSxbOCw0LCJCXlxcZmxhdF9KIiwxXSxbMSw4LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNiw3LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTIsMTEsIlxcU3lzKFxcYWxwaGEpIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dLFsxMSwxMywiQl5cXGZsYXRfe2gnfSIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbMTgsMTksIkJeXFxmbGF0X3twJ30iLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+			\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
+				{\Sys(I)} \&\& {\Sys(J)} \&[-1ex]\&[-1ex] {\Sys(J)} \\
+				\\
+				{\Sys(I')} \&\& {\Sys(J')} \&\& {\cat C/B(J)} \\
+				\\
+				{\cat C/B(I')} \&\& {\cat C/B(J')} \&\& {\cat C/B(J')}
+				\arrow["{\Sys(p)}"{description}, from=1-1, to=3-1]
+				\arrow["{\Sys(p')}"{description}, from=1-3, to=3-3]
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Sys(h')}"', "\shortmid"{marking}, from=3-1, to=3-3]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\Sys(h)}", "\shortmid"{marking}, from=1-1, to=1-3]
+				\arrow[""{name=2, anchor=center, inner sep=0}, "{\cat C/B(h')}"', "\shortmid"{marking}, from=5-1, to=5-3]
+				\arrow["{B^\flat_{I'}}"{description}, from=3-1, to=5-1]
+				\arrow["{B^\flat_{J'}}"{description}, from=3-3, to=5-3]
+				\arrow["{\cat C/B(p')}"{description}, from=3-5, to=5-5]
+				\arrow["{B^\flat_J}"{description}, from=1-5, to=3-5]
+				\arrow[""{name=3, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=1-3, to=1-5]
+				\arrow[""{name=4, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=5-3, to=5-5]
+				\arrow["{\Sys(\alpha)}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=1, to=0]
+				\arrow["{B^\flat_{h'}}"{description}, shorten <=12pt, shorten >=9pt, Rightarrow, from=0, to=2]
+				\arrow["{B^\flat_{p'}}"{description}, shorten <=17pt, shorten >=17pt, Rightarrow, from=3, to=4]
+			\end{tikzcd}
+			=
+			% https://q.uiver.app/?q=WzAsOSxbMiwwLCJcXFN5cyhJKSJdLFs0LDAsIlxcU3lzKEopIl0sWzAsMiwiXFxTeXMoSScpIl0sWzIsMiwiXFxjYXQgQy9CKEkpIl0sWzQsMiwiXFxjYXQgQy9CKEopIl0sWzIsNCwiXFxjYXQgQy9CKEknKSJdLFs0LDQsIlxcY2F0IEMvQihKJykiXSxbMCwwLCJcXFN5cyhJKSJdLFswLDQsIlxcY2F0IEMvQihJJykiXSxbMCwxLCJcXFN5cyhoKSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFszLDQsIlxcY2F0IEMvQihoKSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFs1LDYsIlxcY2F0IEMvQihoJykiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMyw1LCJcXGNhdCBDL0IocCkiLDFdLFs0LDYsIlxcY2F0IEMvQihwJykiLDFdLFswLDMsIkJeXFxmbGF0X0kiLDFdLFsxLDQsIkJeXFxmbGF0X0oiLDFdLFsyLDgsIkJeXFxmbGF0X3tJJ30iLDFdLFs3LDIsIlxcU3lzKHApIiwxXSxbNywwLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOCw1LCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTAsMTEsIlxcY2F0IEMvQihcXGFscGhhKSIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbOSwxMCwiQl5cXGZsYXRfaCIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XSxbMTgsMTksIkJeXFxmbGF0X3AiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+			\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
+				{\Sys(I)} \&\& {\Sys(I)} \&[-1ex]\&[-1ex] {\Sys(J)} \\
+				\\
+				{\Sys(I')} \&\& {\cat C/B(I)} \&\& {\cat C/B(J)} \\
+				\\
+				{\cat C/B(I')} \&\& {\cat C/B(I')} \&\& {\cat C/B(J')}
+				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Sys(h)}"', "\shortmid"{marking}, from=1-3, to=1-5]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(h)}"', "\shortmid"{marking}, from=3-3, to=3-5]
+				\arrow[""{name=2, anchor=center, inner sep=0}, "{\cat C/B(h')}"', "\shortmid"{marking}, from=5-3, to=5-5]
+				\arrow["{\cat C/B(p)}"{description}, from=3-3, to=5-3]
+				\arrow["{\cat C/B(p')}"{description}, from=3-5, to=5-5]
+				\arrow["{B^\flat_I}"{description}, from=1-3, to=3-3]
+				\arrow["{B^\flat_J}"{description}, from=1-5, to=3-5]
+				\arrow["{B^\flat_{I'}}"{description}, from=3-1, to=5-1]
+				\arrow["{\Sys(p)}"{description}, from=1-1, to=3-1]
+				\arrow[""{name=3, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=1-1, to=1-3]
+				\arrow[""{name=4, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=5-1, to=5-3]
+				\arrow["{\cat C/B(\alpha)}"{description}, shorten <=12pt, shorten >=9pt, Rightarrow, from=1, to=2]
+				\arrow["{B^\flat_h}"{description}, shorten <=9pt, shorten >=9pt, Rightarrow, from=0, to=1]
+				\arrow["{B^\flat_p}"{description}, shorten <=17pt, shorten >=17pt, Rightarrow, from=3, to=4]
+			\end{tikzcd}
+		\end{eqalign}
+		Notice we used the `transposed' version of the vertical laxators of $B^\flat$ (diagram on the right of~\eqref{eq:beh-ver-laxator}).
+	\end{enumerate}
 \end{definition}
-
-The intuition behind this definition is the following. First of all, $B$ maps interfaces to objects of observations we can make about them.
-Every theory of behaviour gives its own notion of what `observation' means: it could be mere points, it could be distributions, it could be sequences of observations, and so on (examples will prove the variety this definition allows).
-Then, we map every system to an object of states (which are \emph{observations we can make about the ways the system can be}) and a map that displays the dependency of said state on the observations on its interface (thus \emph{observations we can make about the ways the system can change}). This mapping is given by
 
 \begin{example}[States]
 \label{ex:states}
 	One of the simplest notion of behaviour for a system is given by the idea of `state space'. This is the very classical stance that what can be observed about a system is its permanence in a state which varies in a prescribed space.
-	So suppose $\cat C$ is some category of spaces\footnote{Following Lawvere \cite{lawvere_categories_1992}, we consider `cartesian \& extensive' to be satisfying notion of \emph{category of spaces}.} and let's consider the theory of coalgebras on $\cat C$: $\Coalg_{\cat C} : \dblEnd^\top \unilaxto \dblCat$.
+	So suppose $\cat C$ is some category of spaces\footnote{Following Lawvere \cite{lawvere_categories_1992}, we consider `cartesian \& extensive' to be satisfying notion of \emph{category of spaces}.} and let's consider the theory of coalgebras $\Coalg_{\cat C} : \dblEnd^\top \unilaxto \dblCat$.
 
 	Then there is a theory of behaviour:
 	\begin{equation}
@@ -170,9 +356,9 @@ Then, we map every system to an object of states (which are \emph{observations w
 		\end{equation}
 		defined as
 		\begin{eqalign}
-			R_\alpha(\delta, \zeta) : \Trans(h)(\delta, \zeta) &\longto \Set/k^*(R_\Sigma(\delta), R_{\Sigma^*}(\zeta))\\
+			R_\alpha(\delta, \zeta) : \Trans(h)(\delta, \zeta) &\longto \Set/k^*(R_\Sigma(\delta), R_{\Sigma'}(\zeta))\\
 			% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSAiXSxbMCwxLCJTIl0sWzEsMCwiVCBcXHRpbWVzIFxcU2lnbWEnIl0sWzEsMSwiVCJdLFsxLDMsIlxcdmFycGhpIl0sWzAsMiwiXFx2YXJwaGkgXFx0aW1lcyBoIl0sWzAsMSwiXFxkZWx0YSIsMl0sWzIsMywiXFx6ZXRhIl1d
-			\begin{tikzcd}[ampersand replacement=\&]
+			\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
 				{S \times \Sigma } \& {T \times \Sigma'} \\
 				S \& T
 				\arrow["\varphi", from=2-1, to=2-2]
@@ -181,7 +367,7 @@ Then, we map every system to an object of states (which are \emph{observations w
 				\arrow["\zeta", from=1-2, to=2-2]
 			\end{tikzcd}
 			&\longmapsto
-			\begin{tikzcd}[ampersand replacement=\&]
+			\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
 				{\{s \nreachto{v}_\delta s'\}} \& {\{s \nreachto{w}_\zeta s'\}} \\
 				{\Sigma^*} \& {{\Sigma'}^*}
 				\arrow["{h^*}"', from=2-1, to=2-2]
@@ -193,6 +379,64 @@ Then, we map every system to an object of states (which are \emph{observations w
 		where $R_h(s \nreachto{v}_\delta s') = \varphi(s) \nreachto{h^*(v)}_\zeta \varphi(s')$. This is well-defined since, by definition, $\varphi$ preserve transitions. We leave the reader to prove horizontal functoriality.
 	\end{enumerate}
 \end{example}
+
+\begin{remark}
+\label{rmk:states-to-reach}
+	We can already see an example of \emph{map} of behaviours. In fact consider the behaviour of states $\states : \Trans \to \BSys$ and the behaviour of reachability $R : \Trans \to \BSys$:
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXEFscGheXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxTZXQpXlxcdG9wIl0sWzIsMSwiXFxkYmxDYXQiXSxbMSwwXSxbMSwyXSxbMCwxLCIxXlxcdG9wIiwyLHsiY3VydmUiOjN9XSxbMCwyLCJcXFRyYW5zIiwwLHsiY3VydmUiOi0xfV0sWzEsMiwiXFxTZXQvLSIsMix7ImN1cnZlIjoxfV0sWzMsNCwiUiIsMCx7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0IjotNCwiY3VydmUiOi0yLCJzaG9ydGVuIjp7InNvdXJjZSI6NDAsInRhcmdldCI6NDB9LCJsZXZlbCI6Mn1dLFswLDEsInsoLSleKn1eXFx0b3AiLDAseyJjdXJ2ZSI6LTN9XSxbMyw0LCJcXHN0YXRlcyIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMCwib2Zmc2V0Ijo0LCJjdXJ2ZSI6Miwic2hvcnRlbiI6eyJzb3VyY2UiOjQwLCJ0YXJnZXQiOjQwfSwibGV2ZWwiOjJ9XSxbNSw5LCJcXHZhcmVwc2lsb24iLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzEwLDgsIlxcRXBzaWxvbiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
+		\begin{tikzcd}[ampersand replacement=\&]
+			{\Alph^\top} \& {} \\
+			\&\& \dblCat \\
+			{\Span(\Set)^\top} \& {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{1^\top}"', curve={height=18pt}, from=1-1, to=3-1]
+			\arrow["\Trans", curve={height=-15pt}, from=1-1, to=2-3]
+			\arrow["{\Set/-}"', curve={height=15pt}, from=3-1, to=2-3]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{\ R}"{pos=0.42}, shift left=4, curve={height=-12pt}, shorten <=25pt, shorten >=25pt, Rightarrow, from=1-2, to=3-2]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{{(-)^*}^\top}", curve={height=-18pt}, from=1-1, to=3-1]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{\states\ }"'{pos=0.35}, shift right=4, curve={height=12pt}, shorten <=18pt, shorten >=18pt, Rightarrow, from=1-2, to=3-2]
+			\arrow["\varepsilon^\top"', shorten <=7pt, shorten >=7pt, Rightarrow, from=0, to=2]
+			\arrow["\varepsilon^\flat", shorten <=8pt, shorten >=8pt, Rightarrow, from=3, to=1]
+		\end{tikzcd}
+	\end{equation}
+	The horizontal transformation $\varepsilon : 1 \twoto (-)^*$ picks out the empty word on each set of strings. The modification $\varepsilon^\flat$ is a square in $\dblCat$:
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFRyYW5zKFxcU2lnbWEpIl0sWzEsMCwiXFxTZXQvMSJdLFswLDEsIlxcVHJhbnMoXFxTaWdtYSkiXSxbMSwxLCJcXFNldC9cXFNpZ21hXioiXSxbMCwxLCJcXHN0YXRlc19cXFNpZ21hIl0sWzIsMywiXFxzdGF0ZXNfXFxzaWdtYSIsMl0sWzEsMywiXFxTZXQvXFx2YXJlcHNpbG9uX1xcU2lnbWEiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMCwyLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNyw2LCJcXHZhcmVwc2lsb25eXFxmbGF0X1xcU2lnbWEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+		\begin{tikzcd}[ampersand replacement=\&]
+			{\Trans(\Sigma)} \& {\Set/1} \\
+			{\Trans(\Sigma)} \& {\Set/\Sigma^*}
+			\arrow["{\states_\Sigma}", from=1-1, to=1-2]
+			\arrow["{R_\Sigma}"', from=2-1, to=2-2]
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{\Set/\varepsilon_\Sigma}", "\shortmid"{marking}, from=1-2, to=2-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=1-1, to=2-1]
+			\arrow["{\varepsilon^\flat_\Sigma}", shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=0]
+		\end{tikzcd}
+	\end{equation}
+	where
+	\begin{eqalign}
+		\varepsilon^\flat_\Sigma(\delta,\zeta) : \Trans(\Sigma)(\delta,\zeta) &\longto \Set/\varepsilon_\Sigma(\states_\Sigma(\delta), R_\Sigma(\zeta))\\
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSJdLFswLDEsIlMiXSxbMSwwLCJUIFxcdGltZXMgXFxTaWdtYSJdLFsxLDEsIlQiXSxbMCwxLCJcXGRlbHRhIiwyXSxbMiwzLCJcXHpldGEiXSxbMSwzLCJcXHZhcnBoaSIsMl0sWzAsMiwiXFx2YXJwaGkgXFx0aW1lcyBcXFNpZ21hIl1d
+		\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
+			{S \times \Sigma} \& {T \times \Sigma} \\
+			S \& T
+			\arrow["\delta"', from=1-1, to=2-1]
+			\arrow["\zeta", from=1-2, to=2-2]
+			\arrow["\varphi"', from=2-1, to=2-2]
+			\arrow["{\varphi \times \Sigma}", from=1-1, to=1-2]
+		\end{tikzcd}
+		&\longmapsto
+		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHN0YXRlc19cXFNpZ21hKFxcZGVsdGEpIl0sWzEsMCwiUl9cXFNpZ21hKFxcZGVsdGEsXFx6ZXRhKSJdLFswLDEsIjEiXSxbMSwxLCJcXFNpZ21hXioiXSxbMiwzLCJcXHZhcmVwc2lsb24iXSxbMSwzLCJcXHBpX3tcXFNpZ21hXip9Il0sWzAsMiwiISIsMl0sWzAsMSwiXFx2YXJlcHNpbG9uXlxcZmxhdF97XFxkZWx0YSxcXHpldGF9Il1d
+		\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
+			{\states_\Sigma(\delta)} \& {R_\Sigma(\delta,\zeta)} \\
+			1 \& {\Sigma^*}
+			\arrow["\varepsilon", from=2-1, to=2-2]
+			\arrow["{\pi_{\Sigma^*}}", from=1-2, to=2-2]
+			\arrow["{!}"', from=1-1, to=2-1]
+			\arrow["{\varepsilon^\flat_{\delta,\zeta}}", from=1-1, to=1-2]
+		\end{tikzcd}
+	\end{eqalign}
+	is given by $\varepsilon^\flat_{\delta,\zeta}(s) = (\varepsilon, \varphi(s), \varphi(s))$.
+\end{remark}
 
 \begin{example}[Fixpoints]
 	\matteo{TODO}
@@ -239,7 +483,7 @@ Then, we map every system to an object of states (which are \emph{observations w
 
 	Given an FSM $\sys S = (S, \Sigma, \delta, S^*)$, its language is the subset of $\Sigma^*$ given by those words which, when fed to $\sys S$, leave it in an accepting state (one in $S^*$). More precisely, we first have to pick an initial state $s_0 \in S$, then we can start using $\delta$, inputting the given word one character at a time, until we are done. Thus the language of an $\sys S$ is really a family of subsets of $\Sigma^*$, given by the recursively-defined map
 	\begin{eqalign}
-		L_{\sys S} : S &\longto P\Sigma^*\\
+		L_{\sys S} : S &\longto \pow\Sigma^*\\
 		s_0 &\longmapsto \{\sigma_1\cdots\sigma_n \suchthat \sigma_2\cdots\sigma_n \in L_{\sys S}(\delta(s_0, \sigma_1)) \}.
 	\end{eqalign}
 	Notice this family of subsets can also be defined as a `bundle of sets' (a map we use for its fibers)
@@ -264,8 +508,9 @@ Then, we map every system to an object of states (which are \emph{observations w
 		\item $(-)^* : \Alph \to \Span(\Set)$ is the same as in~\cref{ex:reachability},
 		\item the component at $\Sigma : \Alph$ of $\Lambda$ is given by
 		\begin{eqalign}
-			L_\Sigma : \FSM(\Sigma) &\longto \Set/\Sigma^*\\
-			(S, \Sigma, \delta, S^*) &\longmapsto \Lambda(\sys S) : \{ (s_0, w) \mid \in w \in L_{\sys S}(s_0) \} \to \Sigma^*
+		\label{eq:fsm-lang}
+			\Lambda_\Sigma : \FSM(\Sigma) &\longto \Set/\Sigma^*\\
+			(S, \Sigma, \delta, S^*) &\longmapsto \Lambda(\sys S) : \{ (s_0, w) \mid w \in L_{\sys S}(s_0) \} \to \Sigma^*
 		\end{eqalign}
 	\end{enumerate}
 
@@ -303,6 +548,16 @@ Then, we map every system to an object of states (which are \emph{observations w
 
 	Therefore we see $((-)^*, \Lambda)$ is a sum of corepresentable behaviours, namely $\sum_{n \geq 0} \FSM(\sys {Fin\, n}, -)$. Observe the symmetry restored: $(-)^*$ is also the functor $\sum_{n \geq 0} \Set(\Fin\, n, -)$!
 \end{example}
+
+\begin{remark}
+	Notice the observation that~\eqref{eq:fsm-lang} is a sum of corepresentables was already valid for the reachability behaviour $\systh R$ in~\cref{ex:reachability}.
+	The systems corepresenting the behaviours are the same as the ones just described except for the acceptance predicate, which is not there for labelled transition systems.
+
+	In this light, the map described in~\cref{rmk:states-to-reach} is simply the inclusion of $\states = \Trans(\sys{Fin\, 0}, -)$ into the sum $\systh R = \sum_{n \geq 0} \Trans(\sys {Fin\, n}, -)$.
+\end{remark}
+
+\subsection{Doctrines of behaviour}
+Like theories of systems, theories of behaviours can be gathered in uniform \emph{doctrines} which functorially specify a way to look at theories of a doctrine of systems:
 
 \begin{definition}
 	A \textbf{doctrine of behaviour} for the doctrine $\dblcat{Doctrine}$ is map of doctrines of systems into the behavioural doctrine $\BSys$:
