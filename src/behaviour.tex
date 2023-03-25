@@ -46,7 +46,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 				\arrow[""{name=1, anchor=center, inner sep=0}, "{\cat C/B(p)}", from=1-2, to=2-2]
 				\arrow["{B^\flat_p}", shift left=2, shorten <=5pt, shorten >=5pt, Rightarrow, from=0, to=1]
 			\end{tikzcd},
-			\text{alternatively}
+			\ \text{or alternatively:}
 			% https://q.uiver.app/?q=WzAsNixbMCwwLCJcXFN5cyhJKSJdLFswLDEsIlxcU3lzKEopIl0sWzEsMSwiXFxjYXQgQy9JIl0sWzAsMiwiXFxjYXQgQy9KIl0sWzEsMiwiXFxjYXQgQy9KIl0sWzEsMCwiXFxTeXMoSSkiXSxbMCwxLCJcXFN5cyhwKSIsMl0sWzEsMywiQl5cXGZsYXRfSiIsMl0sWzIsNCwiXFxjYXQgQy9CKHApIl0sWzUsMiwiQl5cXGZsYXRfSSJdLFswLDUsIiIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDQsIiIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCwxMSwiQl5cXGZsYXRfcCIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
 			\begin{tikzcd}[ampersand replacement=\&]
 				{\Sys(I)} \& {\Sys(I)} \\
@@ -260,9 +260,9 @@ But mapping interfaces and systems to observations it's only half of what a beha
 	\end{eqalign}
 \end{example}
 
-\begin{example}[Reachability]
-\label{ex:reachability}
-	Labelled transition systems admit a notion of behaviour given by reachability:
+\begin{example}[Paths]
+\label{ex:paths}
+	Labelled transition systems admit a behaviour $\systh P : \Trans \to \BSys$ given by paths:
 	\begin{equation}
 		\begin{tikzcd}[ampersand replacement=\&,sep=small]
 			{\Alph^\top} \& {} \\
@@ -271,30 +271,30 @@ But mapping interfaces and systems to observations it's only half of what a beha
 			\arrow["{{(-)^*}^\top}"', from=1-1, to=3-1]
 			\arrow["{\Trans}", curve={height=-6pt}, from=1-1, to=2-3]
 			\arrow["{\Set/-}"', curve={height=6pt}, from=3-1, to=2-3]
-			\arrow["R"'{pos=0.4}, shift right=4, shorten <=10pt, shorten >=16pt, Rightarrow, from=1-2, to=3-2]
+			\arrow["P"'{pos=0.4}, shift right=4, shorten <=10pt, shorten >=16pt, Rightarrow, from=1-2, to=3-2]
 		\end{tikzcd}
 	\end{equation}
 	where
 	\begin{enumerate}
 		\item $\Trans : \Alph^\top \unilaxto \dblCat$ is the theory of systems introduced in~\cref{ex:trans-sys};
 		\item $(-)^* : \Alph \to \Span(\Set)$ sends a finite alphabet $\Sigma$ to the free monoid $\Sigma^*$, an alphabet mapping $h:\Sigma \to \Sigma'$ to the morphism of monoids $h^* : \Sigma^* \to {\Sigma'}^*$, an alphabet reduction $p: \Sigma \from \Xi$ to the span $\Sigma^* \nfrom{p^*} \Xi^* \equalto \Xi^*$, and a commutative square to an obvious morphism of spans;
-		\item The component at $\Sigma : \Alph$ of $R$ is
+		\item The component at $\Sigma : \Alph$ of $P$ is
 		\begin{eqalign}
-			R_\Sigma : \Trans(\Sigma) &\longto \Set/\Sigma^*\\
+			P_\Sigma : \Trans(\Sigma) &\longto \Set/\Sigma^*\\
 			S \times \Sigma \nto{\delta} S &\longmapsto \{s \nreachto{w}_\delta s', w \in \Sigma^* \} \nlongto{\pi_{\Sigma^*}} \Sigma^*
 		\end{eqalign}
 		where $s  \nreachto{w}_\delta s'$ denotes a triple $(w, s, s') \in \Sigma^* \times S \times S$ such that $s'$ can be reached from $s$ by following the transitions $w_1 \cdots w_n = w$ determined by the transition map $\delta$.
-		\item The vertical lax natural structure of $R$ is given, for each alphabet reduction $p: \Sigma \from \Xi$, by a natural transformation $R_p$ filling the square:
+		\item The vertical lax natural structure of $P$ is given, for each alphabet reduction $p: \Sigma \from \Xi$, by a natural transformation $P_p$ filling the square:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFRyYW5zKFxcU2lnbWEpIl0sWzAsMSwiXFxUcmFucyhcXFhpKSJdLFsxLDAsIlxcU2V0L1xcU2lnbWEiXSxbMSwxLCJcXFNldC9cXFhpIl0sWzIsMywiXFxTZXQvcF4qIl0sWzAsMiwiUl9cXFNpZ21hIl0sWzEsMywiUl9cXFhpIiwyXSxbMCwxLCJcXFRyYW5zKHApIiwyXSxbNiw0LCJSX3AiLDAseyJvZmZzZXQiOi0zLCJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
 			\begin{tikzcd}[ampersand replacement=\&]
 				{\Trans(\Sigma)} \& {\Set/\Sigma} \\
 				{\Trans(\Xi)} \& {\Set/\Xi}
 				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Set/p^*}", from=1-2, to=2-2]
-				\arrow["{R_\Sigma}", from=1-1, to=1-2]
-				\arrow[""{name=1, anchor=center, inner sep=0}, "{R_\Xi}"', from=2-1, to=2-2]
+				\arrow["{P_\Sigma}", from=1-1, to=1-2]
+				\arrow[""{name=1, anchor=center, inner sep=0}, "{P_\Xi}"', from=2-1, to=2-2]
 				\arrow["{\Trans(p)}"', from=1-1, to=2-1]
-				\arrow["{R_p}", shift left=3, shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=0]
+				\arrow["{P_p}", shift left=3, shorten <=4pt, shorten >=4pt, Rightarrow, from=1, to=0]
 			\end{tikzcd}
 		\end{equation}
 		We define it as follows. Given $S \times \Sigma \nto{\delta} S : \Trans(\Sigma)$, one gets, following the bottom path:
@@ -329,7 +329,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 				\arrow["\lrcorner"{anchor=center, pos=0.125, rotate=45}, draw=none, from=1-1, to=2-2]
 			\end{tikzcd}
 		\end{equation}
-		Thus the components of $R_p$ are:
+		Thus the components of $P_p$ are:
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsMyxbMSwxLCJcXFhpXioiXSxbMiwwLCJcXHtzIFxcbnJlYWNodG97d31fe1xcZGVsdGF9IHMnLCB3ID0gcF4qKHYpLCB2IFxcaW4gXFxYaV4qXFx9Il0sWzAsMCwiXFx7cyBcXG5yZWFjaHRve3Z9X3tcXFRyYW5zKHApKFxcZGVsdGEpfSBzJywgdiBcXGluIFxcWGleKlxcfSJdLFsxLDBdLFsyLDBdLFsyLDEsIlJfcChcXGRlbHRhKSJdXQ==
 			\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
@@ -337,11 +337,11 @@ But mapping interfaces and systems to observations it's only half of what a beha
 				\& {\Xi^*}
 				\arrow[from=1-3, to=2-2]
 				\arrow[from=1-1, to=2-2]
-				\arrow["{R_p(\delta)}", from=1-1, to=1-3]
+				\arrow["{P_p(\delta)}", from=1-1, to=1-3]
 			\end{tikzcd}
 		\end{equation}
-		simply by setting $R_p(\delta)(s \nreachto{v}_{\Trans(p)(\delta)} s') = s \nreachto{p(v)}_{\delta} s'$. Clearly this assignment is natural in $\delta$ (since maps of labelled transition systems commute with reachability) and $R_p \comp R_q = R_{p \comp q}$ (vertical functoriality).
-		\item The naturality squares for $R$ are given, for each horizontal $h:\Sigma \to \Sigma'$ in $\Alph$, by
+		simply by setting $P_p(\delta)(s \nreachto{v}_{\Trans(p)(\delta)} s') = s \nreachto{p(v)}_{\delta} s'$. Clearly this assignment is natural in $\delta$ (since maps of labelled transition systems commute with paths) and $P_p \comp P_q = P_{p \comp q}$ (vertical functoriality).
+		\item The naturality squares for $P$ are given, for each horizontal $h:\Sigma \to \Sigma'$ in $\Alph$, by
 		\begin{equation}
 			% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXFRyYW5zKFxcU2lnbWEpIl0sWzAsMSwiXFxUcmFucyhcXFNpZ21hJykiXSxbMSwwLCJcXFNldC9cXFNpZ21hXioiXSxbMSwxLCJcXFNldC97XFxTaWdtYSd9XioiXSxbMCwxLCJcXFRyYW5zKGgpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn19fV0sWzIsMywiXFxTZXQvaCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImJhcnJlZCJ9fX1dLFswLDIsIlJfXFxTaWdtYSJdLFsxLDMsIlJfe1xcU2lnbWEnfSIsMl0sWzQsNSwiUl9oIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfX1dXQ==
 			\begin{tikzcd}[ampersand replacement=\&]
@@ -349,14 +349,14 @@ But mapping interfaces and systems to observations it's only half of what a beha
 				{\Trans(\Sigma')} \& {\Set/{\Sigma'}^*}
 				\arrow[""{name=0, anchor=center, inner sep=0}, "{\Trans(h)}"', "\shortmid"{marking}, from=1-1, to=2-1]
 				\arrow[""{name=1, anchor=center, inner sep=0}, "{\Set/h^*}", "\shortmid"{marking}, from=1-2, to=2-2]
-				\arrow["{R_\Sigma}", from=1-1, to=1-2]
-				\arrow["{R_{\Sigma'}}"', from=2-1, to=2-2]
-				\arrow["{R_h}"{description}, shorten <=10pt, shorten >=10pt, Rightarrow, from=0, to=1]
+				\arrow["{P_\Sigma}", from=1-1, to=1-2]
+				\arrow["{P_{\Sigma'}}"', from=2-1, to=2-2]
+				\arrow["{P_h}"{description}, shorten <=10pt, shorten >=10pt, Rightarrow, from=0, to=1]
 			\end{tikzcd}
 		\end{equation}
 		defined as
 		\begin{eqalign}
-			R_\alpha(\delta, \zeta) : \Trans(h)(\delta, \zeta) &\longto \Set/k^*(R_\Sigma(\delta), R_{\Sigma'}(\zeta))\\
+			P_\alpha(\delta, \zeta) : \Trans(h)(\delta, \zeta) &\longto \Set/k^*(P_\Sigma(\delta), P_{\Sigma'}(\zeta))\\
 			% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSAiXSxbMCwxLCJTIl0sWzEsMCwiVCBcXHRpbWVzIFxcU2lnbWEnIl0sWzEsMSwiVCJdLFsxLDMsIlxcdmFycGhpIl0sWzAsMiwiXFx2YXJwaGkgXFx0aW1lcyBoIl0sWzAsMSwiXFxkZWx0YSIsMl0sWzIsMywiXFx6ZXRhIl1d
 			\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
 				{S \times \Sigma } \& {T \times \Sigma'} \\
@@ -373,16 +373,16 @@ But mapping interfaces and systems to observations it's only half of what a beha
 				\arrow["{h^*}"', from=2-1, to=2-2]
 				\arrow["{\pi_{{\Sigma'}^*}}", from=1-2, to=2-2]
 				\arrow["{\pi_{\Sigma^*}}"', from=1-1, to=2-1]
-				\arrow["{R_h(\varphi)}", from=1-1, to=1-2]
+				\arrow["{P_h(\varphi)}", from=1-1, to=1-2]
 			\end{tikzcd}
 		\end{eqalign}
-		where $R_h(s \nreachto{v}_\delta s') = \varphi(s) \nreachto{h^*(v)}_\zeta \varphi(s')$. This is well-defined since, by definition, $\varphi$ preserve transitions. We leave the reader to prove horizontal functoriality.
+		where $P_h(s \nreachto{v}_\delta s') = \varphi(s) \nreachto{h^*(v)}_\zeta \varphi(s')$. This is well-defined since, by definition, $\varphi$ preserve transitions. We leave the reader to prove horizontal functoriality.
 	\end{enumerate}
 \end{example}
 
 \begin{remark}
 \label{rmk:states-to-reach}
-	We can already see an example of \emph{map} of behaviours. In fact consider the behaviour of states $\states : \Trans \to \BSys$ and the behaviour of reachability $R : \Trans \to \BSys$:
+	We can already see an example of \emph{map} of behaviours. In fact consider the behaviour of states $\states : \Trans \to \BSys$ and the behaviour of paths $\systh P : \Trans \to \BSys$:
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXEFscGheXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxTZXQpXlxcdG9wIl0sWzIsMSwiXFxkYmxDYXQiXSxbMSwwXSxbMSwyXSxbMCwxLCIxXlxcdG9wIiwyLHsiY3VydmUiOjN9XSxbMCwyLCJcXFRyYW5zIiwwLHsiY3VydmUiOi0xfV0sWzEsMiwiXFxTZXQvLSIsMix7ImN1cnZlIjoxfV0sWzMsNCwiUiIsMCx7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0IjotNCwiY3VydmUiOi0yLCJzaG9ydGVuIjp7InNvdXJjZSI6NDAsInRhcmdldCI6NDB9LCJsZXZlbCI6Mn1dLFswLDEsInsoLSleKn1eXFx0b3AiLDAseyJjdXJ2ZSI6LTN9XSxbMyw0LCJcXHN0YXRlcyIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMCwib2Zmc2V0Ijo0LCJjdXJ2ZSI6Miwic2hvcnRlbiI6eyJzb3VyY2UiOjQwLCJ0YXJnZXQiOjQwfSwibGV2ZWwiOjJ9XSxbNSw5LCJcXHZhcmVwc2lsb24iLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzEwLDgsIlxcRXBzaWxvbiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
 		\begin{tikzcd}[ampersand replacement=\&]
@@ -392,7 +392,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 			\arrow[""{name=0, anchor=center, inner sep=0}, "{1^\top}"', curve={height=18pt}, from=1-1, to=3-1]
 			\arrow["\Trans", curve={height=-15pt}, from=1-1, to=2-3]
 			\arrow["{\Set/-}"', curve={height=15pt}, from=3-1, to=2-3]
-			\arrow[""{name=1, anchor=center, inner sep=0}, "{\ R}"{pos=0.42}, shift left=4, curve={height=-12pt}, shorten <=25pt, shorten >=25pt, Rightarrow, from=1-2, to=3-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{\ P}"{pos=0.42}, shift left=4, curve={height=-12pt}, shorten <=25pt, shorten >=25pt, Rightarrow, from=1-2, to=3-2]
 			\arrow[""{name=2, anchor=center, inner sep=0}, "{{(-)^*}^\top}", curve={height=-18pt}, from=1-1, to=3-1]
 			\arrow[""{name=3, anchor=center, inner sep=0}, "{\states\ }"'{pos=0.35}, shift right=4, curve={height=12pt}, shorten <=18pt, shorten >=18pt, Rightarrow, from=1-2, to=3-2]
 			\arrow["\varepsilon^\top"', shorten <=7pt, shorten >=7pt, Rightarrow, from=0, to=2]
@@ -406,7 +406,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 			{\Trans(\Sigma)} \& {\Set/1} \\
 			{\Trans(\Sigma)} \& {\Set/\Sigma^*}
 			\arrow["{\states_\Sigma}", from=1-1, to=1-2]
-			\arrow["{R_\Sigma}"', from=2-1, to=2-2]
+			\arrow["{P_\Sigma}"', from=2-1, to=2-2]
 			\arrow[""{name=0, anchor=center, inner sep=0}, "{\Set/\varepsilon_\Sigma}", "\shortmid"{marking}, from=1-2, to=2-2]
 			\arrow[""{name=1, anchor=center, inner sep=0}, "\shortmid"{marking}, Rightarrow, no head, from=1-1, to=2-1]
 			\arrow["{\varepsilon^\flat_\Sigma}", shorten <=10pt, shorten >=10pt, Rightarrow, from=1, to=0]
@@ -414,7 +414,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 	\end{equation}
 	where
 	\begin{eqalign}
-		\varepsilon^\flat_\Sigma(\delta,\zeta) : \Trans(\Sigma)(\delta,\zeta) &\longto \Set/\varepsilon_\Sigma(\states_\Sigma(\delta), R_\Sigma(\zeta))\\
+		\varepsilon^\flat_\Sigma(\delta,\zeta) : \Trans(\Sigma)(\delta,\zeta) &\longto \Set/\varepsilon_\Sigma(\states_\Sigma(\delta), P_\Sigma(\zeta))\\
 		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJTIFxcdGltZXMgXFxTaWdtYSJdLFswLDEsIlMiXSxbMSwwLCJUIFxcdGltZXMgXFxTaWdtYSJdLFsxLDEsIlQiXSxbMCwxLCJcXGRlbHRhIiwyXSxbMiwzLCJcXHpldGEiXSxbMSwzLCJcXHZhcnBoaSIsMl0sWzAsMiwiXFx2YXJwaGkgXFx0aW1lcyBcXFNpZ21hIl1d
 		\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
 			{S \times \Sigma} \& {T \times \Sigma} \\
@@ -427,7 +427,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 		&\longmapsto
 		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXHN0YXRlc19cXFNpZ21hKFxcZGVsdGEpIl0sWzEsMCwiUl9cXFNpZ21hKFxcZGVsdGEsXFx6ZXRhKSJdLFswLDEsIjEiXSxbMSwxLCJcXFNpZ21hXioiXSxbMiwzLCJcXHZhcmVwc2lsb24iXSxbMSwzLCJcXHBpX3tcXFNpZ21hXip9Il0sWzAsMiwiISIsMl0sWzAsMSwiXFx2YXJlcHNpbG9uXlxcZmxhdF97XFxkZWx0YSxcXHpldGF9Il1d
 		\begin{tikzcd}[ampersand replacement=\&,sep=scriptsize]
-			{\states_\Sigma(\delta)} \& {R_\Sigma(\delta,\zeta)} \\
+			{\states_\Sigma(\delta)} \& {P_\Sigma(\delta,\zeta)} \\
 			1 \& {\Sigma^*}
 			\arrow["\varepsilon", from=2-1, to=2-2]
 			\arrow["{\pi_{\Sigma^*}}", from=1-2, to=2-2]
@@ -505,7 +505,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 	\end{equation}
 	where
 	\begin{enumerate}
-		\item $(-)^* : \Alph \to \Span(\Set)$ is the same as in~\cref{ex:reachability},
+		\item $(-)^* : \Alph \to \Span(\Set)$ is the same as in~\cref{ex:paths},
 		\item the component at $\Sigma : \Alph$ of $\Lambda$ is given by
 		\begin{eqalign}
 		\label{eq:fsm-lang}
@@ -550,11 +550,33 @@ But mapping interfaces and systems to observations it's only half of what a beha
 \end{example}
 
 \begin{remark}
-	Notice the observation that~\eqref{eq:fsm-lang} is a sum of corepresentables was already valid for the reachability behaviour $\systh R$ in~\cref{ex:reachability}.
+	Notice the observation that~\eqref{eq:fsm-lang} is a sum of corepresentables was already valid for the behaviour of paths $\systh P$ in~\cref{ex:paths}.
 	The systems corepresenting the behaviours are the same as the ones just described except for the acceptance predicate, which is not there for labelled transition systems.
 
-	In this light, the map described in~\cref{rmk:states-to-reach} is simply the inclusion of $\states = \Trans(\sys{Fin\, 0}, -)$ into the sum $\systh R = \sum_{n \geq 0} \Trans(\sys {Fin\, n}, -)$.
+	In this light, the map described in~\cref{rmk:states-to-reach} is simply the inclusion of $\states = \Trans(\sys{Fin\, 0}, -)$ into the sum $\systh P = \sum_{n \geq 0} \Trans(\sys {Fin\, n}, -)$.
 \end{remark}
+
+\subsection{Non-standard behaviours}
+While $\sysdoc{BSys}$ is very often a general enough doctrine of behavioural systems sometimes it comes short of its role.
+Indeed, behavioural theories are standard notion of semantics for our theories of systems, but, like for any other kind of syntax, sometimes you want to look at non-standard intepretations to capture particular phenomena.
+
+In particular, as observed in~\cref{ex:behav-systems}, behavioural theories have a logical flavour: their notion of system is that of a display map in a categorical model of dependent type theory. In other words, $\BSys(\cat C)$ is strongly related to the codomain fibration $\cod : \cat C^\downarrow \to \cat C$.
+
+Thus non-standard interpretations of systems, hence non-standard behaviours, arises from looking at more interesting models of dependent types than those arising from codomain fibrations.
+
+\begin{example}[Reachability]
+\label{ex:reach}
+	In~\cref{ex:paths} we've seen finite-length paths are a theory of behaviour for labelled transition systems. If one were to care just about reachability between states though, paths would be overkill: they remember, yes, whether a certain state is reachable from another one, but also all possible way in which this can happen. This can be a plus in some settings, but a burden in others.
+
+	To forget about paths and only keep the reachability relation we have to truncate the information we have about the type of paths between two states to just a proposition.
+	In other words, we want to turn our dependent types to preidcates. Doing so will yield a non-standard behaviour of reachability.
+
+	Truncation can be expressed as a morphism of system theories $\|-\|_0 : \BSys \to \BSys_0$, where the latter is a theory like $\BSys$ except on objects, where $\Set/-$ is replaced by $\Sub(-)$. Hence systems are not display maps anymore, but just subobjects.
+
+	The natural transformation $\im : \Set/- \to \Sub(-)$, which sends a display map $\pi:S \to A$ to its image $\im \pi \subseteq A$, induces the desired $\|-\|_0$.
+
+	Now reachability is the non-standard behaviour $\systh R: \Trans \to \BSys_0$ obtained as $\|\systh P\|_0$, where $\systh P$ is the behaviur of paths from~\cref{ex:paths}.
+\end{example}
 
 \subsection{Doctrines of behaviour}
 Like theories of systems, theories of behaviours can be gathered in uniform \emph{doctrines} which functorially specify a way to look at theories of a doctrine of systems:
@@ -567,10 +589,10 @@ Like theories of systems, theories of behaviours can be gathered in uniform \emp
 			{\dblcat{Data}} \& {} \\
 			\&\& \Theories \\
 			{\dblcat{CartCat}} \& {}
-			\arrow["{\dblcat B^\top}"', from=1-1, to=3-1]
-			\arrow["{\dblcat{Doctrine}}", curve={height=-6pt}, from=1-1, to=2-3]
-			\arrow["\BSys"', curve={height=6pt}, from=3-1, to=2-3]
-			\arrow["{\dblcat B^\flat}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
+			\arrow["{\sysdoc B^\top}"', from=1-1, to=3-1]
+			\arrow["{\sysdoc{Doctrine}}", curve={height=-6pt}, from=1-1, to=2-3]
+			\arrow["\sysdoc{BSys}"', curve={height=6pt}, from=3-1, to=2-3]
+			\arrow["{\sysdoc B^\flat}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 		\end{tikzcd}
 	\end{equation}
 \end{definition}
@@ -590,9 +612,9 @@ Like theories of systems, theories of behaviours can be gathered in uniform \emp
 			\&\& \Theories \\
 			{\dblcat{CartCat}} \& {}
 			\arrow["\Set"', from=1-1, to=3-1]
-			\arrow["U", curve={height=-6pt}, from=1-1, to=2-3]
-			\arrow["\BSys"', curve={height=6pt}, from=3-1, to=2-3]
-			\arrow["{\Hom^h}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
+			\arrow["\sysdoc U", curve={height=-6pt}, from=1-1, to=2-3]
+			\arrow["\sysdoc{BSys}"', curve={height=6pt}, from=3-1, to=2-3]
+			\arrow["{\Hom^h}"'{pos=0.45}, shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 		\end{tikzcd}
 	\end{equation}
 	An object of $\Theories_\ast$ is a systems theory equipped with a distinguished system (hence a pair of an interface and a system over it) which is used as archetype for a certain kind of behaviour.
@@ -616,10 +638,10 @@ Like theories of systems, theories of behaviours can be gathered in uniform \emp
 			\&\& \Theories \\
 			{\dblcat{CartCat}} \& {}
 			\arrow["\Set"', from=2-1, to=4-1]
-			\arrow["U", curve={height=-6pt}, from=2-1, to=3-3]
-			\arrow["\BSys"', curve={height=6pt}, from=4-1, to=3-3]
+			\arrow["\sysdoc U", curve={height=-6pt}, from=2-1, to=3-3]
+			\arrow["\sysdoc{BSys}"', curve={height=6pt}, from=4-1, to=3-3]
 			\arrow["{\Hom^h}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=2-2, to=4-2]
-			\arrow["\Moore", curve={height=-18pt}, from=1-1, to=3-3]
+			\arrow["\sysdoc{Moore}", curve={height=-18pt}, from=1-1, to=3-3]
 			\arrow["{(\Moore,\ \fix : \Moore(1))}"', from=1-1, to=2-1]
 		\end{tikzcd}
 	\end{equation}
