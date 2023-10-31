@@ -3,7 +3,6 @@ Systems are the things processes link, or the things composition patterns compos
 
 \begin{definition}
 	A \textbf{doubly indexed category}, or \textbf{action of a double category}, is given, informally, by a unitary lax double functor $\Sys : \Processes^\top \to \dblCat$.
-	If $\Processes$ is monoidal, then we also ask $\Sys$ to be lax monoidal.
 \end{definition}
 
 We recall $\dblCat$ is the cartesian monoidal double category of categories, functors, profunctors and natural transformations. A unitary lax functor is a double functor preserving vertical identities strictly but not vertical composition. Hence given two maps of interfaces $h:I \to J$, $k : J \to K$, we have a natural transformation $\ell_{h,k}:\Sys(h) \otimes \Sys(k) \to \Sys(h \comp k)$ between profunctors.
@@ -99,7 +98,7 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 
 	The fibred subcategory of polynomial functors is what gives
 	`dependent' lenses, whose opposite is the codomain fibration,
-	i.e.~`dependent' charts \cite{spivak_generalized_2019}.
+	i.e.~`dependent' charts~\cite{spivak_generalized_2019}.
 	This suggests that taking the opposite fibration of $-(1)$ gives us a
 	fibration of `generalized charts'.
 
@@ -598,7 +597,7 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 
 	There's at least three ways to break this \emph{empasse}. The first is to remove the dependency on $O$ in $p^\sharp$. Hence instead of lenses we'll be looking at adapters, which are simply pairs of maps going in opposite directions.
 
-	The second is to solve the circularity by using a trace (or a trace-like) operator, thus asking for the ambient category $\cat C$ to be a traced or a feedback category (as in \cite{katis1997bicategories, lavore2021canonical}). Then Mealy machines can be reindexed by morphisms in $\Int(\cat C)$, which are indeed quite similar to Mealy machines:
+	The second is to solve the circularity by using a trace (or a trace-like) operator, thus asking for the ambient category $\cat C$ to be a traced or a feedback category (as in~\cite{katis1997bicategories, lavore2021canonical}). Then Mealy machines can be reindexed by morphisms in $\Int(\cat C)$, which are indeed quite similar to Mealy machines:
 	\begin{equation}
 		p : \lens{I}{O} \to \lens{J}{Q} \equiv J \times O \to I \times Q.
 	\end{equation}
@@ -635,8 +634,8 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 			\arrow[from=2-1, to=1-2]
 		\end{tikzcd}
 	\end{equation}
-	Adapters, lenses and colenses are all instances of optics \cite{clarke_profunctor_2020} and recently $\Int(\cat C)$ was also shown to be a theory of optics (this was first noted in \cite{juleshedges_geometry_2023}, and then expanded upon in private communication between Hedges and Milewski).
-	Thus we conjecture this diamond arises from relations between the actions generating the optics \cite{roman_profunctor_2020}.
+	Adapters, lenses and colenses are all instances of optics~\cite{clarke_profunctor_2020} and recently $\Int(\cat C)$ was also shown to be a theory of optics (this was first noted in~\cite{juleshedges_geometry_2023}, and then expanded upon in private communication between Hedges and Milewski).
+	Thus we conjecture this diamond arises from relations between the actions generating the optics~\cite{roman_profunctor_2020}.
 	}
 \end{example}
 
@@ -785,13 +784,25 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 	Notably, in this case, $I \mapsto \Set/I \iso \Set^I$ (where the latter sends a `display map' to the indexed set of its fibers).
 \end{example}
 
-% \begin{remark}
-% 	The behavioural theory of $\cat C$ can also be recovered as $\Moore_{(\cat C/-, \id)}$, where
-% \end{remark}
-
 \begin{example}[Structured cospans]
 	\matteo{TODO}
 \end{example}
+
+% \subsection{The virtual equipment of system theories}
+% So far we've  looked at theories of systems indexed by one, covariant, interface---we got around talking about bidirectional systems thanks to tools like lenses and spans.
+% In general, however, systems are indexed by two kinds of interfaces: covariant ones (which are output-like) and contravariant one (input-like).
+
+% Hence an unbiased notion of theory of systems admits indexing by both.
+
+% \begin{definition}
+% 	A \textbf{two-sided action of double categories} $\dblcat{X}$ and $\dblcat{Y}$ is a doubly indexed category
+% 	\begin{equation}
+% 		(\dblcat{X}^{\rm vop} \times \dblcat{Y})^\top \unilaxto \Cat.
+% 	\end{equation}
+% \end{definition}
+
+% These things look a lot like double profunctors (though they land in $\Cat$ expect of $\Set$), and like those, we don't expect them to compose associatively. Abstractly speaking, the culprit lies in the fact pullbacks don't commute with coequalizers in $\Cat$~\parencite[Example~5.7]{cruttwell_unified_2010}.
+% If we were looking at composing \emph{bona fide} double profunctors $\dblcat X \nprofto{P} \dblcat Y \nprofto{Q} \dblcat Z$ the issue would be that $\sum_{y:\dblcat Y} P(x,y) \times Q(y,z)$ (which is a fiberwise presentation of a pullback, i.e.~composition in $\Span(\Set)$) has to be quotiented to mod out the action of $\cat Y$ on $P$ and $Q$; but since coequalizers are not preserved under pullback, we can't do this associatively. In other words, the resulting operation would fail to be associative.
 
 \subsection{Doctrines of systems}
 A doctrine of systems is a uniform way to specify theories of systems given some data.
@@ -825,4 +836,4 @@ The 2-category $\Theories$ has system theories as objects and the following as 1
 	\end{equation}
 \end{definition}
 
-The 2-cells in $\Theories$ are pairs of an horizontal natural transformation and a modification \cite{grandis_higher_2019}.
+The 2-cells in $\Theories$ are pairs of an horizontal natural transformation and a modification~\cite{grandis_higher_2019}.

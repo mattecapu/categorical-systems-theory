@@ -16,7 +16,7 @@ Categorical Systems Theory (CST) is a categorical framework for the abstract stu
 Instead of espousing a specific paradigm on the mathematical specification of systems, CST predicates upon the general features such paradigms should have.
 In doing so, it captures the essence of the notion of `system'.
 
-The object of study of CST is a \emph{doctrine of systems}, which is defined in \cite{myers_categorical_2022} as way to answer the following questions:
+The object of study of CST is a \emph{doctrine of systems}, which is defined in~\cite{myers_categorical_2022} as way to answer the following questions:
 \begin{quote}
 	\begin{itemize}
 		\item What does it mean to be a system? Does it have a notion of states, or of behaviours? Or is it a diagram describing the way some primitive parts are organized?
@@ -35,19 +35,20 @@ Hence it's usually easier to start describing what a theory of systems is and th
 Categorical approaches to general systems theory have been around for a long time.
 The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from a behavioural point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
 
-In the 90s, a series of papers by Katis, Sabadini, Walters and others established a theory of machines \cite{sabadini_functions_1993, bloom_matrices_1996, katis1997bicategories, katis1997span, katis_algebra_1999, katis2002feedback} which anticipated some of the ideas regarding functorial semantics of behaviour, finding categories of matrices are well-adapted to receive such functors.
+In the 90s, a series of papers by Katis, Sabadini, Walters and others established a theory of machines~\cite{sabadini_functions_1993, bloom_matrices_1996, katis1997bicategories, katis1997span, katis_algebra_1999, katis2002feedback} which anticipated some of the ideas regarding functorial semantics of behaviour, finding categories of matrices are well-adapted to receive such functors.
 
-The works on structured and decorated cospans \cite{fiadeiro2007structured,fong2015decorated, baez2020open,baez2020structured,Baez2022structuredversus} deals with the doctrine of port-plugging systems (circuits) in modern form, and started using some ideas from double category theory to talk about them.
-This also happens in \cite{lerman2018networks,culbertson2020formal}.
+The works on structured and decorated cospans~\cite{fiadeiro2007structured,fong2015decorated, baez2020open,baez2020structured,Baez2022structuredversus} deals with the doctrine of port-plugging systems (circuits) in modern form, and started using some ideas from double category theory to talk about them.
+This also happens in~\cite{lerman2018networks,culbertson2020formal}.
 
-In \cite{spivak2013operad, libkind2021operadic} and other related works the idea operads provide the syntax for composition of systems is introduced.
+In~\cite{spivak2013operad, libkind2021operadic} and other related works the idea operads provide the syntax for composition of systems is introduced.
+
+Finally, coalgebraic automata theory~\cite{goos_relational_1977,rutten_universal_2000,kupke_coalgebraic_2008,jacobs_introduction_2017} can be considered the currently most mature form of general system theory.
+Contrary to other examples so far, coalgebraic automata theory mostly overlooked composition of systems and focused instead on categories \emph{of} systems.
+Coalgebraic automata theory has already branched out in many subfields, for instance dealing with modal logic~\cite{?} and quantitative aspects~\cite{?}.
 
 Thus we can say that albeit the current form of CST (as the yoga of doubly indexed category and `copresheaves' over them) is due to David Jaz Myers, various pieces of this philosophy have been around for far longer, as well as specific incarnations of them.
 
-In this sense, we might be at the boundary between pre-paradigmatic phase and a period of normal science in the categorical study of systems.
-This is conditional on the ability of CST to establish itself as the dominant paradigm. In fact, the subject is still in its infancy.
-
-At the moment, most of CST lives in Myers' own book \cite{myers_categorical_2022}, itself a longer version of the shorter preprint \cite{myers_double_2020} (where the notion of \emph{doctrine} wasn't yet developed).
+At the moment, most of CST lives in Myers' own book~\cite{myers_categorical_2022}, itself a longer version of the shorter preprint~\cite{myers_double_2020} (where the notion of \emph{doctrine} wasn't yet developed).
 Moreover, Myers has given a few talks about the topic in the past years:
 \begin{enumerate}
 	\item \fullcite{myers2020talk1}
@@ -114,8 +115,8 @@ Here $\dblSet$ is the double category of spans in $\Set$ and $\dblCat$ is the do
 \subsection{Prerequisites}
 CST is deeply rooted in double category theory. This is dictated by the structure of processes: they compose like morphisms but are also the subject of morphisms.
 
-For many notions, we will reference \cite{grandis_higher_2019}.
-For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invite the reader to read along the main reference \cite{myers_categorical_2022}.
+For many notions, we will reference~\cite{grandis_higher_2019}.
+For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invite the reader to read along the main reference~\cite{myers_categorical_2022}.
 
 \subsection{Acknowledgments}
-Some of the wisdom collected in these notes is not mine, but comes from fruitful conversations. Chiefly, David Jaz Myers. Among them: Ezra Schoen (helped greatly with~\cref{ex:coalgebras}), Nima Motamed, and Nathaniel Virgo.
+Some of the wisdom collected in these notes is not mine, but comes from fruitful conversations---chiefly, with David Jaz Myers, but also with Ezra Schoen (who helped greatly with~\cref{ex:coalgebras}), Nima Motamed, and Nathaniel Virgo.

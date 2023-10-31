@@ -1,21 +1,30 @@
 \section{Processes}
 The starting point for defining a theory of systems is defining a double category of composition patterns such systems use to interact with one another.
-In practice, defining the systems and defining the composition patterns are activities that influence one another. Systems are made out of composition patterns themselves, and it's usually them we have in mind when we approach a formalization problem. So one often starts by asking how the systems at hand could possibly be composed together.
+In practice, defining the systems and defining the composition patterns are activities that influence one another.
+Systems are made out of composition patterns themselves, and it's usually them we have in mind when we approach a formalization problem.
+So one often starts by asking how the systems at hand could possibly be composed together.
 
 Composition patterns usually form an operad.\footnote{By `operad' we mean `coloured operad' which means `multicategory'.}
-Operads are indeed ways to specify how `small things fit into larger things', i.e.~they are \emph{theories of composition}. Most importantly, they give meaning to various kinds of wiring diagrams \cite{spivak2013operad,vagner2014algebras, libkind2021operadic}.
+Operads are indeed ways to specify how `small things fit into larger things', i.e.~they are \emph{theories of composition}.
+Most importantly, they give meaning to various kinds of wiring diagrams~\cite{spivak2013operad,vagner2014algebras, libkind2021operadic}.
 
-One can also see composition patterns as \emph{processes} that extend a given system with further dynamics, possibly gathering many systems in one. This point of view can be more natural from a `European' point of view, more acquainted with string diagrams rather than wiring diagrams. In fact one can see double categories of composition patterns as higher-dimensional extensions of the process theories of Abramsky, Coecke, Gogioso \cite{abramsky2004categorical, coecke2018picturing}.
+One can also see composition patterns as \emph{processes} that extend a given system with further dynamics, possibly gathering many systems in one.
+This point of view can be more natural from a `European' point of view, more acquainted with string diagrams rather than wiring diagrams.
+In fact one can see double categories of composition patterns as higher-dimensional extensions of the process theories of Abramsky, Coecke, Gogioso~\cite{abramsky2004categorical, coecke2018picturing}.
 
 \begin{definition}
 	A \textbf{process theory} is a symmetric monoidal double category with attitude.
 \end{definition}
 
-Hence any monoidal double category can be a process theory if we have a convincing interpretation of it as such. In other words, at this level of generality there's no justification for limiting this definition further. Of course any specific doctrine of systems can make more opinionated choices on which monoidal double categories to admit, and we will see plenty of examples of this.
+Hence any monoidal double category can be a process theory if we have a convincing interpretation of it as such.
+At this level of generality there's no justification for limiting this definition further.
+Of course any specific doctrine of systems can make more opinionated choices on which monoidal double categories to admit, and we will see plenty of examples of this.
 
 \begin{remark}
-	Rather than defining double categories of processes to be monoidal, one should arguably define them to be multicategories. Thus a nicer, if more exotic, definition of process theory would be that of a `multicategory internal to categories'.%\footnote{As opposite to virtual double categories, which are categories internal to multicategories.}
-	This is the reason here, following the custom recently adopted by Myers, we often denote processes as having many inputs. With our definitions, one might interpret the notation $I_1, \ldots, I_n$ as denoting a monoidal product, i.e.~we denote with `$, $' the monoidal product on processes.
+	Rather than defining double categories of processes to be monoidal, one should arguably define them to be multicategories.
+	Thus a nicer, if more exotic, definition of process theory would be that of a `multicategory internal to categories'.
+	This is the reason here, following the custom recently adopted by Myers, we often denote processes as having many inputs.
+	With our definitions, one might interpret the notation $I_1, \ldots, I_n$ as denoting a monoidal product, i.e.~we denote with `$, $' the monoidal product on processes.
 \end{remark}
 
 A process theory $\Processes$ thus unpacks as follows:
@@ -53,11 +62,16 @@ A process theory $\Processes$ thus unpacks as follows:
 	\end{equation}
 \end{enumerate}
 
-A very important takeway behind this definition is that it distinguishes morphisms \emph{as} processes from morphisms \emph{of} processes. In fact, the usual yoga of process theories (which amount to symmetric monoidal `single' categories) only focuses on the compositional properties of processes (they compose like morphisms). But in category theory we know that if we want to study something, we need to study morphisms between them!
+A very important takeway behind this definition is that it distinguishes morphisms \emph{as} processes from morphisms \emph{of} processes.
+In fact, the usual yoga of process theories (which amount to symmetric monoidal `single' categories) only focuses on the compositional properties of processes (they compose like morphisms).
+But in category theory we know that if we want to study something, we need to study morphisms between them!
 
 \begin{example}[Alphabets]
 \label{ex:alphabets}
-	Let $\Alph = \FinSet^\uparrow$ be the double category of alphabets and alphabet reductions, and maps thereof. Its objects are finite sets of symbols we call `alphabets'. Its horizontal maps are maps of finite sets. Its vertical maps are \emph{alphabet reductions}, which are map of finite sets in the opposite direction:
+	Let $\Alph = \FinSet^\uparrow$ be the double category of alphabets and alphabet reductions, and maps thereof.
+	Its objects are finite sets of symbols we call `alphabets'.
+	Its horizontal maps are maps of finite sets.
+	Its vertical maps are \emph{alphabet reductions}, which are map of finite sets in the opposite direction:
 	\begin{equation}
 		p : \Sigma \verto \Sigma' \in \FinSet(\Sigma', \Sigma)
 	\end{equation}
@@ -106,11 +120,13 @@ A very important takeway behind this definition is that it distinguishes morphis
 		\end{eqalign}
 	\end{enumerate}
 	The last conditions are hard to parse formally, but basically they say that both squares one can spot in~\eqref{eq:det-behav} commute.
-	Concretely, we have two bidirectional processes $\lens{f^\sharp}{f}$ and $\lens{k^\sharp}{k}$ and a way to map between their interfaces. We are then asking that their dynamics commute with such maps.
+	Concretely, we have two bidirectional processes $\lens{f^\sharp}{f}$ and $\lens{k^\sharp}{k}$ and a way to map between their interfaces.
+	We are then asking that their dynamics commute with such maps.
 \end{example}
 
 \begin{remark}
-	Viewed as composition patterns, lenses are algebras of the operad of wiring diagrams \cite{spivak2013operad}. Thus they represent ways to wire a number of boxes into a larger box:
+	Viewed as composition patterns, lenses are algebras of the operad of wiring diagrams~\cite{spivak2013operad}.
+	Thus they represent ways to wire a number of boxes into a larger box:
 	\begin{figure}[H]
 		\matteo{wiring diagram}
 	\end{figure}
@@ -118,29 +134,34 @@ A very important takeway behind this definition is that it distinguishes morphis
 
 \begin{example}
 \label{ex:f-lenses}
-	The previous example can be generalized greatly by employing $F$-lenses~\cite{spivak_generalized_2019}. These are lenses in which the backward part is dependent on the forward part in a way specified by an indexed category $F$.
-	Intuitively, this correspond to a wiring pattern which can change dependening on the what flows in the wires (see \cite{spivak_poly_2020}).
+	The previous example can be generalized greatly by employing $F$-lenses~\cite{spivak_generalized_2019}.
+	These are lenses in which the backward part is dependent on the forward part in a way specified by an indexed category $F$.
+	Intuitively, this correspond to a wiring pattern which can change dependening on the what flows in the wires (see~\cite{spivak_poly_2020}).
 
 	The definitions of $F$-lenses and $F$-charts are substantially identical to the ones above, as well as that for the squares (except the `commutativity condition' is now harder to eyeball).
 	We gather some examples here:
-	\begin{center}
+	\matteo{add dependent variants for other lenses}
+	\begin{table}
 		\begin{tabular}{l|l|l}
-			& \textbf{category} & $F$\\
+			\textbf{lenses} & \textbf{category} & $F$\\
 			\hline
 			\textbf{deterministic} & $\cat C$ cartesian monoidal & $\Set/_{\sf proj} -$ (or $\coKl(- \times =)$) \\
+			\textbf{deterministic (dependent)} & $\cat C$ finite limits & $\Set/ -$ \\
 			\textbf{possibilistic} & $\cat E$ topos & $\biKl(- \times =, \pow)$ ($\pow$ powerset monad)\\
 			\textbf{probabilistic} & $\Msbl$ & $\biKl(- \times =, \Delta)$ ($\Delta$ probability monad)\\
 			\textbf{effectful} & $\cat C$ cartesian monoidal & $\biKl(- \times =, M)$ ($M$ commutative monad)\\
 			\textbf{differential (Euclidean)} & $\Euc$ & $\Euc/_{\sf subm}-$\\
 			\textbf{differential (general)} & $\Smooth$ & $\Smooth/_{\sf subm}-$
 		\end{tabular}
-	\end{center}
+		\caption{Flavours of $F$-lenses. We put them in pairs, with the first being `simple' lenses, like those in~\cref{ex:lenses}, and the second `dependent'.}
+	\end{table}
 \end{example}
 
 \begin{example}[Behavioural theory]
 \label{ex:behav-processes}
-	Given any cartesian category\footnote{By which we mean a category with finite limits, our, more directly for our purposes, one whose codomain functor $\cod:\cat C^\downarrow \to \cat C$ is a fibration.}, there is a double category $\Span(\cat C)$.
-	Here, the objects are the same of $\cat C$, as well as the horizontal maps. The vertical maps are given by spans instead, and the squares by morphisms of spans:
+	Given any category with finite limits\footnote{Or, more directly for our purposes, one whose codomain functor $\cod:\cat C^\downarrow \to \cat C$ is a fibration.} $\cat C$, there is a double category $\Span(\cat C)$.
+	Here, the objects are the same of $\cat C$, as well as the horizontal maps.
+	The vertical maps are given by spans instead, and the squares by morphisms of spans:
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNixbMCwwLCJJIl0sWzEsMCwiSiJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzAsMiwiSSciXSxbMSwyLCJKJyJdLFsyLDQsInBfciIsMl0sWzMsNSwicV9yIl0sWzIsMCwicF9cXGVsbCJdLFszLDEsInFfXFxlbGwiLDJdLFsyLDMsIlxcYWxwaGEiLDFdLFs0LDUsImsiLDJdLFswLDEsImgiXV0=
 		\begin{tikzcd}[ampersand replacement=\&]
@@ -156,5 +177,6 @@ A very important takeway behind this definition is that it distinguishes morphis
 			\arrow["h", from=1-1, to=1-2]
 		\end{tikzcd}
 	\end{equation}
-	We call these double categories `behavioural theories of processes' sicne they model processes only by their input-output relation, hence by the behaviour they expose. Of course this is only an attitude.
+	We call these double categories `behavioural theories of processes' since they model processes only by their input-output relation, hence by the behaviour they expose.
+	Of course this is only an attitude.
 \end{example}
