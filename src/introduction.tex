@@ -1,37 +1,40 @@
 
 \section{Introduction}
-% Systems are ubiquitous, in science as in life.
-% %People regularly deal with physical systems, political systems, economical systems, living systems, learning systems, writing systems, voting systems, computing systems, etc.
-% As we look into a thing, we soon realize it is a system comprised of smaller interacting parts\footnote{Heck, even \emph{atoms}, indivisible par excellence, arise from many layers of interaction among their parts!}. As we walk back, we realize it is itself part of an even more complex system.
+Systems are ubiquitous, in science as in life.
+People regularly deal with physical systems, political systems, economical systems, living systems, learning systems, writing systems, voting systems, computing systems, etc.
+As we zoom into a thing, we inevitably realize it is comprised of smaller interacting parts. As we zoom out, we realize it is itself part of an even more complex system.
 
-% The word `system' roughly means `composite thing' in Greek.
-% It seems therefore natural that category theory has something to say about them.
+Given the staggering variety systems come in, it is no surprise the existing scientific and mathematical frameworks to describe them are manifold and often incompatible with one another.
+Categorical systems theory (CST) does not replace for the disciplines which study these particular systems, nor the theoretical toolkits that scientists developed for them.
+Instead, CST gives a bird eye view of general systems theory and can thus organize, inform and comment on design decisions of different mathematical specifications of systems.
 
-% Given the staggering variety systems come in, it is no surprise scientific paradigms and mathematical models to describe them are manifold and often incompatible with one another.
-% Studying each of these paradigms by themselves is surely a useful endeavour, but the ethos of category theory is to adopt a formal, bird-eye view of disciplines, to find the common motifs. Hence in approaching the study of systems theory, the category theorist should ask: what are the formal structures underlying all the different approaches to systems?
+% Most importantly, any respectable \emph{mathematical theory of general systems} should start by reflecting on what systems are.
+% In modern math, this means identifying the structure underlying systems.
 
-Categorical Systems Theory (CST) is a categorical framework for the abstract study of systems irrespective of their contingent aspects.
-%It studies any situation involving many parts engaging in some interesting behaviour.
-%
-Instead of espousing a specific paradigm on the mathematical specification of systems, CST predicates upon the general features such paradigms should have.
-In doing so, it captures the essence of the notion of `system'.
+An important consequence of this approach is \emph{removing opacity}.
+In fact, each framework created to deal with systems makes certain assumptions regarding the structure of the systems under scrutiny: the way they compose, the way they relate, which behaviours or aspects of the systems are of interest and what even means to display a certain behaviour.
+It's easy to get lost in these questions, and to miss important insight because of \emph{blindness to structure}.\footnote{Also known as the fish-in-water phenomenon: we get so used to certain aspects of our setting we have a hard time realizing their role and significance.}
+An important role CST fullfils is clarifying, within each individual framework, which choices have been made and why: this is only possible if the alternatives can also be compared.
 
-The object of study of CST is a \emph{doctrine of systems}, which is defined in~\cite{myers_categorical_2022} as way to answer the following questions:
-\begin{quote}
-	\begin{itemize}
-		\item What does it mean to be a system? Does it have a notion of states, or of behaviours? Or is it a diagram describing the way some primitive parts are organized?
-		\item What should the interface of a system be?
-		\item How can interfaces be connected in composition patterns?
-		\item How are systems composed through composition patterns between their interfaces.
-		\item What is a map between systems, and how does it affect their interfaces?
-		\item When can maps between systems be composed along the same composition patterns as the systems.
-	 \end{itemize}
-\end{quote}
+Instead of espousing a specific mathematical specification of systems, CST predicates upon the general features such specifications should have.
+This allows the language of CST to be uniform across a wild variety of systems, from Petri nets to partial differential equations, from finite state machines to probabilistic automata.
 
-A doctrine of systems specializes in many different \emph{theories of systems}. For instance there is a doctrine of open dynamical systems encompassing the theory of deterministic dynamical systems, the theory of stochastic dynamical systems, the theory of differential dynamical systems, and many more.
-Hence it's usually easier to start describing what a theory of systems is and then to say what does it mean for a doctrine to gather many of them in a single object.
+% The object of study of CST is a \emph{doctrine of systems}, which is defined in~\cite{myers_categorical_2022} as way to answer the following questions:
+% \begin{quote}
+% 	\begin{itemize}
+% 		\item What does it mean to be a system? Does it have a notion of states, or of behaviours? Or is it a diagram describing the way some primitive parts are organized?
+% 		\item What should the interface of a system be?
+% 		\item How can interfaces be connected in composition patterns?
+% 		\item How are systems composed through composition patterns between their interfaces.
+% 		\item What is a map between systems, and how does it affect their interfaces?
+% 		\item When can maps between systems be composed along the same composition patterns as the systems.
+% 	 \end{itemize}
+% \end{quote}
 
-\subsection{References}
+% A doctrine of systems specializes in many different \emph{theories of systems}. For instance there is a doctrine of open dynamical systems encompassing the theory of deterministic dynamical systems, the theory of stochastic dynamical systems, the theory of differential dynamical systems, and many more.
+% Hence it's usually easier to start describing what a theory of systems is and then to say what does it mean for a doctrine to gather many of them in a single object.
+
+\subsection{A bit of history}
 Categorical approaches to general systems theory have been around for a long time.
 The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from a behavioural point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
 
@@ -42,11 +45,11 @@ This also happens in~\cite{lerman2018networks,culbertson2020formal}.
 
 In~\cite{spivak2013operad, libkind2021operadic} and other related works the idea operads provide the syntax for composition of systems is introduced.
 
-Finally, coalgebraic automata theory~\cite{goos_relational_1977,rutten_universal_2000,kupke_coalgebraic_2008,jacobs_introduction_2017} can be considered the currently most mature form of general system theory.
+Finally, coalgebraic automata theory~\cite{goos_relational_1977,rutten_universal_2000,kupke_coalgebraic_2008,jacobs_introduction_2017} can be considered the currently most mature form of `general system theory'.
 Contrary to other examples so far, coalgebraic automata theory mostly overlooked composition of systems and focused instead on categories \emph{of} systems.
 Coalgebraic automata theory has already branched out in many subfields, for instance dealing with modal logic~\cite{?} and quantitative aspects~\cite{?}.
 
-Thus we can say that albeit the current form of CST (as the yoga of doubly indexed category and `copresheaves' over them) is due to David Jaz Myers, various pieces of this philosophy have been around for far longer, as well as specific incarnations of them.
+Thus we can say that albeit the current form and conceptualization of CST (using the technology of doubly indexed categories) is due to David Jaz Myers, various pieces of this philosophy have been around for far longer, as well as specific incarnations of them.
 
 At the moment, most of CST lives in Myers' own book~\cite{myers_categorical_2022}, itself a longer version of the shorter preprint~\cite{myers_double_2020} (where the notion of \emph{doctrine} wasn't yet developed).
 Moreover, Myers has given a few talks about the topic in the past years:
@@ -61,62 +64,183 @@ I also gave a talk about CST and its extension to cybernetic systems:
 	\item \fullcite{capucci2022talk}
 \end{enumerate}
 
-\subsection{A quick tour of CST}
-Categorical systems theory is a conceptually simple, if mathematically sophisticated, framework.
-In a nutshell, it studies processes connecting systems, and the ways these behave. Processes are organized in (monoidal double) categories, which themselves index categories of systems, whose maps in (the behavioural theory of) sets are behaviours.
+\subsection{What CST is all about.}
+In Greek, the word `system' means `composite'. Categorical systems theory takes this etymology very seriously, approaching the study of systems as the study of `things that compose'. Thankfully, the mathematical theory of composition is rich and has been abundantly studied before, under the guise of \textbf{operads}. The idea that systems are algebras of operads is more than a decade old now, being first proposed by Spivak in his 2013 paper~\cite{spivak2013operad}.
 
-If one is not at ease with double categories, at a first approximation one can drop the horizontal direction and think of these as monoidal categories of processes. They index sets of systems which can be reindexed by processes. One can study behaviour by specifying the set of ways interfaces can be observed, the relations processes induce between observations on their interfaces, and the states systems can be in and the observables these expose.
+\begin{remark}
+	The word operad is quite overloaded, and, in some sense, not overloaded enough.
+	Traditionally, an operad is a structure encoding formal operations of arbitrary finite arity which compose associatively and have a unit. In fact, the idea can be easily generalized much further, by having ``arities'' being structured objects.
+	In this generalized form, operads are usually called \emph{multicategories}, but I'd like to keep calling them operads because (a) morally, they still are and (b) operad is a much nicer and less scary word than multicategory.
+	This translates to their even-more-generalized form, $T$-multicategories, which I call $T$-operads.
+\end{remark}
 
-However, none of the two dimensions in CST is ancillary to the other.
-The horizontal direction is often overlooked in pre-CST work, but it's extremely natural to consider: from a categorical standpoint, we study things (here, systems and processes) by looking at the way they map into each other.
+Thus, if \emph{operads} are \textbf{theories of composition} (and they are), \emph{theories of systems} should be algebras of theories of compositions.
 
-Thus the first step in CST is to understand \textbf{processes organize in monoidal double categories}:
-\begin{equation}
-	\Processes := \left\{
-		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFszLDAsIlxcYnVsbGV0Il0sWzAsMiwiXFxidWxsZXQiXSxbMywyLCJcXGJ1bGxldCJdLFswLDIsIlxcdGV4dHtwcm9jZXNzfSIsMV0sWzEsMywiXFx0ZXh0e3Byb2Nlc3N9IiwxXSxbMCwxLCJcXHRleHR7bWFwIG9mIGludGVyZmFjZXN9IiwxXSxbMiwzLCJcXHRleHR7bWFwIG9mIGludGVyZmFjZXN9IiwxXSxbNCw1LCJcXHRleHR7bWFwIG9mIHByb2Nlc3Nlc30iLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
-		{\scriptstyle
-		\begin{tikzcd}[ampersand replacement=\&, column sep=normal]
-			\cdot \&\&\& \cdot \\
-			\\
-			\cdot \&\&\& \cdot
-			\arrow[""{name=0, anchor=center, inner sep=0}, "{\text{process}}"{description}, from=1-1, to=3-1]
-			\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{process}}"{description}, from=1-4, to=3-4]
-			\arrow["{\text{map of interfaces}}"{description}, from=1-1, to=1-4]
-			\arrow["{\text{map of interfaces}}"{description}, from=3-1, to=3-4]
-			\arrow["{\text{map of processes}}", shift right=1, shorten <=19pt, shorten >=19pt, Rightarrow, from=0, to=1]
-		\end{tikzcd}}
-	\right\}
-\end{equation}
-Such processes are actually `composition patterns' that can be used to weave systems together, i.e.~the ways parts can come together to form wholes. These can be wiring diagrams, or bubble diagrams, or circuit diagrams, etc. Both ways of thinking about them can be useful.
+This is the \emph{algebraic} aspect of systems theory: it concerns the way systems are put together by operations (incidentally, also the word \emph{algebra} is etymologically related to composition)!
+There is also a \emph{geometric} aspect to systems theory, if we might abuse the algebro-geometric duality.
+Systems are objects with an internal structure, which can be probed by morphisms which compare systems to each other.
+Having this extra geometric structure is quite important, albeit often overlooked. It is not overlooked in coalgebraic automata theory, where the algebraic aspect is neglected but the idea that systems shall be objects of a category is taken in great consideration.
 
-Mathematically speaking, \textbf{processes index systems}, giving rise to doubly indexed categories called \textbf{systems theories}:
-\begin{equation}
-	\Sys : \Processes^\top \unilaxto \dblCat
-\end{equation}
-Thus, and this is a fundamental idea in CST, systems and processes are formally distinguished, even though they might end up being quite similar. In fact, in many instances, systems are special instances of processes which are considered stateful.
-The categories of systems over a given interface are categories of structure-preserving morphisms of systems, which we call simulations here. These can be more or less rigid depending on the user's taste.
+Therefore, \emph{theories of systems} should be algebras of \emph{double operads}, i.e.~operads in categories.
 
-Finally, systems are as interesting as the things they do.
-The observations we can make of a system are its behaviour. Ways to observe systems in a given theory are \textbf{theories of behaviour}, which are maps into the `behavioural theory':
-\begin{equation}
-	% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc15cXHRvcCJdLFswLDIsIlxcU3BhbihcXGNhdCBDKV5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiQl5cXHRvcCIsMl0sWzAsMiwiXFxTeXMiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkJeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
-	\begin{tikzcd}[ampersand replacement=\&, sep=small]
-		{\Processes^\top} \& {} \\
-		\&\& \dblCat \\
-		{\dblSet^\top} \& {}
-		\arrow["{B^\top}"', from=1-1, to=3-1]
-		\arrow["\Sys", curve={height=-6pt}, from=1-1, to=2-3]
-		\arrow["{\Set/-}"', curve={height=6pt}, from=3-1, to=2-3]
-		\arrow["{B^\flat}"', shift right=4, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
-	\end{tikzcd}
-\end{equation}
-Here $\dblSet$ is the double category of spans in $\Set$ and $\dblCat$ is the double category of functors and profunctors.
+\begin{remark}
+	This `definition' is preemptively general.
+	While the ideal is to eventually work in terms of general $T$-operads (that being the 'morally right' setting), at the minute  most of categorical systems theory is done for $T = \SymDblOperads$, the \emph{free symmetric monoidal category} 2-monad on $\Cat$ (Example 4.1.16 in~\cite{leinster_higher_2004}).
+	Concretely, this means that a double $\SymDblOperads$-operad is a \emph{symmetric monoidal double category}.
+\end{remark}
 
-\subsection{Prerequisites}
-CST is deeply rooted in double category theory. This is dictated by the structure of processes: they compose like morphisms but are also the subject of morphisms.
+\subsection{Paradigms, doctrines, theories.}
+The narratology of categorical systems theory can be organized in three levels of decreasing abstraction.
+It's easier to start from the topmost level:
 
-For many notions, we will reference~\cite{grandis_higher_2019}.
-For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invite the reader to read along the main reference~\cite{myers_categorical_2022}.
+\begin{definition}[Paradigm]
+	A \textbf{paradigm} of systems theory is a way to answer the following questions:
+	\begin{enumerate}
+		\item What kind of \emph{comparisons} between systems we want to ponder?
+		\item What kind of \emph{compositions} of systems we want to ponder?
+	\end{enumerate}
+\end{definition}
 
-\subsection{Acknowledgments}
-Some of the wisdom collected in these notes is not mine, but comes from fruitful conversations---chiefly, with David Jaz Myers, but also with Ezra Schoen (who helped greatly with~\cref{ex:coalgebras}), Nima Motamed, and Nathaniel Virgo.
+The most familiar paradigms in applied category theory are the following:
+
+\begin{example}[Paradigm of sets]
+	In this paradigm, systems are organized in sets, thus can only be compared for equality.
+	Composition is described by symmetric operads, thus basically symmetric monoidal categories.
+	This is a fairly common paradigm in the literature, e.g.~Spivak's paper on wiring diagrams~\cite{spivak2013operad} can be considered to work in the paradigm of sets.
+\end{example}
+
+\begin{example}[Paradigm of categories]
+	In this paradigm, systems are organized in categories, thus can be compared with morphisms
+	Composition is described by symmetric double operads, thus basically symmetric monoidal double categories.
+	\textbf{This is the default paradigm in categorical systems theory}.
+\end{example}
+
+One could conceive other paradigms.
+For instance, one might want to compare systems by quantifying their similarity with a number, a cohomology class, or some other extensive measurement.
+One could compose them in different ways, for instance by glueing them instead of wiring them.
+
+Mathematically, the answers to the questions posed by a choice of paradigm correspond to the following:
+
+\begin{definition}[Paradigm]
+	A \textbf{paradigm} is an equipment $\dblcat E$ along with a monad $T:\dblcat{E} \to \dblcat{E}$, i.e.~a way to define what `operad' and `algebra' mean.
+\end{definition}
+
+Once fixed a paradigm, we can build a 2-category of theories, whose objects are theories of systems and whose maps are lax maps thereof.
+
+\begin{definition}[2-category of theories]
+	Let $\Paradigm$ be a paradigm.
+	The associated \textbf{2-category of theories} $\Theories^\Paradigm$ is the 2-category of $T$-operads and right algebras thereof, with \emph{lax} maps and 2-cells.
+	Objects are thus pairs $(\Comp, \Sys)$ where $\Comp$ is a $T$-operad and $\Sys$ a right algebra thereof.
+\end{definition}
+
+\begin{definition}[Theory]
+	A \textbf{theory} for a paradigm $\Paradigm$ is an object of $\Theories^\Paradigm$.
+\end{definition}
+
+\begin{example}[Theories in the set paradigm]
+	The 2-category of theories for the paradigm $(\dblSet, \SymOperads)$ is the 2-category whose objects are pairs $(\cat{C}, \mathrm{Sys})$ were the first is a symmetric monoidal category and the latter is a symmetric monoidal copresheaf $\mathrm{Sys} : \cat{C} \to \Set$.
+	A map of theories is given by a symmetric lax monoidal functor between the base categories and a natural transformation.
+\end{example}
+
+\begin{example}[Theories in the categories paradigm]
+	The 2-category of theories for the paradigm $(\dblCat, \SymDblOperads)$ is the 2-category whose objects are pairs $(\compth{C}, \Sys)$ were the first is a symmetric monoidal double category and the latter is a symmetric monoidal lax copresheaf $\Sys:\compth{C} \to \dblSet$, also known as a doubly indexed category.
+	A map of theories is given by a symmetric lax monoidal lax double functor between the base double categories and a lax natural transformation.
+\end{example}
+
+However, the concept of `theory' at the minute is underspecified.
+Most times we describe a theory we are actually giving a description of class of theories all parametrized by some common data (e.g.~a category with pullbacks, a category together with a monad, etc.).
+So a theory is often just some data we can use to get an operad and an algebra in a specified way.
+Informally, one defines a doctrine as follows (this one is straight from Myers's book~\cite{myers_categorical_2022}):
+
+\begin{informaldefinition}[Doctrine]
+	A \textbf{doctrine} of systems is a particular way to answer the following questions about it means to be a systems theory:
+	\begin{enumerate}
+		\item What does it mean to be a system? Does it have a notion of states, or of behaviors?
+		Or is it a diagram describing the way some primitive parts are organized?
+		\item What should the interface of a system be?
+		\item How can interfaces be connected in composition patterns?
+		\item How are systems composed through composition patterns between their interfaces?
+		\item What is a map between systems, and how does it affect their interfaces?
+		\item When can maps between systems be composed along the same composition patterns as the systems?
+	\end{enumerate}
+\end{informaldefinition}
+
+Thus a doctrine is a \emph{uniform}, meaning \emph{functorial}, \emph{way of building theories}:
+
+\begin{definition}[Doctrine]
+	A \textbf{doctrine} $\Doc$ in the paradigm $\Paradigm$ is a 2-functor
+	$\Sys^{\Doc} : \Theories^{\Doc} \longto \Theories^\Paradigm$.
+	The objects of $\Theories^{\Doc}$ are called \textbf{theories for the doctrine $\Doc$}.
+\end{definition}
+
+\begin{remark}
+	The reason we already called $\Theories^\Paradigm$ the 2-category of \emph{theories} is easily seen: clearly the identity functor of $\Theories^\Paradigm$ is a doctrine, and in fact the 'universal one', since it is terminal among doctrines over $\Paradigm$.
+	Thus all right algebras for $T$-operads in $\dblcat{E}$ are theories for the universal doctrine for the paradigm $\Paradigm$.
+
+	The definitive definition of theory mentions directly the doctrine:
+\end{remark}
+
+\begin{definition}[Theory]
+	A \textbf{theory} $\Sys$ for a doctrine $\Doc$ is an object in $\Theories^\Doc$.
+\end{definition}
+
+% \subsection{A quick tour of CST}
+% Categorical systems theory is a conceptually simple, if mathematically sophisticated, framework.
+% In a nutshell, it studies processes connecting systems, and the ways these behave. Processes are organized in (monoidal double) categories, which themselves index categories of systems, whose maps in (the behavioural theory of) sets are behaviours.
+
+% If one is not at ease with double categories, at a first approximation one can drop the horizontal direction and think of these as monoidal categories of processes. They index sets of systems which can be reindexed by processes. One can study behaviour by specifying the set of ways interfaces can be observed, the relations processes induce between observations on their interfaces, and the states systems can be in and the observables these expose.
+
+% However, none of the two dimensions in CST is ancillary to the other.
+% The horizontal direction is often overlooked in pre-CST work, but it's extremely natural to consider: from a categorical standpoint, we study things (here, systems and processes) by looking at the way they map into each other.
+
+% Thus the first step in CST is to understand \textbf{processes organize in monoidal double categories}:
+% \begin{equation}
+% 	\Processes := \left\{
+% 		% https://q.uiver.app/?q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFszLDAsIlxcYnVsbGV0Il0sWzAsMiwiXFxidWxsZXQiXSxbMywyLCJcXGJ1bGxldCJdLFswLDIsIlxcdGV4dHtwcm9jZXNzfSIsMV0sWzEsMywiXFx0ZXh0e3Byb2Nlc3N9IiwxXSxbMCwxLCJcXHRleHR7bWFwIG9mIGludGVyZmFjZXN9IiwxXSxbMiwzLCJcXHRleHR7bWFwIG9mIGludGVyZmFjZXN9IiwxXSxbNCw1LCJcXHRleHR7bWFwIG9mIHByb2Nlc3Nlc30iLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+% 		{\scriptstyle
+% 		\begin{tikzcd}[ampersand replacement=\&, column sep=normal]
+% 			\cdot \&\&\& \cdot \\
+% 			\\
+% 			\cdot \&\&\& \cdot
+% 			\arrow[""{name=0, anchor=center, inner sep=0}, "{\text{process}}"{description}, from=1-1, to=3-1]
+% 			\arrow[""{name=1, anchor=center, inner sep=0}, "{\text{process}}"{description}, from=1-4, to=3-4]
+% 			\arrow["{\text{map of interfaces}}"{description}, from=1-1, to=1-4]
+% 			\arrow["{\text{map of interfaces}}"{description}, from=3-1, to=3-4]
+% 			\arrow["{\text{map of processes}}", shift right=1, shorten <=19pt, shorten >=19pt, Rightarrow, from=0, to=1]
+% 		\end{tikzcd}}
+% 	\right\}
+% \end{equation}
+% Such processes are actually `composition patterns' that can be used to weave systems together, i.e.~the ways parts can come together to form wholes. These can be wiring diagrams, or bubble diagrams, or circuit diagrams, etc. Both ways of thinking about them can be useful.
+
+% Mathematically speaking, \textbf{processes index systems}, giving rise to doubly indexed categories called \textbf{systems theories}:
+% \begin{equation}
+% 	\Sys : \Processes^\top \unilaxto \dblCat
+% \end{equation}
+% Thus, and this is a fundamental idea in CST, systems and processes are formally distinguished, even though they might end up being quite similar. In fact, in many instances, systems are special instances of processes which are considered stateful.
+% The categories of systems over a given interface are categories of structure-preserving morphisms of systems, which we call simulations here. These can be more or less rigid depending on the user's taste.
+
+% Finally, systems are as interesting as the things they do.
+% The observations we can make of a system are its behaviour. Ways to observe systems in a given theory are \textbf{theories of behaviour}, which are maps into the `behavioural theory':
+% \begin{equation}
+% 	% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc15cXHRvcCJdLFswLDIsIlxcU3BhbihcXGNhdCBDKV5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiQl5cXHRvcCIsMl0sWzAsMiwiXFxTeXMiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkJeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
+% 	\begin{tikzcd}[ampersand replacement=\&, sep=small]
+% 		{\Processes^\top} \& {} \\
+% 		\&\& \dblCat \\
+% 		{\dblSet^\top} \& {}
+% 		\arrow["{B^\top}"', from=1-1, to=3-1]
+% 		\arrow["\Sys", curve={height=-6pt}, from=1-1, to=2-3]
+% 		\arrow["{\Set/-}"', curve={height=6pt}, from=3-1, to=2-3]
+% 		\arrow["{B^\flat}"', shift right=4, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
+% 	\end{tikzcd}
+% \end{equation}
+% Here $\dblSet$ is the double category of spans in $\Set$ and $\dblCat$ is the double category of functors and profunctors.
+
+% \subsection{Prerequisites}
+% CST is deeply rooted in double category theory and 2-category theory, including the theory of proarrow equipments.
+% For many notions, we will reference~\cite{grandis_higher_2019} and~\cite{pare_yoneda_2011}.
+% For a slow paced, well-motivated introduction of the minimum double category theory used in CST, we invite the reader to read along the main reference~\cite{myers_categorical_2022}.
+% We will cite additional references whenever we need them.
+
+% \subsection{Acknowledgments}
+% Some of the wisdom collected in these notes is not mine, but comes from fruitful conversations---chiefly, with David Jaz Myers, but also with Ezra Schoen (who helped greatly with~\cref{ex:coalgebras}), Nima Motamed, Nathaniel Virgo, Dylan Braithwaite, Owen Lynch, Sophie Libkind, David Spivak and many others.
+% Also, I'd like to thank all those people who pushed back at my attempts to evangelize CST; their skepticism ironed out the ideas and the concepts herein, and sometimes even lead to concrete mathematical developments.

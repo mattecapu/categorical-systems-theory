@@ -1,4 +1,4 @@
-\section{Processes}
+\section{Composition}
 The starting point for defining a theory of systems is defining a double category of composition patterns such systems use to interact with one another.
 In practice, defining the systems and defining the composition patterns are activities that influence one another.
 Systems are made out of composition patterns themselves, and it's usually them we have in mind when we approach a formalization problem.
@@ -13,21 +13,21 @@ This point of view can be more natural from a `European' point of view, more acq
 In fact one can see double categories of composition patterns as higher-dimensional extensions of the process theories of Abramsky, Coecke, Gogioso~\cite{abramsky2004categorical, coecke2018picturing}.
 
 \begin{definition}
-	A \textbf{process theory} is a symmetric monoidal double category with attitude.
+	A \textbf{composition theory} is a symmetric monoidal double category with attitude.
 \end{definition}
 
-Hence any monoidal double category can be a process theory if we have a convincing interpretation of it as such.
+Hence any monoidal double category can be a composition theory if we have a convincing interpretation of it as such.
 At this level of generality there's no justification for limiting this definition further.
 Of course any specific doctrine of systems can make more opinionated choices on which monoidal double categories to admit, and we will see plenty of examples of this.
 
 \begin{remark}
 	Rather than defining double categories of processes to be monoidal, one should arguably define them to be multicategories.
-	Thus a nicer, if more exotic, definition of process theory would be that of a `multicategory internal to categories'.
+	Thus a nicer, if more exotic, definition of composition theory would be that of a `multicategory internal to categories'.
 	This is the reason here, following the custom recently adopted by Myers, we often denote processes as having many inputs.
 	With our definitions, one might interpret the notation $I_1, \ldots, I_n$ as denoting a monoidal product, i.e.~we denote with `$, $' the monoidal product on processes.
 \end{remark}
 
-A process theory $\Processes$ thus unpacks as follows:
+A composition theory $\Processes$ thus unpacks as follows:
 \begin{enumerate}
 	\item There are a number of objects $I, J, K, \ldots$ which are \textbf{interfaces} of the processes.%, or the \textbf{boxes} of the composition patterns.
 	\item There are horizontal maps $h: I \horto J$ which are \textbf{maps of interfaces}, without dynamic content, they simply compare different interfaces with each other.\footnote{One could call these `algebraic maps of interfaces', as their role is to provide morphisms that \emph{preserve} the interface structure, in order to compare them.}
@@ -161,7 +161,7 @@ But in category theory we know that if we want to study something, we need to st
 \label{ex:behav-processes}
 	Given any category with finite limits\footnote{Or, more directly for our purposes, one whose codomain functor $\cod:\cat C^\downarrow \to \cat C$ is a fibration.} $\cat C$, there is a double category $\Span(\cat C)$.
 	Here, the objects are the same of $\cat C$, as well as the horizontal maps.
-	The vertical maps are given by spans instead, and the squares by morphisms of spans:
+	The vertical maps are given by spans instead, and the squares by morphisms of spans:v
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNixbMCwwLCJJIl0sWzEsMCwiSiJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzAsMiwiSSciXSxbMSwyLCJKJyJdLFsyLDQsInBfciIsMl0sWzMsNSwicV9yIl0sWzIsMCwicF9cXGVsbCJdLFszLDEsInFfXFxlbGwiLDJdLFsyLDMsIlxcYWxwaGEiLDFdLFs0LDUsImsiLDJdLFswLDEsImgiXV0=
 		\begin{tikzcd}[ampersand replacement=\&]

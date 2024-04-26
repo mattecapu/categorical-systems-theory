@@ -222,9 +222,11 @@
 	\newtheorem{problem}{Problem}%
 	\newtheorem{question}{Question}%
 	\newtheorem{claim}{Claim}%
+	\newtheorem{idea}{Idea}%
 	%
 	\theoremstyle{definition}%
 	\newtheorem{definition}[theorem]{Definition}%
+	\newtheorem{informaldefinition}{Informal Definition}%
 	\newtheorem{example}{Example}[section]%
 	\newtheorem{counterexample}[example]{Counterexample}%
 	\newtheorem{nonexample}[example]{Non-Example}%

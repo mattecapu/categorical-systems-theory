@@ -1,7 +1,7 @@
 \section{Behaviours}
 \label{sec:behaviour}
-Behaviours in CST are simply maps $\systh B : \Sys \to \BSys(\cat C)$ into a behavioural theory.
-By default, we consider behaviours valued in $\BSys(\Set)$, but one can consider `structured behaviours' into $\BSys(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
+Behaviours in CST are simply maps $\systh B : \Sys \to \BehSys(\cat C)$ into a behavioural theory.
+By default, we consider behaviours valued in $\BehSys(\Set)$, but one can consider `structured behaviours' into $\BehSys(\cat C)$ when one wants to keep track of extra structure on the set of behaviours of a system.
 
 The intuition behind this definition of behaviours the following definition is the following. First of all, $B$ maps interfaces to objects of observations we can make about them.
 Every theory of behaviour gives its own notion of what `observation' means: it could be mere points, it could be distributions, it could be sequences of observations, and so on (examples will prove the variety this definition allows).
@@ -10,7 +10,7 @@ Then, we map every system to an object of states (which are \emph{observations w
 But mapping interfaces and systems to observations it's only half of what a behaviour does. The rest of the data (called below vertical and horizontal naturality) witness the \emph{compositionality} of such assignment. We say how maps of systems translate to maps between their behaviours and, most importantly, we say how composing systems and composing behaviours interact. The latter is thus a direct witness of \emph{emergence} of behaviour.
 
 \begin{definition}
-	A \textbf{theory of behaviour} or just \textbf{behaviour} for a systems theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $\systh B:\Sys \to \BSys(\cat C)$:
+	A \textbf{theory of behaviour} or just \textbf{behaviour} for a systems theory $\Sys$ valued in the Cartesian category $\cat C$ is a map of system theories $\systh B:\Sys \to \BehSys(\cat C)$:
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc15cXHRvcCJdLFswLDIsIlxcU3BhbihcXGNhdCBDKV5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiQl5cXHRvcCIsMl0sWzAsMiwiXFxTeXMiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXGNhdCBDLy0iLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkJeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
 		\begin{tikzcd}[ampersand replacement=\&, sep=small]
@@ -264,7 +264,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 
 \begin{example}[Paths]
 \label{ex:paths}
-	Labelled transition systems admit a behaviour $\systh P : \Trans \to \BSys$ given by paths:
+	Labelled transition systems admit a behaviour $\systh P : \Trans \to \BehSys$ given by paths:
 	\begin{equation}
 		\begin{tikzcd}[ampersand replacement=\&,sep=small]
 			{\Alph^\top} \& {} \\
@@ -384,7 +384,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 
 \begin{remark}
 \label{rmk:states-to-reach}
-	We can already see an example of \emph{map} of behaviours. In fact consider the behaviour of states $\states : \Trans \to \BSys$ and the behaviour of paths $\systh P : \Trans \to \BSys$:
+	We can already see an example of \emph{map} of behaviours. In fact consider the behaviour of states $\states : \Trans \to \BehSys$ and the behaviour of paths $\systh P : \Trans \to \BehSys$:
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXEFscGheXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxTZXQpXlxcdG9wIl0sWzIsMSwiXFxkYmxDYXQiXSxbMSwwXSxbMSwyXSxbMCwxLCIxXlxcdG9wIiwyLHsiY3VydmUiOjN9XSxbMCwyLCJcXFRyYW5zIiwwLHsiY3VydmUiOi0xfV0sWzEsMiwiXFxTZXQvLSIsMix7ImN1cnZlIjoxfV0sWzMsNCwiUiIsMCx7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0IjotNCwiY3VydmUiOi0yLCJzaG9ydGVuIjp7InNvdXJjZSI6NDAsInRhcmdldCI6NDB9LCJsZXZlbCI6Mn1dLFswLDEsInsoLSleKn1eXFx0b3AiLDAseyJjdXJ2ZSI6LTN9XSxbMyw0LCJcXHN0YXRlcyIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMCwib2Zmc2V0Ijo0LCJjdXJ2ZSI6Miwic2hvcnRlbiI6eyJzb3VyY2UiOjQwLCJ0YXJnZXQiOjQwfSwibGV2ZWwiOjJ9XSxbNSw5LCJcXHZhcmVwc2lsb24iLDIseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV0sWzEwLDgsIlxcRXBzaWxvbiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
 		\begin{tikzcd}[ampersand replacement=\&]
@@ -450,7 +450,7 @@ But mapping interfaces and systems to observations it's only half of what a beha
 
 % \begin{example}[Coalgebraic behaviour]
 % 	Let $\cat C$ be a cartesian category. Let $\dblEnd^\nu(\cat C)$ denote the double category of endofunctors described in \cref{ex:coalgebras} but restricted to those endofunctors that admit a final coalgebra.
-% 	We thus end up with a restricted theory of coalgebras $\Coalg^\nu : \theoryon{\dblEnd^\nu}$. On this, we can define the following theory of behaviour:
+% 	We thus end up with a restricted theory of coalgebras $\Coalg^\nu : \theoryover{\dblEnd^\nu}$. On this, we can define the following theory of behaviour:
 % 	\begin{equation}
 % 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJ7XFxkYmxFbmReXFxudX1eXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxjYXQgQyleXFx0b3AiXSxbMiwxLCJcXGRibENhdCJdLFsxLDBdLFsxLDJdLFswLDEsIlxcbnUiLDJdLFswLDIsIlxcQ29hbGdeXFxudSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcY2F0IEMvLSIsMix7ImN1cnZlIjoxfV0sWzMsNCwiISIsMix7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0Ijo0LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6NTB9LCJsZXZlbCI6Mn1dXQ==
 % 		\begin{tikzcd}[ampersand replacement=\&]
@@ -559,10 +559,10 @@ But mapping interfaces and systems to observations it's only half of what a beha
 \end{remark}
 
 \subsection{Non-standard behaviours}
-While $\sysdoc{BSys}$ is very often a general enough doctrine of behavioural systems sometimes it comes short of its role.
+While $\doc{Beh}$ is very often a general enough doctrine of behavioural systems sometimes it comes short of its role.
 Indeed, behavioural theories are standard notion of semantics for our theories of systems, but, like for any other kind of syntax, sometimes you want to look at non-standard intepretations to capture particular phenomena.
 
-In particular, as observed in~\cref{ex:behav-systems}, behavioural theories have a logical flavour: their notion of system is that of a display map in a categorical model of dependent type theory. In other words, $\BSys(\cat C)$ is strongly related to the codomain fibration $\cod : \cat C^\downarrow \to \cat C$.
+In particular, as observed in~\cref{ex:behav-systems}, behavioural theories have a logical flavour: their notion of system is that of a display map in a categorical model of dependent type theory. In other words, $\BehSys(\cat C)$ is strongly related to the codomain fibration $\cod : \cat C^\downarrow \to \cat C$.
 
 Thus non-standard interpretations of systems, hence non-standard behaviours, arises from looking at more interesting models of dependent types than those arising from codomain fibrations.
 
@@ -573,28 +573,28 @@ Thus non-standard interpretations of systems, hence non-standard behaviours, ari
 	To forget about paths and only keep the reachability relation we have to truncate the information we have about the type of paths between two states to just a proposition.
 	In other words, we want to turn our dependent types to preidcates. Doing so will yield a non-standard behaviour of reachability.
 
-	Truncation can be expressed as a morphism of system theories $\|-\|_0 : \BSys \to \BSys_0$, where the latter is a theory like $\BSys$ except on objects, where $\Set/-$ is replaced by $\Sub(-)$. Hence systems are not display maps anymore, but just subobjects.
+	Truncation can be expressed as a morphism of system theories $\|-\|_0 : \BehSys \to \BehSys_0$, where the latter is a theory like $\BehSys$ except on objects, where $\Set/-$ is replaced by $\Sub(-)$. Hence systems are not display maps anymore, but just subobjects.
 
 	The natural transformation $\im : \Set/- \to \Sub(-)$, which sends a display map $\pi:S \to A$ to its image $\im \pi \subseteq A$, induces the desired $\|-\|_0$.
 
-	Now reachability is the non-standard behaviour $\systh R: \Trans \to \BSys_0$ obtained as $\|\systh P\|_0$, where $\systh P$ is the behaviur of paths from~\cref{ex:paths}.
+	Now reachability is the non-standard behaviour $\systh R: \Trans \to \BehSys_0$ obtained as $\|\systh P\|_0$, where $\systh P$ is the behaviur of paths from~\cref{ex:paths}.
 \end{example}
 
 \subsection{Doctrines of behaviour}
 Like theories of systems, theories of behaviours can be gathered in uniform \emph{doctrines} which functorially specify a way to look at theories of a doctrine of systems:
 
 \begin{definition}
-	A \textbf{doctrine of behaviour} for the doctrine $\dblcat{Doctrine}$ is map of doctrines of systems into the behavioural doctrine $\BSys$:
+	A \textbf{doctrine of behaviour} for the doctrine $\dblcat{Doctrine}$ is map of doctrines of systems into the behavioural doctrine $\BehSys$:
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXGRibGNhdHtEYXRhfSJdLFswLDIsIlxcZGJsY2F0e0NhcnRDYXR9Il0sWzIsMSwiXFxUaGVvcmllcyJdLFsxLDBdLFsxLDJdLFswLDEsIlxcZGJsY2F0IEJeXFx0b3AiLDJdLFswLDIsIlxcZGJsY2F0e0RvY3RyaW5lfSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcT2JzIiwyLHsiY3VydmUiOjF9XSxbMyw0LCJcXGRibGNhdCBCXlxcZmxhdCIsMCx7Im9mZnNldCI6NSwic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjJ9XV0=
 		\begin{tikzcd}[ampersand replacement=\&, sep=small]
 			{\dblcat{Data}} \& {} \\
 			\&\& \Theories \\
 			{\dblcat{CartCat}} \& {}
-			\arrow["{\sysdoc B^\top}"', from=1-1, to=3-1]
-			\arrow["{\sysdoc{Doctrine}}", curve={height=-6pt}, from=1-1, to=2-3]
-			\arrow["\sysdoc{BSys}"', curve={height=6pt}, from=3-1, to=2-3]
-			\arrow["{\sysdoc B^\flat}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
+			\arrow["{\doc B^\top}"', from=1-1, to=3-1]
+			\arrow["{\doc{Doctrine}}", curve={height=-6pt}, from=1-1, to=2-3]
+			\arrow["\doc{Beh}"', curve={height=6pt}, from=3-1, to=2-3]
+			\arrow["{\doc B^\flat}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 		\end{tikzcd}
 	\end{equation}
 \end{definition}
@@ -614,14 +614,14 @@ Like theories of systems, theories of behaviours can be gathered in uniform \emp
 			\&\& \Theories \\
 			{\dblcat{CartCat}} \& {}
 			\arrow["\Set"', from=1-1, to=3-1]
-			\arrow["\sysdoc U", curve={height=-6pt}, from=1-1, to=2-3]
-			\arrow["\sysdoc{BSys}"', curve={height=6pt}, from=3-1, to=2-3]
+			\arrow["\doc U", curve={height=-6pt}, from=1-1, to=2-3]
+			\arrow["\doc{Beh}"', curve={height=6pt}, from=3-1, to=2-3]
 			\arrow["{\Hom^h}"'{pos=0.45}, shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=1-2, to=3-2]
 		\end{tikzcd}
 	\end{equation}
 	An object of $\Theories_\ast$ is a systems theory equipped with a distinguished system (hence a pair of an interface and a system over it) which is used as archetype for a certain kind of behaviour.
 
-	The transformation $\Hom^h$ at a pointed theory $(\Sys : \Processes^\top \to \dblCat, \sys B : \Sys(I))$ is the map of system theories $\Processes^h(\sys B, -) : \Sys \to \BSys(\Set)$ defined as follows.
+	The transformation $\Hom^h$ at a pointed theory $(\Sys : \Processes^\top \to \dblCat, \sys B : \Sys(I))$ is the map of system theories $\Processes^h(\sys B, -) : \Sys \to \BehSys(\Set)$ defined as follows.
 	Its two components are the horizontal hom-functor $\Processes^h(I, -) : \Processes \to \dblSet$ and the similar fiberwise hom-functor
 	\begin{equation}
 		\Processes^h(\sys B, -)^\flat : \Sys \twoto \Set/\Processes^h(I, -).
@@ -640,10 +640,10 @@ Like theories of systems, theories of behaviours can be gathered in uniform \emp
 			\&\& \Theories \\
 			{\dblcat{CartCat}} \& {}
 			\arrow["\Set"', from=2-1, to=4-1]
-			\arrow["\sysdoc U", curve={height=-6pt}, from=2-1, to=3-3]
-			\arrow["\sysdoc{BSys}"', curve={height=6pt}, from=4-1, to=3-3]
+			\arrow["\doc U", curve={height=-6pt}, from=2-1, to=3-3]
+			\arrow["\doc{Beh}"', curve={height=6pt}, from=4-1, to=3-3]
 			\arrow["{\Hom^h}"', shift right=3, shorten <=10pt, shorten >=14pt, Rightarrow, from=2-2, to=4-2]
-			\arrow["\sysdoc{Moore}", curve={height=-18pt}, from=1-1, to=3-3]
+			\arrow["\doc{Moore}", curve={height=-18pt}, from=1-1, to=3-3]
 			\arrow["{(\Moore,\ \fix : \Moore(1))}"', from=1-1, to=2-1]
 		\end{tikzcd}
 	\end{equation}

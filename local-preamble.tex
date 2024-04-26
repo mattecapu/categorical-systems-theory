@@ -1,10 +1,37 @@
-\newcommand{\fix}{\sys{fix}}
-\newcommand{\unilaxto}{\nlongto{\text{unitary lax}}}
-\newcommand{\theoryon}[1]{{#1}^\top \nlongto{\text{unitary lax}} \dblCat}
+\newcommand{\dblSpan}{{\dblcat{Span}}}
+\newcommand{\DblCat}{{\dblcat{Dbl}\Cat}}
+\newcommand{\DblIx}{{\dblcat{Dbl}\dblcat{Ix}}}
+\newcommand{\MonDblIx}{{\dblcat{Mon}\dblcat{Dbl}\dblcat{Ix}}}
 
+\newcommand{\SymOperads}{{\sf sm}}
+\newcommand{\SymDblOperads}{{\sf smc}}
+
+\newcommand{\compth}[1]{\dblcat{#1}}
+\newcommand{\systh}[1]{\cat{#1}}
+\newcommand{\doc}[1]{\mathfrak{#1}}
+
+\newcommand{\Paradigm}{{(\dblcat{E}, T)}}
+\newcommand{\Doc}{{\doc{Doc}}}
+\newcommand{\Sys}{{\systh{Sys}}}
+\newcommand{\Comp}{{\compth{C}}}
+\newcommand{\Processes}{\Comp}
+
+\newcommand{\Behaviour}{\cat{B}}
+
+\newcommand{\Theories}[1][{}]{{\dblcat{Th}_{#1}}}
+\newcommand{\unilaxto}{\nlongto{\text{unitary lax}}}
+\newcommand{\theoryover}[1]{{#1}^\top \nlongto{\text{unitary lax}} \dblCat}
+
+\newcommand{\sys}[1]{\mathsf{#1}}
+
+\newcommand{\CyberProcesses}{\trplcat{P}}
+\newcommand{\Cyb}{\cat{Cyb}}
+\newcommand{\CybSys}{\cat{CybSys}}
+
+\newcommand{\BehSys}{\systh{B}}
+\newcommand{\Moore}{\systh{Moore}}
 \renewcommand{\Alph}{\dblcat{Alph}}
 \newcommand{\Int}{\cat{Int}}
-
 \renewcommand{\Coalg}{\systh{Coalg}}
 \newcommand{\Trans}{\systh{Trans}}
 \newcommand{\DynSys}{\systh{DynSys}}
@@ -19,6 +46,7 @@
 \newcommand{\expose}{\mathsf{expose}}
 \newcommand{\update}{\mathsf{update}}
 \newcommand{\observe}{\mathsf{observe}}
+\newcommand{\fix}{\sys{fix}}
 
 \newcommand{\acc}{\mathsf{acc}}
 \newcommand{\Fin}{\mathrm{Fin}}
