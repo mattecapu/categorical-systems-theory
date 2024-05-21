@@ -1,0 +1,131 @@
+\section{Time}
+We can consider $\Sys : \theoryover{\Comp}$ a kind of category, by leaving the indexing on interfaces implicit.
+Its objects $\sys S \in \Sys$ are systems $\sys S \in \Sys(A)$ over a certain (left implicit) interface $A \in \Comp$, and whose hom-sets $\Sys(\sys S, \sys T)$ are given by maps of systems $\varphi \in \Sys(h)(\sys S, \sys T)$, as $h$ varies among maps of interfaces.
+
+Formally, this corresponds to a flavour of Grothendieck construction of $\Sys$, in the form of a double category whose objects are pairs $(A \in \Comp, \sys S \in \Sys(A))$, denoted as $\lens{\sys S}{A}$, whose tight 1-cells are maps of systems and interfaces, and whose loose 1-cells $\lens{\sys S}{A} \to \lens{\sys T}{B}$ are compositions $p:A \to B$ such that $\sys S\cdot p = \sys T$.
+
+We denote this double category as $\dblSys$.
+We make good use of the tight part of this double category.
+In there, we can define universal constructions of systems.
+
+\begin{definition}
+	A \textbf{diagram of systems} is a category $\cat J$ together with a functor $\sys D : \cat J \to \dblSys$ picking out a system $\sys D_j$ with interface $I_j$ for each $j \in \cat J$ and a map of systems $\sys D_f : \sys D_j \to \sys D_i$ over the map of interfaces $I_j \to I_i$ for each 1-cell $f:j \to i \in \cat J$.
+\end{definition}
+
+\begin{definition}
+	The \textbf{limit} (resp. \textbf{colimit}) of a diagram of systems is the categorical limit (resp. colimit) of the diagram in the tight category of $\dblSys$.
+\end{definition}
+
+
+\begin{remark}
+	A category like $\cat J$ can be turned into a double category by equipping it with trivial loose moprhisms only, and then into a trivial theory of systems by assigning to each $j \in \cat J$ the terminal category $1$.
+	Then a diagram $\sys D : \cat J \to \Sys$ is a (necessarily taut) map of theories.
+\end{remark}
+
+The following generalizes~\cref{ex:corep-beh}:
+% \begin{proposition}
+% 	For each system $\sys T \in \Sys$ with interface $I \in \Comp$, there is a \textbf{corepresentable behaviour} $\Sys(\sys T, -) : \Sys \to \Set$ given on each $A \in \Comp$ by the functor
+% 	\begin{equation}
+% 		\Sys(\sys T, -) : \Sys(A) \longto \Set/\Comp(I,A)
+% 	\end{equation}
+% 	defined as $\Sys(\sys T, \sys X) = \sum_{h \in \Comp(I,A)} \Sys(h)(\sys T, \sys X) \nto{\sf fst} \Comp(I,A)$.
+% \end{proposition}
+
+\begin{proposition}
+	For each diagram of systems $\sys T : \Time \to \Sys$, there is a \textbf{jointly corepresentable behaviour} $\Sys(\sys T, -)$ given on each $A \in \Comp$ by the functor
+	\begin{equation}
+		\Sys(\sys T, -) : \Sys(A) \longto \Set/\colim_{t \in \Time}\Comp(I_t,A)
+	\end{equation}
+	defined as $\Sys(\sys T, \sys X) = \colim_{t \in \Time} \left(\sum_{h \in \Comp(I_t,A)} \Sys(h)(\sys T_t, \sys X) \nto{\sf fst} \Comp(I_t,A)\right)$.
+\end{proposition}
+
+The idea here is to embody a topology of time in a category and specifically in the functor picking out `walking trajectories' $\sys T_t$ for every `shape of time' $t$.
+This allows to be very flexible and precise in our meaning of time.
+For instance, here's three different ways to talk about discrete, finite-length trajectories of Moore machines:
+
+\begin{example}
+	Consider the theory $\Moore_P$ of non-deterministic Moore machines in $\Set$.
+	Let $\Time = (\N, \leq)$ and define $\sys T:\Time \to \Moore_P$ as follows.
+	The non-deterministic Moore machine $\sys T_n$ has interface\footnotemark~$\lens{1}{n}$ and dynamics representable as follows:
+	\footnotetext{We abuse notation by denoting with $n$ also the finite set $\{1, \ldots, n\} \subseteq \N$}
+	\begin{equation}
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXE92ZXJzZXR7MX1cXGJ1bGxldCJdLFsxLDAsIlxcT3ZlcnNldHsyfVxcYnVsbGV0Il0sWzIsMCwiXFxjZG90cyJdLFszLDAsIlxcT3ZlcnNldHtufVxcYnVsbGV0Il0sWzAsMV0sWzEsMl0sWzIsM11d
+		\begin{tikzcd}[ampersand replacement=\&]
+			{\Overset{1}\bullet} \& {\Overset{2}\bullet} \& \cdots \& {\Overset{n}\bullet}
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=1-3]
+			\arrow[from=1-3, to=1-4]
+		\end{tikzcd}
+	\end{equation}
+	An inequality $n \leq m$ is then mapped to the map of systems $\sys T_n \to \sys T_m$ that maps the states of the first to the first $n$ states of the latter.
+\end{example}
+
+\begin{example}
+	Instead of $(\N,\leq)$ let $\Time$ be the category whose objects are still $\N$ but whose morphisms $n \to m$ ($n \leq m$) are given by choices of an offset $h \in \N$ such that $h+n \leq m$.
+	The diagram $\sys T$ is defined as before on object, but now a map $h:n \to m$ is sent to the function sending $i \in n$ to $i+h \in m$.
+\end{example}
+
+\begin{example}
+	Consider $B\N$, the one-object category corresponding to the monoid $(\N,0,+)$.
+	We can send the only object $\ast \in B\N$ to the Moore machine with states $\N$ and interface $\lens{1}{\N}$, with dynamics given by shift:
+	\begin{equation}
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXE92ZXJzZXR7MX1cXGJ1bGxldCJdLFsxLDAsIlxcT3ZlcnNldHsyfVxcYnVsbGV0Il0sWzIsMCwiXFxjZG90cyJdLFszLDAsIlxcT3ZlcnNldHtufVxcYnVsbGV0Il0sWzQsMCwiXFxjZG90cyJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdXQ==
+		\begin{tikzcd}[ampersand replacement=\&]
+			{\Overset{1}\bullet} \& {\Overset{2}\bullet} \& \cdots \& {\Overset{n}\bullet} \& \cdots
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=1-2, to=1-3]
+			\arrow[from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd}
+	\end{equation}
+	On morphisms, the functor is determined by its action on $1:\ast \to \ast$, which is mapped to the endomorphism $\sys T_\ast \to \sys T_\ast$ given on states by $n \mapsto n+1$.
+\end{example}
+
+\begin{example}
+	Let $\ODE$ be the theory of differential Moore machines.
+	Consider the category of open intervals of the order $(\R,\leq)$, with morphisms given by length-preserving inclusions.
+	Explicitly, a map $(a,b) \to (c,d)$ is a real number $h$ such that $c \leq a+h \leq b+h \leq d$.
+	An interval $(a,b)$ can be mapped to the open ODE whose dynamics is $d/dt = 1$ and interface $\lens{1}{(a,b)}$.
+	This assignment extends to morphisms since length-preserving maps preserve such constant vector fields.
+\end{example}
+
+\begin{example}
+	Similarly as above, we can instead consider two other notions of time for $\ODE$: restrict ourselves to the intervals $(0,b)$ and their inclusions $(0,b) \to (0,d)$, or considering the monoid $B(\R, 0, +)$ mapped to the real line with $d/dt=1$ as dynamics, and sending $\ell:\ast \to \ast$ to the shift map $\_+\ell:\R \to \R$.
+\end{example}
+
+\begin{example}
+	Let $\Petri$ be the theory of Petri nets, following~\cite{kock_whole-grain_2022}.
+	As shown in \emph{ibid.}, the category of DAGs and morphisms between them embeds in the category of Petri nets: given a DAG, make its edges places and its nodes transitions.
+\end{example}
+
+% \begin{example}
+% 	Consider the theory $\Coalg$ of polynomial coalgebras over $\Poly(\Set)$~\cite{niu_polynomial_2023}.
+% 	We consider the category whose objects are
+% \end{example}
+
+\begin{proposition}
+	Every jointly corepresentable behaviour factors as
+	\begin{equation}
+		\begin{tikzcd}[ampersand replacement=\&]
+			\Sys \&\& \Set \\
+			\& {\Psh(\Time)}
+			\arrow["{\Sys(\sys T,-)}", from=1-1, to=1-3]
+			\arrow["{\Sys(\sys T_{(-)},-)}"', dashed, from=1-1, to=2-2]
+			\arrow["\colim_{t \in \Time}"', from=2-2, to=1-3]
+		\end{tikzcd}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	Explicitly, the map $\Sys(\sys T_{(-)},-)$ is defined on a system $\sys X$ as
+	\begin{eqalign}
+		\Sys(\sys T_{(-)},\sys X) : \Time &\longto \Set\\
+		t &\mapsto \Sys(\sys T_t,\sys X),
+	\end{eqalign}
+	making the claimed commutativity evident.
+	% To see that $\Sys(\sys T_{(-)},\sys X)$ is indeed a sheaf over $\Time^\op$, recall that a sheaf on such a site is a copresheaf $P:\Time \to \Set$ such that, for every limiting cone $\{\bar t \to t_i\}_{i \in I}$ in $\Time$, $\lim_i P(t_i) \iso P(\lim_i t_i) \iso P(\bar t)$.
+	% Then observe that $\lim_i \Sys(\sys T_i,\sys X) \iso \Sys(\colim_i \sys T_{t_i}, \sys X) = \Sys(\sys T_{\bar t},\sys X)$.
+\end{proof}
+
+\subsection{Locality}
+
+\subsection{Open maps}

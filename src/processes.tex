@@ -23,14 +23,14 @@ Of course any specific doctrine of systems can make more opinionated choices on 
 \begin{remark}
 	Rather than defining double categories of processes to be monoidal, one should arguably define them to be multicategories.
 	Thus a nicer, if more exotic, definition of composition theory would be that of a `multicategory internal to categories'.
-	This is the reason here, following the custom recently adopted by Myers, we often denote processes as having many inputs.
+	This is the reason here we often denote processes as having many inputs.
 	With our definitions, one might interpret the notation $I_1, \ldots, I_n$ as denoting a monoidal product, i.e.~we denote with `$, $' the monoidal product on processes.
 \end{remark}
 
-A composition theory $\Processes$ thus unpacks as follows:
+A composition theory $\Comp$ thus unpacks as follows:
 \begin{enumerate}
 	\item There are a number of objects $I, J, K, \ldots$ which are \textbf{interfaces} of the processes.%, or the \textbf{boxes} of the composition patterns.
-	\item There are horizontal maps $h: I \horto J$ which are \textbf{maps of interfaces}, without dynamic content, they simply compare different interfaces with each other.\footnote{One could call these `algebraic maps of interfaces', as their role is to provide morphisms that \emph{preserve} the interface structure, in order to compare them.}
+	\item There are tight maps $h: I \horto J$ which are \textbf{maps of interfaces}, without dynamic content, they simply compare different interfaces with each other.\footnote{One could call these `algebraic maps of interfaces', as their role is to provide morphisms that \emph{preserve} the interface structure, in order to compare them.}
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsMixbMCwwLCJJIl0sWzEsMCwiSiJdLFswLDEsImgiXV0=
 		\begin{tikzcd}[ampersand replacement=\&]
@@ -38,7 +38,7 @@ A composition theory $\Processes$ thus unpacks as follows:
 			\arrow["h", from=1-1, to=1-2]
 		\end{tikzcd}
 	\end{equation}
-	\item There are vertical maps $p : I_1, \ldots, I_n \verto K$  which are the \textbf{processes}, connecting interfaces in some way.\footnote{Again, one might call these `geometric maps of interfaces', as they \emph{reflect} structure in many example we care about}
+	\item There are loose maps $p : I_1, \ldots, I_n \verto K$  which are the \textbf{processes} or \textbf{compositions}, connecting interfaces in some way.
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsMixbMCwwLCJJIl0sWzAsMSwiSyJdLFswLDEsInAiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XV0=
 		\begin{tikzcd}[ampersand replacement=\&]
@@ -62,7 +62,9 @@ A composition theory $\Processes$ thus unpacks as follows:
 	\end{equation}
 \end{enumerate}
 
-A very important takeway behind this definition is that it distinguishes morphisms \emph{as} processes from morphisms \emph{of} processes.
+Moreover, squares and 1-cells compose both vertically and horizontally, with vertical composition associative and unital only up to coherent isomorphism, see~\cite{grandis_higher_2019}.
+
+Notice this definition distinguishes between two kinds of 1-cells involved in the study of open processes: the 1-cells which act \emph{as} processes and the 1-cells acting as \emph{morphisms of} processes.
 In fact, the usual yoga of process theories (which amount to symmetric monoidal `single' categories) only focuses on the compositional properties of processes (they compose like morphisms).
 But in category theory we know that if we want to study something, we need to study morphisms between them!
 
@@ -70,8 +72,8 @@ But in category theory we know that if we want to study something, we need to st
 \label{ex:alphabets}
 	Let $\Alph = \FinSet^\uparrow$ be the double category of alphabets and alphabet reductions, and maps thereof.
 	Its objects are finite sets of symbols we call `alphabets'.
-	Its horizontal maps are maps of finite sets.
-	Its vertical maps are \emph{alphabet reductions}, which are map of finite sets in the opposite direction:
+	Its tight maps are maps of finite sets.
+	Its loose maps are \emph{alphabet reductions}, which are map of finite sets in the opposite direction:
 	\begin{equation}
 		p : \Sigma \verto \Sigma' \in \FinSet(\Sigma', \Sigma)
 	\end{equation}
@@ -159,9 +161,9 @@ But in category theory we know that if we want to study something, we need to st
 
 \begin{example}[Behavioural theory]
 \label{ex:behav-processes}
-	Given any category with finite limits\footnote{Or, more directly for our purposes, one whose codomain functor $\cod:\cat C^\downarrow \to \cat C$ is a fibration.} $\cat C$, there is a double category $\Span(\cat C)$.
-	Here, the objects are the same of $\cat C$, as well as the horizontal maps.
-	The vertical maps are given by spans instead, and the squares by morphisms of spans:v
+	Given any category with finite limits $\cat E$, there is a cartesian double category $\Span(\cat E)$.
+	Here, the objects are the same of $\cat E$, as well as the tight maps.
+	The loose maps are given by spans instead, and the squares by morphisms of spans:
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNixbMCwwLCJJIl0sWzEsMCwiSiJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzAsMiwiSSciXSxbMSwyLCJKJyJdLFsyLDQsInBfciIsMl0sWzMsNSwicV9yIl0sWzIsMCwicF9cXGVsbCJdLFszLDEsInFfXFxlbGwiLDJdLFsyLDMsIlxcYWxwaGEiLDFdLFs0LDUsImsiLDJdLFswLDEsImgiXV0=
 		\begin{tikzcd}[ampersand replacement=\&]
@@ -177,6 +179,26 @@ But in category theory we know that if we want to study something, we need to st
 			\arrow["h", from=1-1, to=1-2]
 		\end{tikzcd}
 	\end{equation}
-	We call these double categories `behavioural theories of processes' since they model processes only by their input-output relation, hence by the behaviour they expose.
-	Of course this is only an attitude.
+	We call these double categories `behavioural theories of processes' since they model processes only by their input-output (proof-relevant) relation, hence by the behaviour they expose.
+\end{example}
+
+\begin{example}[Generalized behavioural theory]
+\label{ex:gen-behav-processes}
+	Let $\cat E$ be a cartesian category with strong display maps $\cat D$ (\cite[Definition~10.4.1]{jacobs_categorical_1999}), meaning $\cat D$ is a wide subcategory of maps (called \emph{display maps} and denoted as $\epito$) which is closed under pullback along arbitrary maps and under products (implying product projections are display).
+	We can then form a double category $\Span(\cat D, \cat E)$ whose objects and tight maps are the same of $\cat E$, and whose loose maps are given by spans whose left leg is display
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsNixbMCwwLCJJIl0sWzEsMCwiSiJdLFswLDEsIlgiXSxbMSwxLCJZIl0sWzAsMiwiSSciXSxbMSwyLCJKJyJdLFsyLDQsInBfciIsMl0sWzMsNSwicV9yIl0sWzIsMCwicF9cXGVsbCJdLFszLDEsInFfXFxlbGwiLDJdLFsyLDMsIlxcYWxwaGEiLDFdLFs0LDUsImsiLDJdLFswLDEsImgiXV0=
+		\begin{tikzcd}[ampersand replacement=\&]
+			I \& J \\
+			X \& Y \\
+			{I'} \& {J'}
+			\arrow["{p_r}"', two heads, from=2-1, to=3-1]
+			\arrow["{q_r}", two heads, from=2-2, to=3-2]
+			\arrow["{p_\ell}", from=2-1, to=1-1]
+			\arrow["{q_\ell}"', from=2-2, to=1-2]
+			\arrow["\alpha"{description}, from=2-1, to=2-2]
+			\arrow["k"', from=3-1, to=3-2]
+			\arrow["h", from=1-1, to=1-2]
+		\end{tikzcd}
+	\end{equation}
 \end{example}

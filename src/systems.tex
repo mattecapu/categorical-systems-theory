@@ -1,19 +1,19 @@
 \section{Systems}
-Systems are the things processes link, or the things composition patterns compose.
+Systems are the things compositions link, or the things composition patterns compose.
 
 \begin{definition}
-	A \textbf{doubly indexed category}, or \textbf{action of a double category}, is given, informally, by a unitary lax double functor $\Sys : \Processes^\top \to \dblCat$.
+	A \textbf{doubly indexed category}, or \textbf{action of a double category}, is given, informally, by a unitary lax double functor $\Sys : \Comp^\top \to \dblCat$.
 \end{definition}
 
 We recall $\dblCat$ is the cartesian monoidal double category of categories, functors, profunctors and natural transformations. A unitary lax functor is a double functor preserving vertical identities strictly but not vertical composition. Hence given two maps of interfaces $h:I \to J$, $k : J \to K$, we have a natural transformation $\ell_{h,k}:\Sys(h) \otimes \Sys(k) \to \Sys(h \comp k)$ between profunctors.
 
 \begin{definition}
-	A \textbf{theory of systems over the composition theory $\Processes$} is a monoidal doubly indexed category $\Sys : \Processes^\top \unilaxto \dblCat$ with attitude.
+	A \textbf{theory of systems over the composition theory $\Comp$} is a monoidal doubly indexed category $\Sys : \Comp^\top \unilaxto \dblCat$ with attitude.
 \end{definition}
 
-Concretely, $\Sys$ maps interfaces to \textbf{categories of systems}, processes to \textbf{extension functors}, maps of interfaces to \textbf{mapping profunctors} and maps of processes to \textbf{extension transformations}.
+Concretely, $\Sys$ maps interfaces to \textbf{categories of systems}, compositions to \textbf{composition functors}, maps of interfaces to \textbf{mapping profunctors} and maps of compositions to \textbf{composition transformations}.
 
-Hence given an interface $I : \Processes$, we think of the objects of $\Sys(I)$ as systems of a certain kind while the maps are \textbf{simulations} between them, i.e.~some notion of structure-preserving map between them.
+Hence given an interface $I : \Comp$, we think of the objects of $\Sys(I)$ as systems of a certain kind while the maps are \textbf{simulations} between them, i.e.~some notion of structure-preserving map between them.
 \begin{equation}
 	\Sys(I) = \left\{
 		% https://q.uiver.app/?q=WzAsMixbMCwwLCJcXHN5cyBTIl0sWzIsMCwiXFxzeXMgVCJdLFswLDEsIlxcdmFycGhpIl1d
@@ -23,7 +23,7 @@ Hence given an interface $I : \Processes$, we think of the objects of $\Sys(I)$ 
 		\end{tikzcd}
 	\right\}
 \end{equation}
-The functors induced by a process act by extending a system with that process. If we think of the process as a composition pattern instead, the functor assembles in a composite system:
+The functors induced by a composition act by extending a system with that composition. If we think of the composition as a composition pattern instead, the functor assembles in a composite system:
 \begin{equation}
 	\Sys(I \nverto{p} K) : \Sys(I) \longto \Sys(K)
 \end{equation}
@@ -33,7 +33,7 @@ The profunctors induced by a map of interfaces give notions of simulations betwe
 \end{equation}
 Hence an element $\ell \in \Sys(I \nhorto{h} J)(\sys S, \sys T)$ is a \emph{simulation of $\sys S$ in $\sys T$ mediated by the maps of interfaces $h$}.
 
-Finally, squares in $\Processes$ induce squares witnessing the extension of a simulation of systems along a map of processes:
+Finally, squares in $\Comp$ induce squares witnessing the composition of a simulation of systems along a map of compositions:
 \begin{equation}
 	\Sys(p \ntwoto{\alpha} q) : \Sys(h) \twoto (\Sys(p), \Sys(q))^*\Sys(k)
 \end{equation}
@@ -64,178 +64,7 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 		\item One can choose an endofunctor $F:\cat S \to \cat S$ and consider $F$-coalgebras instead of mere endomorphisms as the dynamical systems. In this way one can get, e.g.~non-deterministic closed systems. We denote this category $\Coalg(F)$. The basic case is recovered for the choice $F=1_{\cat S}$.
 		\item One can choose a monoid of `time' $T$ and consider $T$-actions instead of mere endomorphisms. Notice one can pick $T : \Mon(\cat S)$ but also $T : \Mon(\Set)$, and then consider $T$-actions to be functors $BT \to \cat S$. In this way one can get, e.g.~continuous time dynamical systems by choosing $T=\R$. We denote this category $\cat{TimeSys}(T)$. The basic case is recovered for the choice $T = \N$.
 	\end{enumerate}
-	These two examples also admit a more interesting theory of processes, as we are going to see shortly.
-\end{example}
-
-\begin{example}
-\label{ex:coalgebras}
-	We can think of a coalgebra $A \to FA$ as a system with states $A$ and interface $F$. Natural transformations $\alpha : F \Rightarrow F'$ are `lenses' and one gets an indexed
-	category
-	\begin{equation}
-		\Coalg : \End(\cat C) \to \Cat
-	\end{equation}
-	If $\cat C$ is additionally finitely complete, we can go further and add another dimension. In fact, in this case, $\End(\cat C)$ is fibred over $\cat C$ by evaluation at the terminal object:
-	\begin{equation}
-		-(1) : \End(\cat C) \to \cat C
-	\end{equation}
-	The cartesian lift of a given arrow $f:A \to G(1)$ is given by a
-	natural transformation $f_G : f^*G \Rightarrow G$ obtained from the
-	pullback square
-	\begin{equation}
-		% https://q.uiver.app/?q=WzAsNCxbMSwwLCJHWCJdLFsxLDEsIkcxIl0sWzAsMSwiQSJdLFswLDAsImZeKkdYIl0sWzAsMSwiRyEiXSxbMiwxLCJmIiwyXSxbMywyXSxbMywwLCJmX3tHLFh9Il0sWzMsMSwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
-		\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
-			{f^*GX} \& GX \\
-			A \& G1
-			\arrow["{G!}", from=1-2, to=2-2]
-			\arrow["f"', from=2-1, to=2-2]
-			\arrow[from=1-1, to=2-1]
-			\arrow["{f_{G,X}}", from=1-1, to=1-2]
-			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-		\end{tikzcd}
-	\end{equation}
-	that simultaneously defines $f^*G$ (on morphisms is defined by
-	pullback again) and $f_G$.
-
-	The fibred subcategory of polynomial functors is what gives
-	`dependent' lenses, whose opposite is the codomain fibration,
-	i.e.~`dependent' charts~\cite{spivak_generalized_2019}.
-	This suggests that taking the opposite fibration of $-(1)$ gives us a
-	fibration of `generalized charts'.
-
-	We can explicitly construct these things if we work out the cartesian
-	factorization system induced by $-(1)$ on $\End(\cat C)$. This is
-	given by
-
-	\begin{enumerate}
-		\item
-			Cartesian maps are given by natural transformations whose naturality
-			is witness by pullback squares, as suggested by the definition of
-			$f^*G$ above: which we make explicit here:
-
-			\begin{equation}
-				% https://q.uiver.app/?q=WzAsNCxbMCwwLCJGWCJdLFsxLDAsIkdYIl0sWzEsMSwiR1kiXSxbMCwxLCJGWSJdLFszLDIsIlxcYWxwaGFfWSIsMl0sWzEsMiwiR2YiXSxbMCwxLCJcXGFscGhhX1giXSxbMCwzLCJGZiIsMl0sWzAsMiwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
-				\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
-					FX \& GX \\
-					FY \& GY
-					\arrow["{\alpha_Y}"', from=2-1, to=2-2]
-					\arrow["Gf", from=1-2, to=2-2]
-					\arrow["{\alpha_X}", from=1-1, to=1-2]
-					\arrow["Ff"', from=1-1, to=2-1]
-					\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
-				\end{tikzcd}
-			\end{equation}
-		\item
-			Vertical maps are given by natural transformations whose component at
-			$1$ is an isomorphism (think: the identity)
-	\end{enumerate}
-
-	We define a \emph{generalized chart} $\lens{k^\flat}{k}: F \chartto G$ to be a span in $\End(\cat C)$ whose left leg is vertical and whose right leg is cartesian. Generalized charts look like this:
-	\begin{equation}
-		% https://q.uiver.app/?q=WzAsOCxbMSwxLCJGMSJdLFszLDEsIkcxIl0sWzMsMCwiRyJdLFsyLDEsIkYxIl0sWzIsMCwiZl4qRyJdLFsxLDAsIkYiXSxbMCwwLCJcXEVuZChcXGNhdCBDKSJdLFswLDEsIlxcY2F0IEMiXSxbNCwyLCJrX0ciXSxbMywxLCJrIiwyXSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImteXFxmbGF0IiwyXSxbNiw3LCItKDEpIiwyXV0=
-		\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
-			{\End(\cat C)} \& F \& {k^*G} \& G \\
-			{\cat C} \& F1 \& F1 \& G1
-			\arrow["{k_G}", from=1-3, to=1-4]
-			\arrow["k"', from=2-3, to=2-4]
-			\arrow[Rightarrow, no head, from=2-2, to=2-3]
-			\arrow["{k^\flat}"', from=1-3, to=1-2]
-			\arrow["{-(1)}"', from=1-1, to=2-1]
-		\end{tikzcd}
-	\end{equation}
-	These might look like lenses (because lenses are obtained by opping a
-	fibration) but they are actually charts. We can verify this by looking
-	at the case in which $F$ and $G$ are polynomial (over $\Set$), to see if this
-	construction recovers the usual one. We see that $k^\flat$ lives in
-	\begin{equation}
-		\Nat\left(\sum_{i \in F1} y^{F_i}, \sum_{j \in F1} y^{G_{k(j)}}\right) \iso \prod_{i \in F1} \sum_{j \in F1} \Set(F_i, G_{k(j)}) \iso \sum_{f : F1 \to F1} \prod_{i \in F1} \Set(F_i, G_{k(f(i))})
-	\end{equation}
-	and since we know it is a vertical map, then $k^\flat$ actually lives in the subobject of the right hand side for which the map $f$ is the identity. Thus we
-	see $\lens{k^\flat}{k}$ encodes the data of a chart (notice how $F$ and
-	$G$ swapped places: charts are lenses `relative to lenses').
-
-	% Thus is not far-fetched to think of such a fibration as giving
-	% generalized lenses and charts. What is sure is that the double
-	% Grothendieck construction of David Jaz Myers gives us a double category
-	% of endofunctors, natural transformations (loose), generalized charts
-	% (tight) and commutative squares.
-
-	This allows us to extend the indexed category $\Coalg$ defined
-	previously to have a profunctorial action. So a given generalized chart
-	$\lens{k^\flat}{k} : F \chartto G$ is mapped to a profunctor
-	$\Coalg\lens{k^\flat}{k} : \Coalg(F) \profto \Coalg(G)$. This has a rather complex
-	definition: it maps two coalgebras $\gamma:A \to FA$ and
-	$\delta:B \to GB$ to the set of $\phi:A \to B$ that make the
-	following commute:
-	\begin{equation}
-		% https://q.uiver.app/?q=WzAsOCxbMCwwLCJBIl0sWzEsMiwia14qR0IiXSxbMCwyLCJGQSJdLFsxLDEsImteKkIiXSxbMiwxLCJCIl0sWzEsMywiRjEiXSxbMiwyLCJHQiJdLFsyLDMsIkcxIl0sWzAsMiwiXFxnYW1tYSIsMV0sWzMsMSwiXFxkZWx0YSciLDFdLFszLDQsImsnIiwxXSxbMCw0LCJcXHBoaSIsMSx7ImN1cnZlIjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNywiayIsMV0sWzIsNSwiRiEiLDEseyJjdXJ2ZSI6Mn1dLFsxLDUsIkchJyIsMV0sWzQsNiwiXFxkZWx0YSIsMV0sWzMsNiwiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzYsNywiRyEiLDFdLFsxLDYsImtfe0csQn0iLDFdLFsxLDcsIiIsMix7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
-		\begin{tikzcd}[ampersand replacement=\&]
-			A \\
-			\& {k^*B} \& B \\
-			FA \& {k^*GB} \& GB \\
-			\& F1 \& G1
-			\arrow["\gamma"{description}, from=1-1, to=3-1]
-			\arrow["{\delta'}"{description}, from=2-2, to=3-2]
-			\arrow["{k'}"{description}, from=2-2, to=2-3]
-			\arrow["\phi"{description}, curve={height=-12pt}, dashed, from=1-1, to=2-3]
-			\arrow["k"{description}, from=4-2, to=4-3]
-			\arrow["{F!}"{description}, curve={height=12pt}, from=3-1, to=4-2]
-			\arrow["{G!'}"{description}, from=3-2, to=4-2]
-			\arrow["\delta"{description}, from=2-3, to=3-3]
-			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
-			\arrow["{G!}"{description}, from=3-3, to=4-3]
-			\arrow["{k_{G,B}}"{description}, from=3-2, to=3-3]
-			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-2, to=4-3]
-		\end{tikzcd}
-	\end{equation}
-	\begin{equation}
-		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJBIl0sWzMsMSwia14qR0IiXSxbMCwxLCJGQSJdLFszLDAsImteKkIiXSxbMSwxLCJGQiJdLFswLDIsIlxcZ2FtbWEiLDJdLFszLDEsIlxcZGVsdGEnIiwxXSxbMCwzLCJcXGV4aXN0cyEgXFxsYW5nbGUgXFxnYW1tYSBcXGNvbXAgRiEsIFxccGhpIFxccmFuZ2xlIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzEsNCwia15cXGZsYXRfQiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMH1dLFsyLDQsIkYoXFxwaGkpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
-		\begin{tikzcd}[ampersand replacement=\&]
-			A \&\&\& {k^*B} \\
-			FA \& FB \&\& {k^*GB}
-			\arrow["\gamma"', from=1-1, to=2-1]
-			\arrow["{\delta'}"{description}, from=1-4, to=2-4]
-			\arrow["{\exists! \langle \gamma \comp F!, \phi \rangle}"{description}, dotted, from=1-1, to=1-4]
-			\arrow["{k^\flat_B}"'{pos=0.3}, from=2-4, to=2-2]
-			\arrow["{F(\phi)}", dashed, from=2-1, to=2-2]
-		\end{tikzcd}
-	\end{equation}
-	% \begin{equation}
-	% 	% https://q.uiver.app/?q=WzAsOSxbMCwwLCJBIl0sWzEsMiwiRkIiXSxbNCwwLCJCIl0sWzQsMiwiR0IiXSxbMywyLCJrXipHQiJdLFswLDIsIkZBIl0sWzMsMSwia14qQiJdLFszLDMsIkYxIl0sWzQsMywiRzEiXSxbMiwzLCJcXGRlbHRhIl0sWzQsMSwia15cXGZsYXRfQiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMH1dLFs1LDEsIkYoXFxwaGkpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsNSwiXFxnYW1tYSIsMl0sWzYsMiwiayciXSxbNiw0LCJcXGRlbHRhJyIsMV0sWzYsMywiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzAsMiwiXFxwaGkiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCw2LCJcXGV4aXN0cyEgXFxsYW5nbGUgXFxnYW1tYSBcXGNvbXAgRiEsIFxccGhpIFxccmFuZ2xlIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzMsOCwiRyEiXSxbNyw4LCJrIiwyXSxbNSw3LCJGISIsMix7ImN1cnZlIjoyfV0sWzQsNywiRyEnIiwyXSxbNCw4LCIiLDIseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbNCwzLCJrX3tHLEJ9Il1d
-	% 	\begin{tikzcd}[ampersand replacement=\&]
-	% 		A \&\&\&\& B \\
-	% 		\&\&\& {k^*B} \\
-	% 		FA \& FB \&\& {k^*GB} \& GB \\
-	% 		\&\&\& F1 \& G1
-	% 		\arrow["\delta", from=1-5, to=3-5]
-	% 		\arrow["{k^\flat_B}"'{pos=0.3}, from=3-4, to=3-2]
-	% 		\arrow["{F(\phi)}", dashed, from=3-1, to=3-2]
-	% 		\arrow["\gamma"', from=1-1, to=3-1]
-	% 		\arrow["{k'}", from=2-4, to=1-5]
-	% 		\arrow["{\delta'}"{description}, from=2-4, to=3-4]
-	% 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-4, to=3-5]
-	% 		\arrow["\phi"{description}, dashed, from=1-1, to=1-5]
-	% 		\arrow["{\exists! \langle \gamma \comp F!, \phi \rangle}"{description}, dotted, from=1-1, to=2-4]
-	% 		\arrow["{G!}", from=3-5, to=4-5]
-	% 		\arrow["k"', from=4-4, to=4-5]
-	% 		\arrow["{F!}"', curve={height=12pt}, from=3-1, to=4-4]
-	% 		\arrow["{G!'}"', from=3-4, to=4-4]
-	% 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-4, to=4-5]
-	% 		\arrow["{k_{G,B}}", from=3-4, to=3-5]
-	% 	\end{tikzcd}
-	% \end{equation}
-
-	Specifically, we are asking for the following:
-	\begin{eqalign}
-		\forall a \in A,&\quad G!(\delta(\phi(a))) = k(F!(\gamma(a)))\\
-		\forall a \in A,&\quad k^\flat_B(\delta'(F!(\gamma(a)), \phi(a))) = F(\phi)(\gamma(a))
-	\end{eqalign}
-
-	\matteo{The double category End...}
-
-	All in all, this gives us the \textbf{theory of coalgebras}:
-	\begin{equation}
-		\Coalg : \dblEnd^\top \unilaxto \dblCat.
-	\end{equation}
+	These two examples also admit a more interesting theory of compositions, as we are going to see shortly.
 \end{example}
 
 \begin{example}[Monoid actions]
@@ -305,14 +134,14 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 
 % \begin{example}
 % 	One can enrich the theory of closed dynamical systems by exposing the states of a system by default (which is what is implicitly done most of the time).
-% 	Hence we can now define a composition theory, actually many process theories, acting on this kind of systems. Given a system $S:X \to X$ in $\DynSys_{\cat S}$, we can't just have processes to be maps of $\cat S$ since we can't compose them with endomorphisms and get endomorphisms again.
+% 	Hence we can now define a composition theory, actually many composition theories, acting on this kind of systems. Given a system $S:X \to X$ in $\DynSys_{\cat S}$, we can't just have compositions to be maps of $\cat S$ since we can't compose them with endomorphisms and get endomorphisms again.
 % 	Thus the most basic is the composition theory of \emph{monomorphic adapters}, which are pairs of morphisms going back and forth.
 % 	We define a composition theory $\dblcat{Adap}$ where:
 % 	\begin{enumerate}
 % 		\item interfaces are the objects of $\cat S$,
 % 		\item maps of interfaces are pairs of maps $(h,h^\flat) : I \to J$ of $\cat S$ both going from $I$ to $J$,
-% 		\item processes are monomorphic adapters: a process $(p, p^\sharp) : I \to J$ is a a pair of maps $p : I \to J$ and $p^\sharp : J \to I$,
-% 		\item squares are commutative squares arrangements of maps of interfaces and processes such that the squares induced by both parts commute.
+% 		\item compositions are monomorphic adapters: a composition $(p, p^\sharp) : I \to J$ is a a pair of maps $p : I \to J$ and $p^\sharp : J \to I$,
+% 		\item squares are commutative squares arrangements of maps of interfaces and compositions such that the squares induced by both parts commute.
 % 	\end{enumerate}
 % 	The monoidal structure is given by componentwise product.
 % 	$\dblcat{Adap}$ indexes endomorphisms: given $X: \dblcat{Adap}$, the category $\DynSys(X)$ is the category of endomorphisms of $X$ and commutative squares between them. An adapter $(p,p^\sharp) : X \to Y$ induces a functor $\DynSys(p,p^\sharp) : \DynSys(X) \to \DynSys(Y)$ mapping a dynamical systems $S:X \to X$ to $p^\sharp \comp S \comp p : Y \to Y$.
@@ -589,7 +418,7 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 	\end{equation}
 	in some cartesian monoidal category $(\cat C, 1, \times)$.
 
-	This seemingly inconsequential difference makes Mealy machines quite different. In fact, contrary to Moore machines, such systems cannot be reindexed by lenses anymore $\lens{p^\sharp}{p} : \lens{I}{O} \opticto \lens{J}{Q}$ like Moore machines, the problem arising when reindexing the input:
+	This seemingly inconsequential difference makes Mealy machines quite different. In fact, contrary to Moore machines, such systems cannot be covariantly reindexed by lenses anymore $\lens{p^\sharp}{p} : \lens{I}{O} \opticto \lens{J}{Q}$ like Moore machines, the problem arising when reindexing the input:
 	\begin{equation}
 		\Mealy_{\cat C}\lens{p^\sharp}{p} : \delta \ \mapsto\  S \times J \nlongto{?} S \times I \nlongto{\delta} S \times O \nlongto{p} S \times Q
 	\end{equation}
@@ -607,19 +436,21 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 	\end{equation}
 	They compose with each other similarly.
 
-	The third option is to turn lenses `upside down'. Let a \emph{colens} in $\cat C$ $\lens{I}{O} \opticto \lens{J}{Q}$ be a pair of maps $p:J \to I$ and $p_\sharp : J \times O \to Q$. These compose like lenses and can reindex Mealy machines:\footnotemark
+	The third option is to use the loose opposite\footnotemark of the double category $\dblLens(\cat C)$. Indeed, Mealy machines are reindexed contravariantly by lenses:
 	\begin{equation}
 		\Mealy_{\cat C}\lens{p}{p_\sharp} : \delta \ \mapsto\  S \times J \nlongto{\langle J, S \times p \rangle} J \times S \times I \nlongto{\delta \times J} J \times S \times O \nlongto{\langle S, p_\sharp \rangle} S \times Q
 	\end{equation}
+	In fact, this works even with dependent lenses.
 
 	All these options (when well-defined) admit suitably dual, chart-like morphisms that fit into double categories of `commutative squares', like the one in~\cref{ex:lenses}.
 	This makes $\Mealy_{\cat C}$ a theory of systems:
 	\begin{equation}
 		\Mealy_{\cat C} : \dblcat{P}^\top \unilaxto \dblCat
 	\end{equation}
-	for $\dblcat{P} = \dblcat{Adap}(\cat C)$ (adapters \& pairs of morphisms), $\dblcat{Colens}_{\cat C}$ (colenses \& `cocharts'), $\dblcat{Int}(\cat C)$ ($\Int$-morphisms \& their duals). Clearly the latter is admissibile only when $\cat C$ is traced.
+	for $\dblcat{P} = \dblcat{Adap}(\cat C)$ (adapters \& pairs of morphisms), $\dblLens(\cat C)^{\lop}$ (colenses \& `cocharts'), $\dblcat{Int}(\cat C)$ ($\Int$-morphisms \& their duals). Clearly the latter is admissibile only when $\cat C$ is traced.
 
 	\footnotetext{
+	Let a \emph{colens} in $\cat C$ $\lens{I}{O} \opticto \lens{J}{Q}$ be a pair of maps $p:J \to I$ and $p_\sharp : J \times O \to Q$.
 	Both lenses and colenses embed in $\Int(\cat C)$ when the latter exists, and both trivialize the tracing because they present only non-trivial circularity.
 	All of adapters, lenses, colenses and $\Int(\cat C)$ are categories of optics fit into a diamond:
 	\begin{equation}
@@ -641,12 +472,12 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 
 \begin{example}[Behavioural theories, {\cite[Definition~6.2.1.2]{myers_categorical_2022}}]
 \label{ex:behav-systems}
-	Any behavioural theory of processes $\Span(\cat C)$ (\cref{ex:behav-processes}) supports a behavioural theory of systems (recall $\cat C$ is assumed to be cartesian, hence admits all pullbacks):
+	Any behavioural theory of compositions $\Span(\cat E)$ (\cref{ex:behav-processes}) supports a behavioural theory of systems (recall $\cat E$ is assumed to be cartesian, hence admits all pullbacks):
 	\begin{equation}
-		\BehSys_{\cat C} : \Span(\cat C)^\top \unilaxto \dblCat
+		\BehSys[\cat E] : \Span(\cat E)^\top \unilaxto \dblCat
 	\end{equation}
 	\begin{equation}
-		\BehSys_{\cat C}(I) = \left\{
+		\BehSys[\cat E](I) = \left\{
 			% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMCwwLCJTIl0sWzAsMSwiSSJdLFsxLDAsIlIiXSxbMSwxLCJJIl0sWzAsMSwiXFxvYnNlcnZlX3tcXHN5cyBTfSIsMl0sWzIsMywiXFxvYnNlcnZlX3tcXHN5cyBSfSJdLFswLDIsImgiXSxbMSwzLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
 			\begin{tikzcd}[ampersand replacement=\&]
 				S \& R \\
@@ -656,10 +487,10 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 				\arrow["h", from=1-1, to=1-2]
 				\arrow[Rightarrow, no head, from=2-1, to=2-2]
 			\end{tikzcd}
-		\right\} = \cat C/I
+		\right\} = \cat E/I
 	\end{equation}
-	In this theory, a system $\sys S$ over the interface $I:\cat C$ is simply a state space $S : \cat C$ together with an observation $\observe_{\sys S} : S \to I$.\footnote{
-		One can see maps $S \to I$ as spans $S \equalto S \to I$, thereby fitting this example into the more general pattern of `systems are processes with a special left boundary'.
+	In this theory, a system $\sys S$ over the interface $I:\cat E$ is simply a state space $S : \cat E$ together with an observation $\observe_{\sys S} : S \to I$.\footnote{
+		One can see maps $S \to I$ as spans $S \equalto S \to I$, thereby fitting this example into the more general pattern of `systems are compositions with a special left boundary'.
 	}
 
 	There's two ways to understand this map. The first is to think of it as a literal observable. Hence $S$ is to be considered as a space of states while $I$ as a space fo quantities, and $\observe : S \to I$ maps a state to its corresponding observable.
@@ -668,11 +499,11 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 
 	There's many reasons to prefer this second interpretation. The first is given by the way we are going to define the reindexing operations of $\BehSys$\footnote{This might seem circular but the definition of $\BehSys$ is actually mathematically motivated. So we use the mathematics as a suggestion of which intepretation fits it better, as one should do.}, which treat $\observe$ as a display map. The second is by the way $\BehSys$ is used in the context of categorical systems theory, namely as a `semantical theory': we are going to map other systems theory to behavioural theories to model the act of substantiating a systems' specification with a an actual observable behaviour (see~\cref{sec:behaviour}). The examples then suggest $\observe$ is indeed a display map.
 
-	Thus, let's now look at how $\Span(\cat C)$ indexes observations.
+	Thus, let's now look at how $\Span(\cat E)$ indexes observations.
 
 	Given an observation $\observe_{\sys S} : S \to I$, we can reindex it functorially along a span $I \nfrom{p_\ell} X \nto{p_r} I'$ by pulling back along $p_\ell$ first and then composing with $p_r$ (this is called the pull-push action of spans):
 	\begin{eqalign}
-		\BehSys(I \nfrom{p_\ell} X \nto{p_r} I') : \BehSys(I) \longto \BehSys(I')\\
+		\BehSys[\cat E](I \nfrom{p_\ell} X \nto{p_r} I') : \BehSys[\cat E](I) \longto \BehSys[\cat E](I')\\
 		% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsOCxbMCwwLCJTIl0sWzAsMiwiSSJdLFsyLDEsIlgiXSxbMiwyLCJKIl0sWzIsMCwicF9cXGVsbF4qUyJdLFswLDMsIlxcT2JzKEkpIl0sWzIsMywiXFxPYnMoSikiXSxbMCwxXSxbMCwxLCJcXG9ic2VydmVfe1xcc3lzIFN9IiwyXSxbMiwzLCJwX3IiXSxbNCwyLCJwXipfXFxlbGxcXG9ic2VydmVfe1xcc3lzIFN9Il0sWzUsNiwiXFxPYnMoSSBcXG5mcm9te3BfXFxlbGx9IFggXFxudG97cF9yfSBKKSJdLFs3LDIsIiIsMix7InNob3J0ZW4iOnsic291cmNlIjo0MCwidGFyZ2V0IjozMH0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
 		\begin{tikzcd}[ampersand replacement=\&, row sep=scriptsize]
 			S \&\& {p_\ell^*S} \\
@@ -705,12 +536,12 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 	\begin{equation}
 		% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsOCxbMCwwLCJcXE9icyhJKV5cXG9wIl0sWzEsMCwiXFxPYnMoSykiXSxbMywwLCJcXFNldCJdLFswLDEsIlMiXSxbMCwzLCJJIl0sWzEsMSwiUiJdLFsxLDMsIksiXSxbMywyLCJcXGxlZnRcXHtcXGJlZ2lue3BtYXRyaXh9XFxxdWFkIFMgJiBcXHRvICYgUlxcXFxcXG9ic2VydmVfe1xcc3lzIFN9XFxkb3duYXJyb3cgJiYgXFxkb3duYXJyb3cgXFxvYnNlcnZlX3tcXHN5cyBSfVxcXFxcXHF1YWQgSiAmIFxcdG8gS1xcZW5ke3BtYXRyaXh9IFxccmlnaHRcXH0iXSxbMCwxLCJcXHRpbWVzIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiXFxPYnMoaCkiXSxbMyw0LCJcXG9ic2VydmVfe1xcc3lzIFN9IiwyXSxbNSw2LCJcXG9ic2VydmVfe1xcc3lzIFJ9IiwyXSxbMTEsNywiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjQwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
 		\begin{tikzcd}[ampersand replacement=\&, row sep=3ex]
-			{\BehSys_{\cat C}(I)^\op} \& {\BehSys_{\cat C}(J)} \&\& \Set \\
+			{\BehSys[\cat E](I)^\op} \& {\BehSys[\cat E](J)} \&\& \Set \\
 			S \& R \\[-5ex]
 			\&\&\& {\left\{\begin{matrix}\qquad\qquad S & \dashrightarrow & R\qquad\qquad\qquad\\\observe_{\sys S}\downarrow && \downarrow \observe_{\sys R}\\\qquad\qquad I & \nto{h} &J\qquad\qquad\qquad\end{matrix} \right\}} \\[-5ex]
 			I \& J
 			\arrow["\times"{marking}, draw=none, from=1-1, to=1-2]
-			\arrow["{\BehSys_{\cat C}(h)}", from=1-2, to=1-4]
+			\arrow["{\BehSys[\cat E](h)}", from=1-2, to=1-4]
 			\arrow["{\observe_{\sys S}}"', from=2-1, to=4-1]
 			\arrow[""{name=0, anchor=center, inner sep=0}, "{\observe_{\sys R}}"', from=2-2, to=4-2]
 			\arrow[shorten <=25pt, shorten >=12pt, maps to, from=0, to=3-4]
@@ -735,26 +566,26 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 		\quad\longmapsto\quad
 		% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsNCxbMiwwLCJcXE9icyhKKSJdLFswLDAsIlxcT2JzKEkpIl0sWzAsMiwiXFxPYnMoSykiXSxbMiwyLCJcXE9icyhMKSJdLFsxLDIsIlxcT2JzKGgpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiYmFycmVkIn19fV0sWzAsMywiXFxPYnMoaykiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJiYXJyZWQifX19XSxbMSwwLCJcXE9icyhmKSJdLFsyLDMsIlxcT2JzKGcpIiwyXSxbNCw1LCJcXE9icyhcXHNpZ21hKSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH19XV0=
 		\begin{tikzcd}[ampersand replacement=\&]
-			{\BehSys_{\cat C}(I)} \&\& {\BehSys_{\cat C}(J)} \\
+			{\BehSys[\cat E](I)} \&\& {\BehSys[\cat E](J)} \\
 			\\
-			{\BehSys_{\cat C}(I')} \&\& {\BehSys_{\cat C}(J')}
-			\arrow[""{name=0, anchor=center, inner sep=0}, "{\BehSys_{\cat C}(h)}"', "\shortmid"{marking}, from=1-1, to=3-1]
-			\arrow[""{name=1, anchor=center, inner sep=0}, "{\BehSys_{\cat C}(k)}", "\shortmid"{marking}, from=1-3, to=3-3]
-			\arrow["{\BehSys_{\cat C}(p)}", from=1-1, to=1-3]
-			\arrow["{\BehSys_{\cat C}(q)}"', from=3-1, to=3-3]
-			\arrow["{\BehSys_{\cat C}(\sigma)}", shorten <=16pt, shorten >=16pt, Rightarrow, from=0, to=1]
+			{\BehSys[\cat E](I')} \&\& {\BehSys[\cat E](J')}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{\BehSys[\cat E](h)}"', "\shortmid"{marking}, from=1-1, to=3-1]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{\BehSys[\cat E](k)}", "\shortmid"{marking}, from=1-3, to=3-3]
+			\arrow["{\BehSys[\cat E](p)}", from=1-1, to=1-3]
+			\arrow["{\BehSys[\cat E](q)}"', from=3-1, to=3-3]
+			\arrow["{\BehSys[\cat E](\sigma)}", shorten <=16pt, shorten >=16pt, Rightarrow, from=0, to=1]
 		\end{tikzcd}
 	\end{equation}
 	given, again, by stacking:
 	\begin{equation}
 		% file:///home/jsb20179/data/software/quiver/src/index.html?q=WzAsMTQsWzAsMCwiXFxPYnMoaCkoXFxzeXMgUywgXFxzeXMgUikiXSxbNCwwLCJcXE9icyhrKShcXE9icyhmKShcXHN5cyBTKSwgXFxPYnMoZykoXFxzeXMgUikpIl0sWzAsMSwiUyJdLFswLDIsIkkiXSxbMSwxLCJSIl0sWzEsMiwiSyJdLFszLDEsIlMiXSxbNCwxLCJSIl0sWzMsMiwiSSJdLFs0LDIsIksiXSxbMywzLCJYIl0sWzMsNCwiSiJdLFs0LDQsIkwiXSxbNCwzLCJZIl0sWzAsMSwiXFxPYnMoXFxzaWdtYSlfe1xcc3lzIFMsIFxcc3lzIFJ9Il0sWzIsMywiXFxvYnNlcnZlX3tcXHN5cyBTfSIsMl0sWzQsNSwiXFxvYnNlcnZlX3tcXHN5cyBSfSIsMl0sWzMsNSwiaCIsMl0sWzIsNF0sWzgsOSwiaCIsMl0sWzExLDEyLCJrIiwyXSxbMTMsOV0sWzEwLDhdLFsxMCwxMV0sWzEzLDEyXSxbMTAsMTMsIlxcc2lnbWEiLDFdLFs2LDhdLFs3LDldLFs2LDddLFsxNiwyNiwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjEsInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
 		\begin{tikzcd}[ampersand replacement=\&]
-			{\BehSys_{\cat C}(h)(\sys S, \sys R)} \&[-5ex]\&\&\&[-8ex] {\BehSys_{\cat C}(k)(\BehSys_{\cat C}(f)(\sys S), \BehSys_{\cat C}(g)(\sys R))} \\[-2ex]
+			{\BehSys[\cat E](h)(\sys S, \sys R)} \&[-5ex]\&\&\&[-8ex] {\BehSys[\cat E](k)(\BehSys[\cat E](f)(\sys S), \BehSys[\cat E](g)(\sys R))} \\[-2ex]
 			S \& R \&\& S \& R \\
 			I \& J \&\& I \& J \\
 			\&\&\& X \& Y \\
 			\&\&\& I' \& J'
-			\arrow["{\BehSys_{\cat C}(\sigma)_{\sys S, \sys R}}", from=1-1, to=1-5]
+			\arrow["{\BehSys[\cat E](\sigma)_{\sys S, \sys R}}", from=1-1, to=1-5]
 			\arrow["{\observe_{\sys S}}"', from=2-1, to=3-1]
 			\arrow[""{name=0, anchor=center, inner sep=0}, "{\observe_{\sys R}}"', from=2-2, to=3-2]
 			\arrow["h"', from=3-1, to=3-2]
@@ -775,13 +606,24 @@ Finally, squares in $\Processes$ induce squares witnessing the extension of a si
 
 	Thus we have a systems theory:
 	\begin{equation}
-		\BehSys_{\cat C}: \Span(\cat C)^\top \unilaxto \dblCat
+		\BehSys[\cat E]: \Span(\cat E)^\top \unilaxto \dblCat
 	\end{equation}
-	In particular, when $\cat C = \Set$, then $\dblSet: = \Span(\Set)$ and we define:
+	In particular, when $\cat E = \Set$, then $\dblSet: = \Span(\Set)$ and we define:
 	\begin{equation}
 		\BehSys := \BehSys(\Set) : \dblSet^\top \unilaxto \dblCat.
 	\end{equation}
 	Notably, in this case, $I \mapsto \Set/I \iso \Set^I$ (where the latter sends a `display map' to the indexed set of its fibers).
+\end{example}
+
+
+\begin{example}[Generalized behavioural theories]
+\label{ex:gen-behav-systems}
+	Following~\cref{ex:gen-behav-processes}, if we start from a cartesian strong display map category $(\cat E, \cat D)$ instead, we still get a theory over $\Span(\cat E, \cat D)$ mapping an object $I$ to the display maps over it $\cat D/I$ (the \emph{display slice} over $I$).
+	The same definitions as above work with this restriction since, by assumption, display maps can be both pulled back along arbitrary maps and composed with each other.
+
+	In fact, one can cook up a behavioural theory for any \emph{comprehension category with strong sums}~\cite[Definition~10.3.3]{jacobs_categorical_1999}, these being fibrations $p:\cat P \to \cat B$ with extra structure and properties.
+	In particular these induce a strong display map category structure on $\cat B$, which allows to define $\Span(\cat B, \cat D)$, and this double category reindexes the fibers of $p$ instead of display slices.
+	We leave details to the interested reader.
 \end{example}
 
 \begin{example}[Structured cospans]
@@ -825,9 +667,9 @@ The 2-category $\Theories$ has system theories as objects and the following as 1
 	\begin{equation}
 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJcXFByb2Nlc3Nlc18xXlxcdG9wIl0sWzAsMiwiXFxQcm9jZXNzZXNfMl5cXHRvcCJdLFsyLDEsIlxcZGJsQ2F0Il0sWzEsMF0sWzEsMl0sWzAsMSwiRl5cXHRvcCIsMl0sWzAsMiwiXFxTeXNfMSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcU3lzXzIiLDIseyJjdXJ2ZSI6MX1dLFszLDQsIkZeXFxmbGF0IiwwLHsib2Zmc2V0Ijo1LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MzB9LCJsZXZlbCI6Mn1dXQ==
 		\begin{tikzcd}[ampersand replacement=\&, sep=small]
-			{\Processes_1^\top} \& {} \\
+			{\Comp_1^\top} \& {} \\
 			\&\& \dblCat \\
-			{\Processes_2^\top} \& {}
+			{\Comp_2^\top} \& {}
 			\arrow["{F^\top}"', from=1-1, to=3-1]
 			\arrow["{\Sys_1}", curve={height=-6pt}, from=1-1, to=2-3]
 			\arrow["{\Sys_2}"', curve={height=6pt}, from=3-1, to=2-3]

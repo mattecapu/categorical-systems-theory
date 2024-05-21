@@ -1,0 +1,217 @@
+\section{Relation with coalgebraic systems theory}
+In the last decades coalgebra has been hailed s a universal theory of systems~\cite{rutten_universal_2000}.
+In this section we remark on how the present framework integrates the coalgebraic one.
+
+Let us start by recalling the setup of coalgebrac systems theory.
+There, systems are coalgebras of an endofunctor $F:\cat S \to \cat S$ where $\cat S$ is often $\Set$ but can be taken to be any category of choice.
+A coalgebra $X \nto{\delta} FX$ is an `effectful dynamical system', with $F$ playing both the role of interface, (e.g.~Moore machines with interface $\lens{I}{O}$ are coalgebras of $O \times (-)^I$) and of effect theory (e.g.~non-deterministic Moore machines with interface $\lens{I}{O}$ are coalgebras of $O \times P(-)^I$).
+
+Coalgebraic systems theory takes then mainly place in the category $\Coalg(F)$, or related ones.
+Thus systems are routinely compared by morphisms, and this makes the theory particularly structural.
+However, composition of systems is completely absent (but this doesn't mean compositionality is ignored, see e.g.~\cite{turi_towards_1997}).
+
+\matteo{...}
+
+\begin{example}
+\label{ex:coalgebras}
+	We can think of a coalgebra $A \to FA$ as a system with states $A$ and interface $F$. Natural transformations $\alpha : F \Rightarrow F'$ are `lenses' and one gets an indexed
+	category
+	\begin{equation}
+		\Coalg : \End(\cat C) \to \Cat
+	\end{equation}
+	If $\cat C$ is additionally finitely complete, we can go further and add another dimension. In fact, in this case, $\End(\cat C)$ is fibred over $\cat C$ by evaluation at the terminal object:
+	\begin{equation}
+		-(1) : \End(\cat C) \to \cat C
+	\end{equation}
+	The cartesian lift of a given arrow $f:A \to G(1)$ is given by a
+	natural transformation $f_G : f^*G \Rightarrow G$ obtained from the
+	pullback square
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsNCxbMSwwLCJHWCJdLFsxLDEsIkcxIl0sWzAsMSwiQSJdLFswLDAsImZeKkdYIl0sWzAsMSwiRyEiXSxbMiwxLCJmIiwyXSxbMywyXSxbMywwLCJmX3tHLFh9Il0sWzMsMSwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
+		\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
+			{f^*GX} \& GX \\
+			A \& G1
+			\arrow["{G!}", from=1-2, to=2-2]
+			\arrow["f"', from=2-1, to=2-2]
+			\arrow[from=1-1, to=2-1]
+			\arrow["{f_{G,X}}", from=1-1, to=1-2]
+			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+		\end{tikzcd}
+	\end{equation}
+	that simultaneously defines $f^*G$ (on morphisms is defined by
+	pullback again) and $f_G$.
+
+	The fibred subcategory of polynomial functors is what gives
+	`dependent' lenses, whose opposite is the codomain fibration,
+	i.e.~`dependent' charts~\cite{spivak_generalized_2019}.
+	This suggests that taking the opposite fibration of $-(1)$ gives us a
+	fibration of `generalized charts'.
+
+	We can explicitly construct these things if we work out the cartesian
+	factorization system induced by $-(1)$ on $\End(\cat C)$. This is
+	given by
+
+	\begin{enumerate}
+		\item
+			Cartesian maps are given by natural transformations whose naturality
+			is witness by pullback squares, as suggested by the definition of
+			$f^*G$ above: which we make explicit here:
+
+			\begin{equation}
+				% https://q.uiver.app/?q=WzAsNCxbMCwwLCJGWCJdLFsxLDAsIkdYIl0sWzEsMSwiR1kiXSxbMCwxLCJGWSJdLFszLDIsIlxcYWxwaGFfWSIsMl0sWzEsMiwiR2YiXSxbMCwxLCJcXGFscGhhX1giXSxbMCwzLCJGZiIsMl0sWzAsMiwiIiwxLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV1d
+				\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
+					FX \& GX \\
+					FY \& GY
+					\arrow["{\alpha_Y}"', from=2-1, to=2-2]
+					\arrow["Gf", from=1-2, to=2-2]
+					\arrow["{\alpha_X}", from=1-1, to=1-2]
+					\arrow["Ff"', from=1-1, to=2-1]
+					\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+				\end{tikzcd}
+			\end{equation}
+		\item
+			Vertical maps are given by natural transformations whose component at
+			$1$ is an isomorphism (think: the identity)
+	\end{enumerate}
+
+	We define a \emph{generalized chart} $\lens{k^\flat}{k}: F \chartto G$ to be a span in $\End(\cat C)$ whose left leg is vertical and whose right leg is cartesian. Generalized charts look like this:
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsOCxbMSwxLCJGMSJdLFszLDEsIkcxIl0sWzMsMCwiRyJdLFsyLDEsIkYxIl0sWzIsMCwiZl4qRyJdLFsxLDAsIkYiXSxbMCwwLCJcXEVuZChcXGNhdCBDKSJdLFswLDEsIlxcY2F0IEMiXSxbNCwyLCJrX0ciXSxbMywxLCJrIiwyXSxbMCwzLCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDUsImteXFxmbGF0IiwyXSxbNiw3LCItKDEpIiwyXV0=
+		\begin{tikzcd}[ampersand replacement=\&, sep=scriptsize]
+			{\End(\cat C)} \& F \& {k^*G} \& G \\
+			{\cat C} \& F1 \& F1 \& G1
+			\arrow["{k_G}", from=1-3, to=1-4]
+			\arrow["k"', from=2-3, to=2-4]
+			\arrow[Rightarrow, no head, from=2-2, to=2-3]
+			\arrow["{k^\flat}"', from=1-3, to=1-2]
+			\arrow["{-(1)}"', from=1-1, to=2-1]
+		\end{tikzcd}
+	\end{equation}
+	These might look like lenses (because lenses are obtained by opping a
+	fibration) but they are actually charts. We can verify this by looking
+	at the case in which $F$ and $G$ are polynomial (over $\Set$), to see if this
+	construction recovers the usual one. We see that $k^\flat$ lives in
+	\begin{equation}
+		\Nat\left(\sum_{i \in F1} y^{F_i}, \sum_{j \in F1} y^{G_{k(j)}}\right) \iso \prod_{i \in F1} \sum_{j \in F1} \Set(F_i, G_{k(j)}) \iso \sum_{f : F1 \to F1} \prod_{i \in F1} \Set(F_i, G_{k(f(i))})
+	\end{equation}
+	and since we know it is a vertical map, then $k^\flat$ actually lives in the subobject of the right hand side for which the map $f$ is the identity. Thus we
+	see $\lens{k^\flat}{k}$ encodes the data of a chart (notice how $F$ and
+	$G$ swapped places: charts are lenses `relative to lenses').
+
+	% Thus is not far-fetched to think of such a fibration as giving
+	% generalized lenses and charts. What is sure is that the double
+	% Grothendieck construction of David Jaz Myers gives us a double category
+	% of endofunctors, natural transformations (loose), generalized charts
+	% (tight) and commutative squares.
+
+	This allows us to extend the indexed category $\Coalg$ defined
+	previously to have a profunctorial action. So a given generalized chart
+	$\lens{k^\flat}{k} : F \chartto G$ is mapped to a profunctor
+	$\Coalg\lens{k^\flat}{k} : \Coalg(F) \profto \Coalg(G)$. This has a rather complex
+	definition: it maps two coalgebras $\gamma:A \to FA$ and
+	$\delta:B \to GB$ to the set of $\phi:A \to B$ that make the
+	following commute:
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsOCxbMCwwLCJBIl0sWzEsMiwia14qR0IiXSxbMCwyLCJGQSJdLFsxLDEsImteKkIiXSxbMiwxLCJCIl0sWzEsMywiRjEiXSxbMiwyLCJHQiJdLFsyLDMsIkcxIl0sWzAsMiwiXFxnYW1tYSIsMV0sWzMsMSwiXFxkZWx0YSciLDFdLFszLDQsImsnIiwxXSxbMCw0LCJcXHBoaSIsMSx7ImN1cnZlIjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNywiayIsMV0sWzIsNSwiRiEiLDEseyJjdXJ2ZSI6Mn1dLFsxLDUsIkchJyIsMV0sWzQsNiwiXFxkZWx0YSIsMV0sWzMsNiwiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzYsNywiRyEiLDFdLFsxLDYsImtfe0csQn0iLDFdLFsxLDcsIiIsMix7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dXQ==
+		\begin{tikzcd}[ampersand replacement=\&]
+			A \\
+			\& {k^*B} \& B \\
+			FA \& {k^*GB} \& GB \\
+			\& F1 \& G1
+			\arrow["\gamma"{description}, from=1-1, to=3-1]
+			\arrow["{\delta'}"{description}, from=2-2, to=3-2]
+			\arrow["{k'}"{description}, from=2-2, to=2-3]
+			\arrow["\phi"{description}, curve={height=-12pt}, dashed, from=1-1, to=2-3]
+			\arrow["k"{description}, from=4-2, to=4-3]
+			\arrow["{F!}"{description}, curve={height=12pt}, from=3-1, to=4-2]
+			\arrow["{G!'}"{description}, from=3-2, to=4-2]
+			\arrow["\delta"{description}, from=2-3, to=3-3]
+			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+			\arrow["{G!}"{description}, from=3-3, to=4-3]
+			\arrow["{k_{G,B}}"{description}, from=3-2, to=3-3]
+			\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-2, to=4-3]
+		\end{tikzcd}
+	\end{equation}
+	\begin{equation}
+		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJBIl0sWzMsMSwia14qR0IiXSxbMCwxLCJGQSJdLFszLDAsImteKkIiXSxbMSwxLCJGQiJdLFswLDIsIlxcZ2FtbWEiLDJdLFszLDEsIlxcZGVsdGEnIiwxXSxbMCwzLCJcXGV4aXN0cyEgXFxsYW5nbGUgXFxnYW1tYSBcXGNvbXAgRiEsIFxccGhpIFxccmFuZ2xlIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzEsNCwia15cXGZsYXRfQiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMH1dLFsyLDQsIkYoXFxwaGkpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+		\begin{tikzcd}[ampersand replacement=\&]
+			A \&\&\& {k^*B} \\
+			FA \& FB \&\& {k^*GB}
+			\arrow["\gamma"', from=1-1, to=2-1]
+			\arrow["{\delta'}"{description}, from=1-4, to=2-4]
+			\arrow["{\exists! \langle \gamma \comp F!, \phi \rangle}"{description}, dotted, from=1-1, to=1-4]
+			\arrow["{k^\flat_B}"'{pos=0.3}, from=2-4, to=2-2]
+			\arrow["{F(\phi)}", dashed, from=2-1, to=2-2]
+		\end{tikzcd}
+	\end{equation}
+	% \begin{equation}
+	% 	% https://q.uiver.app/?q=WzAsOSxbMCwwLCJBIl0sWzEsMiwiRkIiXSxbNCwwLCJCIl0sWzQsMiwiR0IiXSxbMywyLCJrXipHQiJdLFswLDIsIkZBIl0sWzMsMSwia14qQiJdLFszLDMsIkYxIl0sWzQsMywiRzEiXSxbMiwzLCJcXGRlbHRhIl0sWzQsMSwia15cXGZsYXRfQiIsMix7ImxhYmVsX3Bvc2l0aW9uIjozMH1dLFs1LDEsIkYoXFxwaGkpIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsNSwiXFxnYW1tYSIsMl0sWzYsMiwiayciXSxbNiw0LCJcXGRlbHRhJyIsMV0sWzYsMywiIiwwLHsic3R5bGUiOnsibmFtZSI6ImNvcm5lciJ9fV0sWzAsMiwiXFxwaGkiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCw2LCJcXGV4aXN0cyEgXFxsYW5nbGUgXFxnYW1tYSBcXGNvbXAgRiEsIFxccGhpIFxccmFuZ2xlIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzMsOCwiRyEiXSxbNyw4LCJrIiwyXSxbNSw3LCJGISIsMix7ImN1cnZlIjoyfV0sWzQsNywiRyEnIiwyXSxbNCw4LCIiLDIseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbNCwzLCJrX3tHLEJ9Il1d
+	% 	\begin{tikzcd}[ampersand replacement=\&]
+	% 		A \&\&\&\& B \\
+	% 		\&\&\& {k^*B} \\
+	% 		FA \& FB \&\& {k^*GB} \& GB \\
+	% 		\&\&\& F1 \& G1
+	% 		\arrow["\delta", from=1-5, to=3-5]
+	% 		\arrow["{k^\flat_B}"'{pos=0.3}, from=3-4, to=3-2]
+	% 		\arrow["{F(\phi)}", dashed, from=3-1, to=3-2]
+	% 		\arrow["\gamma"', from=1-1, to=3-1]
+	% 		\arrow["{k'}", from=2-4, to=1-5]
+	% 		\arrow["{\delta'}"{description}, from=2-4, to=3-4]
+	% 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-4, to=3-5]
+	% 		\arrow["\phi"{description}, dashed, from=1-1, to=1-5]
+	% 		\arrow["{\exists! \langle \gamma \comp F!, \phi \rangle}"{description}, dotted, from=1-1, to=2-4]
+	% 		\arrow["{G!}", from=3-5, to=4-5]
+	% 		\arrow["k"', from=4-4, to=4-5]
+	% 		\arrow["{F!}"', curve={height=12pt}, from=3-1, to=4-4]
+	% 		\arrow["{G!'}"', from=3-4, to=4-4]
+	% 		\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-4, to=4-5]
+	% 		\arrow["{k_{G,B}}", from=3-4, to=3-5]
+	% 	\end{tikzcd}
+	% \end{equation}
+
+	Specifically, we are asking for the following:
+	\begin{eqalign}
+		\forall a \in A,&\quad G!(\delta(\phi(a))) = k(F!(\gamma(a)))\\
+		\forall a \in A,&\quad k^\flat_B(\delta'(F!(\gamma(a)), \phi(a))) = F(\phi)(\gamma(a))
+	\end{eqalign}
+
+	\matteo{The double category End...}
+
+	All in all, this gives us the \textbf{theory of coalgebras}:
+	\begin{equation}
+		\Coalg : \dblEnd^\top \unilaxto \dblCat.
+	\end{equation}
+\end{example}
+
+
+% \begin{example}[Coalgebraic behaviour]
+% 	Let $\cat C$ be a cartesian category. Let $\dblEnd^\nu(\cat C)$ denote the double category of endofunctors described in \cref{ex:coalgebras} but restricted to those endofunctors that admit a final coalgebra.
+% 	We thus end up with a restricted theory of coalgebras $\Coalg^\nu : \theoryover{\dblEnd^\nu}$. On this, we can define the following theory of behaviour:
+% 	\begin{equation}
+% 		% https://q.uiver.app/?q=WzAsNSxbMCwwLCJ7XFxkYmxFbmReXFxudX1eXFx0b3AiXSxbMCwyLCJcXFNwYW4oXFxjYXQgQyleXFx0b3AiXSxbMiwxLCJcXGRibENhdCJdLFsxLDBdLFsxLDJdLFswLDEsIlxcbnUiLDJdLFswLDIsIlxcQ29hbGdeXFxudSIsMCx7ImN1cnZlIjotMX1dLFsxLDIsIlxcY2F0IEMvLSIsMix7ImN1cnZlIjoxfV0sWzMsNCwiISIsMix7ImxhYmVsX3Bvc2l0aW9uIjo0MCwib2Zmc2V0Ijo0LCJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6NTB9LCJsZXZlbCI6Mn1dXQ==
+% 		\begin{tikzcd}[ampersand replacement=\&]
+% 			{{\dblEnd^\nu(\cat C)}^\top} \& {} \\
+% 			\&\& \dblCat \\
+% 			{\Span(\cat C)^\top} \& {}
+% 			\arrow["\nu"', from=1-1, to=3-1]
+% 			\arrow["{\Coalg^\nu}", curve={height=-6pt}, from=1-1, to=2-3]
+% 			\arrow["{\cat C/-}"', curve={height=6pt}, from=3-1, to=2-3]
+% 			\arrow["{!}"'{pos=0.4}, shift right=4, shorten <=10pt, shorten >=15pt, Rightarrow, from=1-2, to=3-2]
+% 		\end{tikzcd}
+% 	\end{equation}
+% 	This is given by
+% 	\begin{enumerate}
+% 		\item The lax double functor which sends an endofunctor $F : \dblEnd^\nu$ to the carrier of its final coalgebra $\nu F : \cat C$.
+
+% 		Since $\nu$ is functorial on $\End^\nu(\cat C)$, we can map natural transformations $p:F \twoto G$ (the vertical arrows in $\dblEnd^\nu(\cat C)$) to `functional spans' $\nu F \equalto \nu F \nto{\nu p} \nu G$, and this is again functorial.
+% 		In the horizontal direction, we have to prove a generalized chart $\lens{h^\flat}{h} : F \horto G$  also induces a map $\nu \lens{h^\flat}{h} : \nu F \to \nu G$. Remember that such a generalized chart is given by a map $F1 \to G1$ and and by a natural transformation $h^\flat : f^*G \twoto F$ such that $h^\flat_1$ is invertible (without loss of generality, the identity).
+
+% 		Adamek's theorem characterizes the carrier of final coalgebras as limits of the diagrams obtained by iterated application of a functor to the terminal object:
+% 		\begin{equation}
+% 			\cdots F^2(1) \nto{F!} F1 \nto{!} 1
+% 		\end{equation}
+% 		Clearly, a map like $h$ induces a morphism between the diagrams corresponding to $F$ and $G$, which in turn induces a morphism $\nu F \to \nu G$.
+
+% 		\item The vertical lax-natural transformation
+% 	\end{enumerate}
+% \end{example}

@@ -7,14 +7,15 @@
 \newcommand{\SymDblOperads}{{\sf smc}}
 
 \newcommand{\compth}[1]{\dblcat{#1}}
-\newcommand{\systh}[1]{\cat{#1}}
+\newcommand{\systh}[1]{\mathbf{#1}}
 \newcommand{\doc}[1]{\mathfrak{#1}}
 
 \newcommand{\Paradigm}{{(\dblcat{E}, T)}}
 \newcommand{\Doc}{{\doc{Doc}}}
 \newcommand{\Sys}{{\systh{Sys}}}
 \newcommand{\Comp}{{\compth{C}}}
-\newcommand{\Processes}{\Comp}
+
+\newcommand{\dblSys}{{\dblcat{Sys}}}
 
 \newcommand{\Behaviour}{\cat{B}}
 
@@ -28,7 +29,7 @@
 \newcommand{\Cyb}{\cat{Cyb}}
 \newcommand{\CybSys}{\cat{CybSys}}
 
-\newcommand{\BehSys}{\systh{B}}
+\newcommand{\BehSys}[1][\Set]{#1}
 \newcommand{\Moore}{\systh{Moore}}
 \renewcommand{\Alph}{\dblcat{Alph}}
 \newcommand{\Int}{\cat{Int}}
@@ -37,6 +38,8 @@
 \newcommand{\DynSys}{\systh{DynSys}}
 \newcommand{\FSM}{\systh{FSM}}
 \newcommand{\Mealy}{\systh{Mealy}}
+\newcommand{\Petri}{\systh{Petri}}
+\newcommand{\ODE}{\systh{ODE}}
 
 \newcommand{\states}{\systh{states}}
 
@@ -52,3 +55,7 @@
 \newcommand{\Fin}{\mathrm{Fin}}
 
 \newcommand{\nreachto}[1]{\narrow{#1}{\rightsquigarrow}}
+
+\newcommand{\lop}{\mathsf{lop}}
+\newcommand{\Time}{\mathsf{Time}}
+\newcommand{\Psh}{\cat{Psh}}
