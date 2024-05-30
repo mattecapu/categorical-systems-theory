@@ -534,13 +534,13 @@ Generalized behaviours are those landing in a generalized behavioural theory (\c
 	In~\cref{ex:paths} we've seen finite-length paths are a theory of behaviour for labelled transition systems. If one were to care just about reachability between states though, paths would be overkill: they remember, yes, whether a certain state is reachable from another one, but also all possible way in which this can happen. This can be a plus in some settings, but a burden in others.
 
 	To forget about paths and only keep the reachability relation we have to truncate the information we have about the type of paths between two states to just a proposition.
-	In other words, we want to turn our dependent types to preidcates. Doing so will yield a non-standard behaviour of reachability.
+	In other words, we want to turn our dependent types to predicates. Doing so will yield a non-standard behaviour of reachability.
 
 	Truncation can be expressed as a morphism of system theories $\|-\|_0 : \BehSys \to \BehSys_0$, where the latter is a theory like $\BehSys$ except on objects, where $\Set/-$ is replaced by $\Sub(-)$. Hence systems are not display maps anymore, but just subobjects.
 
 	The natural transformation $\im : \Set/- \to \Sub(-)$, which sends a display map $\pi:S \to A$ to its image $\im \pi \subseteq A$, induces the desired $\|-\|_0$.
 
-	Now reachability is the non-standard behaviour $\systh R: \Trans \to \BehSys_0$ obtained as $\|\systh P\|_0$, where $\systh P$ is the behaviur of paths from~\cref{ex:paths}.
+	Now reachability is the non-standard behaviour $\systh R: \Trans \to \BehSys_0$ obtained as $\|\systh P\|_0$, where $\systh P$ is the behaviour of paths from~\cref{ex:paths}.
 \end{example}
 
 \subsection{Doctrines of behaviour}
