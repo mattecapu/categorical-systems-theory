@@ -1,4 +1,3 @@
-
 \section{Introduction}
 Systems are ubiquitous, in science as in life.
 People regularly deal with physical systems, political systems, economical systems, living systems, learning systems, writing systems, voting systems, computing systems, etc.
@@ -35,19 +34,28 @@ This allows the language of CST to be uniform across a wild variety of systems, 
 % Hence it's usually easier to start describing what a theory of systems is and then to say what does it mean for a doctrine to gather many of them in a single object.
 
 \subsection{A bit of history}
-Categorical approaches to general systems theory have been around for a long time.
-The earliest is probably~\cite{rosen1978fundamentals}, which deals with systems from a behavioural point of view. The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
+Categorical approaches to general or particular systems theory have been around for a long time.
+Here we try to give a short chronology, and we will gather examples as we come across them.
+However, the reader should not expect a complete history of the field from this section, but rather a list of pointers to the literature.
+The main aim of the following story is to acknowledgme the shoulders of the giants we stand on, and show how the ideas converging in DCST often arisen somewhere else first.
+
+The earliest example of categorical systems theory is probably due to Rosen~\cite{rosen1978fundamentals}, which deals with systems from a behavioural point of view.
+The work pioneers the idea of gathering systems in categories and considering their observable behaviour as input-output relations.
+
+In the 70s, lots of automata theory was also interpreted categorically, generalizing it considerably, in the works of Arbib and Manes \cite{arbibRelevanceAbstractAlgebra1969,arbibMachinesCategoryExpository1974,arbibFoundationsSystemTheory1974,arbibAdjointMachinesStatebehavior1975} and Goguen \cite{goguenRealizationUniversal1972,goguenMinimalRealizationMachines1972,goguenCategoricalFoundationsGeneral1973}.
 
 In the 90s, a series of papers by Katis, Sabadini, Walters and others established a theory of machines~\cite{sabadini_functions_1993, bloom_matrices_1996, katis1997bicategories, katis1997span, katis_algebra_1999, katis2002feedback} which anticipated some of the ideas regarding functorial semantics of behaviour, finding categories of matrices are well-adapted to receive such functors.
 
 The works on structured and decorated cospans~\cite{fiadeiro2007structured,fong2015decorated, baez2020open,baez2020structured,Baez2022structuredversus} deals with the doctrine of port-plugging systems (circuits) in modern form, and started using some ideas from double category theory to talk about them.
 This also happens in~\cite{lerman2018networks,culbertson2020formal}.
+Notably, Courser has been the first (to our knowledge) to explicitly recognize double categories as instrumental to the compositional study of open systems, see \cite{courserOpenSystemsDouble2020}.
 
-In~\cite{spivak2013operad, libkind2021operadic} and other related works the idea operads provide the syntax for composition of systems is introduced.
+It is Spivak \cite{spivak2013operad} who first introduced the operadic view of systems, see also Libkind's \cite{libkind2021operadic} for a more mature take.
 
 Finally, coalgebraic automata theory~\cite{goos_relational_1977,rutten_universal_2000,kupke_coalgebraic_2008,jacobs_introduction_2017} can be considered the currently most mature form of `general system theory'.
 Contrary to other examples so far, coalgebraic automata theory mostly overlooked composition of systems and focused instead on categories \emph{of} systems.
-Coalgebraic automata theory has already branched out in many subfields, for instance dealing with modal logic~\cite{?} and quantitative aspects~\cite{?}.
+However, it has a large and well-developed literature covering an immense breadth of topics, and delving deeply in many applications such as model checking and semantics of modal logic \cite{mossCoalgebraicLogic1999}.
+% Coalgebraic automata theory has already branched out in many subfields, for instance dealing with modal logic~\cite{?} and quantitative aspects~\cite{?}.
 
 Thus we can say that albeit the current form and conceptualization of CST (using the technology of doubly indexed categories) is due to David Jaz Myers, various pieces of this philosophy have been around for far longer, as well as specific incarnations of them.
 
@@ -90,7 +98,7 @@ Therefore, \emph{theories of systems} should be algebras of \emph{double operads
 \end{remark}
 
 \subsection{Paradigms, doctrines, theories.}
-The narratology of categorical systems theory can be organized in three levels of decreasing abstraction.
+The cosmogony of categorical systems theory can be organized in three levels of decreasing abstraction.
 It's easier to start from the topmost level:
 
 \begin{definition}[Paradigm]
